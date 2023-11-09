@@ -1,6 +1,6 @@
 class TvSeriesResponseModel {
   int? page;
-  List<Result>? results;
+  List<ResultTvSeries>? results;
   int? totalPages;
   int? totalResults;
 
@@ -13,7 +13,7 @@ class TvSeriesResponseModel {
 
   factory TvSeriesResponseModel.fromJson(Map<String, dynamic> json) => TvSeriesResponseModel(
         page: json["page"],
-        results: json["results"] == null ? null : List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+        results: json["results"] == null ? null : List<ResultTvSeries>.from(json["results"].map((x) => ResultTvSeries.fromJson(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );
@@ -26,7 +26,7 @@ class TvSeriesResponseModel {
       };
 }
 
-class Result {
+class ResultTvSeries {
   bool? adult;
   String? backdropPath;
   List<int>? genreIds;
@@ -42,7 +42,7 @@ class Result {
   double? voteAverage;
   int? voteCount;
 
-  Result({
+  ResultTvSeries({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -59,7 +59,7 @@ class Result {
     this.voteCount,
   });
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
+  factory ResultTvSeries.fromJson(Map<String, dynamic> json) => ResultTvSeries(
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
         genreIds: json["genre_ids"] == null ? null : List<int>.from(json["genre_ids"].map((x) => x)),

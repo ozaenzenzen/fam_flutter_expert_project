@@ -20,8 +20,8 @@ class GenreModel extends Equatable {
         "name": name,
       };
 
-  Genre toEntity() {
-    return Genre(id: this.id, name: this.name);
+  GenreEntity toEntity() {
+    return GenreEntity(id: this.id, name: this.name);
   }
 
   @override

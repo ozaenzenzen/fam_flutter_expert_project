@@ -279,7 +279,7 @@ class DetailContent extends StatelessWidget {
     );
   }
 
-  String _showGenres(List<Genre> genres) {
+  String _showGenres(List<GenreEntity> genres) {
     String result = '';
     for (var genre in genres) {
       result += genre.name + ', ';

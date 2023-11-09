@@ -12,11 +12,11 @@ import 'package:ditonton/common/failure.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
   final MovieRemoteDataSource remoteDataSource;
-  final MovieLocalDataSource localDataSource;
+  // final MovieLocalDataSource localDataSource;
 
   MovieRepositoryImpl({
     required this.remoteDataSource,
-    required this.localDataSource,
+    // required this.localDataSource,
   });
 
   @override
@@ -91,39 +91,39 @@ class MovieRepositoryImpl implements MovieRepository {
     }
   }
 
-  @override
-  Future<Either<Failure, String>> saveWatchlist(MovieDetail movie) async {
-    try {
-      final result =
-          await localDataSource.insertWatchlist(MovieTable.fromEntity(movie));
-      return Right(result);
-    } on DatabaseException catch (e) {
-      return Left(DatabaseFailure(e.message));
-    } catch (e) {
-      throw e;
-    }
-  }
+  // @override
+  // Future<Either<Failure, String>> saveWatchlist(MovieDetail movie) async {
+  //   try {
+  //     final result =
+  //         await localDataSource.insertWatchlist(MovieTable.fromEntity(movie));
+  //     return Right(result);
+  //   } on DatabaseException catch (e) {
+  //     return Left(DatabaseFailure(e.message));
+  //   } catch (e) {
+  //     throw e;
+  //   }
+  // }
 
-  @override
-  Future<Either<Failure, String>> removeWatchlist(MovieDetail movie) async {
-    try {
-      final result =
-          await localDataSource.removeWatchlist(MovieTable.fromEntity(movie));
-      return Right(result);
-    } on DatabaseException catch (e) {
-      return Left(DatabaseFailure(e.message));
-    }
-  }
+  // @override
+  // Future<Either<Failure, String>> removeWatchlist(MovieDetail movie) async {
+  //   try {
+  //     final result =
+  //         await localDataSource.removeWatchlist(MovieTable.fromEntity(movie));
+  //     return Right(result);
+  //   } on DatabaseException catch (e) {
+  //     return Left(DatabaseFailure(e.message));
+  //   }
+  // }
 
-  @override
-  Future<bool> isAddedToWatchlist(int id) async {
-    final result = await localDataSource.getMovieById(id);
-    return result != null;
-  }
+  // @override
+  // Future<bool> isAddedToWatchlist(int id) async {
+  //   final result = await localDataSource.getMovieById(id);
+  //   return result != null;
+  // }
 
-  @override
-  Future<Either<Failure, List<Movie>>> getWatchlistMovies() async {
-    final result = await localDataSource.getWatchlistMovies();
-    return Right(result.map((data) => data.toEntity()).toList());
-  }
+  // @override
+  // Future<Either<Failure, List<Movie>>> getWatchlistMovies() async {
+  //   final result = await localDataSource.getWatchlistMovies();
+  //   return Right(result.map((data) => data.toEntity()).toList());
+  // }
 }
