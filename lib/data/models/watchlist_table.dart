@@ -32,7 +32,8 @@ class WatchlistTable extends Equatable {
         title: map['title'],
         posterPath: map['posterPath'],
         overview: map['overview'],
-        dataType: map['dataType'] is Enum ? map['dataType'].index : map['dataType'],
+        // dataType: map['dataType'] is Enum ? map['dataType'].index : map['dataType'],
+        dataType: map['dataType'],
       );
 
   factory WatchlistTable.fromContentData(ItemDataModel data) => WatchlistTable(
