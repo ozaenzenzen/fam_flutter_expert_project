@@ -1,3 +1,5 @@
+import 'package:ditonton/domain/entities/id_and_data_type.dart';
+import 'package:ditonton/domain/entities/item_data_model.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
 import 'package:ditonton/domain/usecases/get_movie_detail.dart';
@@ -79,7 +81,7 @@ class MovieDetailNotifier extends ChangeNotifier {
   String _watchlistMessage = '';
   String get watchlistMessage => _watchlistMessage;
 
-  Future<void> addWatchlist(MovieDetail movie) async {
+  Future<void> addWatchlist(ItemDataModel movie) async {
     final result = await saveWatchlist.execute(movie);
 
     await result.fold(
@@ -91,10 +93,10 @@ class MovieDetailNotifier extends ChangeNotifier {
       },
     );
 
-    await loadWatchlistStatus(movie.id);
+    await loadWatchlistStatus(movie.id, movie.dataType.index);
   }
 
-  Future<void> removeFromWatchlist(MovieDetail movie) async {
+  Future<void> removeFromWatchlist(IdAndDataType movie) async {
     final result = await removeWatchlist.execute(movie);
 
     await result.fold(
@@ -106,11 +108,11 @@ class MovieDetailNotifier extends ChangeNotifier {
       },
     );
 
-    await loadWatchlistStatus(movie.id);
+    await loadWatchlistStatus(movie.id, movie.dataType.index);
   }
 
-  Future<void> loadWatchlistStatus(int id) async {
-    final result = await getWatchListStatus.execute(id);
+  Future<void> loadWatchlistStatus(int id, int dataType) async {
+    final result = await getWatchListStatus.execute(id, dataType);
     _isAddedtoWatchlist = result;
     notifyListeners();
   }
