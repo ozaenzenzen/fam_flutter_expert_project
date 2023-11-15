@@ -1,15 +1,11 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/enum/enum_home_state.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/bloc/movie_search/movie_search_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv_searies_search/tv_series_search_bloc.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
 import 'package:ditonton/presentation/widgets/ditonton_error_widget.dart';
 import 'package:ditonton/presentation/widgets/id_poster_title_overview_card.dart';
-import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class SearchPage extends StatelessWidget {
   static const ROUTE_NAME = '/search';

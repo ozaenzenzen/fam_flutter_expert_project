@@ -3,7 +3,6 @@ import 'package:ditonton/presentation/widgets/ditonton_error_widget.dart';
 import 'package:ditonton/presentation/widgets/id_poster_title_overview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class WatchlistPage extends StatelessWidget {
   static const ROUTE_NAME = '/watchlist-movie';
@@ -53,12 +52,10 @@ class WatchlistPage extends StatelessWidget {
                 } else if (state is WatchlistError) {
                   return Center(
                     key: Key('error_message'),
-                    child: state is WatchlistError
-                        ? DitontonErrorWidget(
-                            state.message,
-                            retry: state.retry,
-                          )
-                        : Container(),
+                    child: DitontonErrorWidget(
+                      state.message,
+                      retry: state.retry,
+                    ),
                   );
                 } else {
                   return Container();
