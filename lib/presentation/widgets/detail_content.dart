@@ -59,8 +59,7 @@ class DetailContent extends StatelessWidget {
                               _showGenres(itemDataModel.genres),
                             ),
                             Text(
-                              _showDuration(
-                                  int.fromEnvironment(itemDataModel.runtime)),
+                              _showDuration(int.fromEnvironment(itemDataModel.runtime)),
                             ),
                             Row(
                               children: [
@@ -89,10 +88,7 @@ class DetailContent extends StatelessWidget {
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            if (itemDataModel.dataType == DataType.TvSeries)
-                              _buildTvDetail()
-                            else
-                              _buildMovie()
+                            if (itemDataModel.dataType == DataType.TvSeries) tvDetailSection() else movieDetailSection()
                           ],
                         ),
                       ),
@@ -131,7 +127,7 @@ class DetailContent extends StatelessWidget {
     );
   }
 
-  Widget _buildMovie() {
+  Widget movieDetailSection() {
     return BlocConsumer<MovieDetailBloc, MovieDetailState>(
       listener: (context, state) {
         if (state is MovieDetailError) {
@@ -179,7 +175,7 @@ class DetailContent extends StatelessWidget {
     );
   }
 
-  Widget _buildTvDetail() {
+  Widget tvDetailSection() {
     return BlocConsumer<TvDetailBloc, TvDetailState>(
       listener: (context, state) {
         if (state is TvDetailError) {
@@ -207,7 +203,8 @@ class DetailContent extends StatelessWidget {
                         context,
                         MovieDetailPage.ROUTE_NAME,
                         arguments: IdAndDataType.fromIdPosterDataType(
-                            idPosterDataType),
+                          idPosterDataType,
+                        ),
                       );
                     },
                     child: ClipRRect(
