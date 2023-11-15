@@ -34,7 +34,9 @@ class DetailContent extends StatelessWidget {
               return Container(
                 decoration: BoxDecoration(
                   color: kRichBlack,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(16),
+                  ),
                 ),
                 padding: const EdgeInsets.only(
                   left: 16,
@@ -59,17 +61,21 @@ class DetailContent extends StatelessWidget {
                               _showGenres(itemDataModel.genres),
                             ),
                             Text(
-                              _showDuration(int.fromEnvironment(itemDataModel.runtime)),
+                              _showDuration(
+                                int.fromEnvironment(itemDataModel.runtime),
+                              ),
                             ),
                             Row(
                               children: [
                                 RatingBarIndicator(
                                   rating: itemDataModel.voteAverage / 2,
                                   itemCount: 5,
-                                  itemBuilder: (context, index) => Icon(
-                                    Icons.star,
-                                    color: kMikadoYellow,
-                                  ),
+                                  itemBuilder: (context, index) {
+                                    return Icon(
+                                      Icons.star,
+                                      color: kMikadoYellow,
+                                    );
+                                  },
                                   itemSize: 24,
                                 ),
                                 Text('${itemDataModel.voteAverage}')
@@ -105,9 +111,7 @@ class DetailContent extends StatelessWidget {
                 ),
               );
             },
-            // initialChildSize: 0.5,
             minChildSize: 0.25,
-            // maxChildSize: 1.0,
           ),
         ),
         Padding(
@@ -116,7 +120,9 @@ class DetailContent extends StatelessWidget {
             backgroundColor: kRichBlack,
             foregroundColor: Colors.white,
             child: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(
+                Icons.arrow_back,
+              ),
               onPressed: () {
                 Navigator.pop(context);
               },
