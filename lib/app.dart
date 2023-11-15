@@ -16,13 +16,13 @@ import 'package:ditonton/presentation/bloc/tv_searies_search/tv_series_search_bl
 import 'package:ditonton/presentation/bloc/watchlist/watchlist_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist_status/watchlist_status_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
-import 'package:ditonton/presentation/pages/home_movie_page.dart';
-import 'package:ditonton/presentation/pages/popular_movies_page.dart';
-import 'package:ditonton/presentation/pages/popular_tv_series_page.dart';
+import 'package:ditonton/presentation/pages/detail_page.dart';
+import 'package:ditonton/presentation/pages/home_page.dart';
+import 'package:ditonton/presentation/pages/movies/popular_movies_page.dart';
+import 'package:ditonton/presentation/pages/movies/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_tv_series_page.dart';
+import 'package:ditonton/presentation/pages/tvseries/popular_tv_series_page.dart';
+import 'package:ditonton/presentation/pages/tvseries/top_rated_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,13 +57,13 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: kRichBlack,
           textTheme: kTextTheme,
         ),
-        home: HomeMoviePage(),
+        home: HomePage(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
-            case HomeMoviePage.ROUTE_NAME:
+            case HomePage.ROUTE_NAME:
               return MaterialPageRoute(
-                builder: (_) => HomeMoviePage(),
+                builder: (_) => HomePage(),
               );
             case PopularMoviesPage.ROUTE_NAME:
               return CupertinoPageRoute(
@@ -81,10 +81,10 @@ class MyApp extends StatelessWidget {
               return CupertinoPageRoute(
                 builder: (_) => TopRatedMoviesPage(),
               );
-            case MovieDetailPage.ROUTE_NAME:
+            case DetailPage.ROUTE_NAME:
               final id = settings.arguments as IdAndDataType;
               return MaterialPageRoute(
-                builder: (_) => MovieDetailPage(idAndDataType: id),
+                builder: (_) => DetailPage(idAndDataType: id),
                 settings: settings,
               );
             case SearchPage.ROUTE_NAME:

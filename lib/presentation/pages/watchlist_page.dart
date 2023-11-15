@@ -12,55 +12,58 @@ class WatchlistPage extends StatelessWidget {
     context.read<WatchlistBloc>().add(OnWatchlistDataRequested());
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Watchlist'),
+      appBar: AppBar(
+        title: Text('Watchlist'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: BlocBuilder<WatchlistBloc, WatchlistState>(
+          builder: (context, state) {
+            if (state is WatchlistLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is WatchlistHasData) {
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  final watchlist = state.data[index];
+                  return IdPosterTitleOverviewCard(watchlist);
+                },
+                itemCount: state.data.length,
+              );
+            } else if (state is WatchlistEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'No watchlist yet, you can add some from list movie or serial tv',
+                      textAlign: TextAlign.center,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('Add Now'),
+                    ),
+                  ],
+                ),
+              );
+            } else if (state is WatchlistError) {
+              return Center(
+                key: Key('error_message'),
+                child: AppErrorWidget(
+                  state.message,
+                  retry: state.retry,
+                ),
+              );
+            } else {
+              return Container();
+            }
+          },
         ),
-        body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: BlocBuilder<WatchlistBloc, WatchlistState>(
-              builder: (context, state) {
-                if (state is WatchlistLoading) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state is WatchlistHasData) {
-                  return ListView.builder(
-                    itemBuilder: (context, index) {
-                      final watchlist = state.data[index];
-                      return IdPosterTitleOverviewCard(watchlist);
-                    },
-                    itemCount: state.data.length,
-                  );
-                } else if (state is WatchlistEmpty) {
-                  return Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'No watchlist yet, you can add some from list movie or serial tv',
-                          textAlign: TextAlign.center,
-                        ),
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pop();
-                            },
-                            child: Text('Add Now'))
-                      ],
-                    ),
-                  );
-                } else if (state is WatchlistError) {
-                  return Center(
-                    key: Key('error_message'),
-                    child: AppErrorWidget(
-                      state.message,
-                      retry: state.retry,
-                    ),
-                  );
-                } else {
-                  return Container();
-                }
-              },
-            )));
+      ),
+    );
   }
 }

@@ -8,11 +8,11 @@ import 'package:ditonton/presentation/bloc/popular_tv_series/popular_tv_series_b
 import 'package:ditonton/presentation/bloc/top_rated_movie/top_rated_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/top_rated_tv_series/top_rated_tv_series_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/popular_movies_page.dart';
-import 'package:ditonton/presentation/pages/popular_tv_series_page.dart';
+import 'package:ditonton/presentation/pages/movies/popular_movies_page.dart';
+import 'package:ditonton/presentation/pages/movies/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_tv_series_page.dart';
+import 'package:ditonton/presentation/pages/tvseries/popular_tv_series_page.dart';
+import 'package:ditonton/presentation/pages/tvseries/top_rated_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
 import 'package:ditonton/presentation/widgets/app_error_widget.dart';
 import 'package:ditonton/presentation/widgets/movie_list.dart';
@@ -20,14 +20,14 @@ import 'package:ditonton/presentation/widgets/app_row_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeMoviePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   static const ROUTE_NAME = '/home';
 
   @override
-  _HomeMoviePageState createState() => _HomeMoviePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeMoviePageState extends State<HomeMoviePage> {
+class _HomePageState extends State<HomePage> {
   HomeState stateHome = HomeState.Movies;
   void _getTvSeriesData(BuildContext context) {
     context

@@ -7,42 +7,40 @@ import 'package:ditonton/presentation/widgets/detail_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MovieDetailPage extends StatefulWidget {
+class DetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/detail';
 
   final IdAndDataType idAndDataType;
 
-  MovieDetailPage({required this.idAndDataType});
+  DetailPage({required this.idAndDataType});
 
   @override
-  _MovieDetailPageState createState() => _MovieDetailPageState();
+  _DetailPageState createState() => _DetailPageState();
 }
 
-class _MovieDetailPageState extends State<MovieDetailPage> {
+class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
     super.initState();
     if (widget.idAndDataType.dataType == DataType.Movie) {
-      context
-          .read<MovieDetailBloc>()
-          .add(OnMovieDetailDataRequested(widget.idAndDataType.id));
+      context.read<MovieDetailBloc>().add(
+            OnMovieDetailDataRequested(widget.idAndDataType.id),
+          );
     } else if (widget.idAndDataType.dataType == DataType.TvSeries) {
-      context
-          .read<TvDetailBloc>()
-          .add(OnTvDetailDataRequested(widget.idAndDataType.id));
+      context.read<TvDetailBloc>().add(
+            OnTvDetailDataRequested(widget.idAndDataType.id),
+          );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.idAndDataType.dataType == DataType.TvSeries
-          ? _buildTvDetail()
-          : _buildMovieDetail(),
+      body: widget.idAndDataType.dataType == DataType.TvSeries ? tvDetailSection() : movieDetailSection(),
     );
   }
 
-  Widget _buildMovieDetail() {
+  Widget movieDetailSection() {
     return BlocConsumer<MovieDetailBloc, MovieDetailState>(
       listener: (context, state) {
         if (state is MovieDetailError) {
@@ -66,7 +64,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     );
   }
 
-  Widget _buildTvDetail() {
+  Widget tvDetailSection() {
     return BlocConsumer<TvDetailBloc, TvDetailState>(
       listener: (context, state) {
         if (state is TvDetailError) {

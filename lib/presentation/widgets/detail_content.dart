@@ -6,7 +6,7 @@ import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
 import 'package:ditonton/domain/entities/item_data_model.dart';
 import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv_detail/tv_detail_bloc.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
+import 'package:ditonton/presentation/pages/detail_page.dart';
 import 'package:ditonton/presentation/widgets/app_image_widget.dart';
 import 'package:ditonton/presentation/widgets/app_watchlist_button.dart';
 import 'package:flutter/material.dart';
@@ -152,7 +152,7 @@ class DetailContent extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacementNamed(
                         context,
-                        MovieDetailPage.ROUTE_NAME,
+                        DetailPage.ROUTE_NAME,
                         arguments: IdAndDataType.fromIdPosterDataType(movies),
                       );
                     },
@@ -201,7 +201,7 @@ class DetailContent extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacementNamed(
                         context,
-                        MovieDetailPage.ROUTE_NAME,
+                        DetailPage.ROUTE_NAME,
                         arguments: IdAndDataType.fromIdPosterDataType(
                           idPosterDataType,
                         ),

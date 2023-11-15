@@ -1,7 +1,7 @@
 import 'package:ditonton/domain/entities/id_and_data_type.dart';
 import 'package:ditonton/domain/entities/id_poster_data_type.dart';
 import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
+import 'package:ditonton/presentation/pages/detail_page.dart';
 import 'package:ditonton/presentation/widgets/app_image_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +31,7 @@ class MovieList extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  MovieDetailPage.ROUTE_NAME,
+                  DetailPage.ROUTE_NAME,
                   arguments: IdAndDataType.fromIdPosterDataType(idPoster),
                 );
               },
