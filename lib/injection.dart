@@ -24,6 +24,7 @@ import 'package:ditonton/domain/usecases/remove_watchlist.dart';
 import 'package:ditonton/domain/usecases/save_watchlist.dart';
 import 'package:ditonton/domain/usecases/search_movies.dart';
 import 'package:ditonton/domain/usecases/search_tv_series.dart';
+import 'package:ditonton/presentation/bloc/bloc/home_state_handler_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie_search/movie_search_bloc.dart';
 import 'package:ditonton/presentation/bloc/now_playing_movie/now_playing_movie_bloc.dart';
@@ -61,29 +62,30 @@ void init() {
   locator.registerFactory(() => TopRatedMovieBloc(locator()));
   locator.registerFactory(() => NowPlayingMovieBloc(locator()));
   locator.registerFactory(() => OnTheAirTvSeriesBloc(locator()));
+  locator.registerFactory(() => HomeStateHandlerBloc());
 
   // provider
-  locator.registerFactory(
-    () => MovieListNotifier(
-      getNowPlayingMovies: locator(),
-      getPopularMovies: locator(),
-      getTopRatedMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MovieDetailNotifier(
-      getMovieDetail: locator(),
-      getMovieRecommendations: locator(),
-      getWatchListStatus: locator(),
-      saveWatchlist: locator(),
-      removeWatchlist: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MovieSearchNotifier(
-      searchMovies: locator(),
-    ),
-  );
+  // locator.registerFactory(
+  //   () => MovieListNotifier(
+  //     getNowPlayingMovies: locator(),
+  //     getPopularMovies: locator(),
+  //     getTopRatedMovies: locator(),
+  //   ),
+  // );
+  // locator.registerFactory(
+  //   () => MovieDetailNotifier(
+  //     getMovieDetail: locator(),
+  //     getMovieRecommendations: locator(),
+  //     getWatchListStatus: locator(),
+  //     saveWatchlist: locator(),
+  //     removeWatchlist: locator(),
+  //   ),
+  // );
+  // locator.registerFactory(
+  //   () => MovieSearchNotifier(
+  //     searchMovies: locator(),
+  //   ),
+  // );
   locator.registerFactory(
     () => PopularMoviesNotifier(
       locator(),

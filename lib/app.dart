@@ -1,6 +1,8 @@
 import 'package:ditonton/common/constants.dart';
+import 'package:ditonton/common/enum/enum_home_state.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/domain/entities/id_and_data_type.dart';
+import 'package:ditonton/presentation/bloc/bloc/home_state_handler_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie_search/movie_search_bloc.dart';
 import 'package:ditonton/presentation/bloc/now_playing_movie/now_playing_movie_bloc.dart';
@@ -45,6 +47,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.locator<TopRatedMovieBloc>()),
         BlocProvider(create: (_) => di.locator<OnTheAirTvSeriesBloc>()),
         BlocProvider(create: (_) => di.locator<NowPlayingMovieBloc>()),
+        BlocProvider(create: (_) => di.locator<HomeStateHandlerBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -87,7 +90,7 @@ class MyApp extends StatelessWidget {
             case SearchPage.ROUTE_NAME:
               final state = settings.arguments as HomeState;
               return CupertinoPageRoute(
-                builder: (_) => SearchPage(state: state),
+                builder: (_) => SearchPage(homeState: state),
               );
             case WatchlistPage.ROUTE_NAME:
               return MaterialPageRoute(
