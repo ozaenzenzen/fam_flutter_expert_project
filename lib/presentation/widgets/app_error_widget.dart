@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class DitontonErrorWidget extends StatelessWidget {
+class AppErrorWidget extends StatelessWidget {
   final String message;
   final Function? retry;
 
-  DitontonErrorWidget(this.message, {this.retry});
+  AppErrorWidget(this.message, {this.retry});
 
   @override
   Widget build(BuildContext context) {

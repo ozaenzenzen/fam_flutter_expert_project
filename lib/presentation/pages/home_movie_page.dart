@@ -14,7 +14,7 @@ import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
-import 'package:ditonton/presentation/widgets/ditonton_error_widget.dart';
+import 'package:ditonton/presentation/widgets/app_error_widget.dart';
 import 'package:ditonton/presentation/widgets/movie_list.dart';
 import 'package:ditonton/presentation/widgets/row_loading.dart';
 import 'package:flutter/material.dart';
@@ -149,7 +149,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             } else if (state is NowPlayingMovieSuccess) {
               return MovieList(state.movies);
             } else if (state is NowPlayingMovieError) {
-              return DitontonErrorWidget(state.message, retry: state.retry);
+              return AppErrorWidget(state.message, retry: state.retry);
             } else {
               return Container();
             }
@@ -164,7 +164,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             } else if (state is PopularMovieSuccess) {
               return MovieList.fromIdPosterTitleOverview(state.movies);
             } else if (state is PopularMovieError) {
-              return DitontonErrorWidget(state.message, retry: state.retry);
+              return AppErrorWidget(state.message, retry: state.retry);
             } else {
               return Container();
             }
@@ -179,7 +179,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             } else if (state is TopRatedMovieSuccess) {
               return MovieList.fromIdPosterTitleOverview(state.movies);
             } else if (state is TopRatedMovieError) {
-              return DitontonErrorWidget(
+              return AppErrorWidget(
                 state.message,
                 retry: state.retry,
               );
@@ -207,7 +207,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             } else if (state is OnTheAirTvSeriesSuccess) {
               return MovieList(state.tvSeries);
             } else if (state is OnTheAirTvSeriesError) {
-              return DitontonErrorWidget(state.message, retry: state.retry);
+              return AppErrorWidget(state.message, retry: state.retry);
             } else {
               return Container();
             }
@@ -222,7 +222,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             } else if (state is PopularTvSeriesSuccess) {
               return MovieList.fromIdPosterTitleOverview(state.tvSeries);
             } else if (state is PopularTvSeriesError) {
-              return DitontonErrorWidget(state.message, retry: state.retry);
+              return AppErrorWidget(state.message, retry: state.retry);
             } else {
               return Container();
             }
@@ -237,7 +237,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             } else if (state is TopRatedTvSeriesSuccess) {
               return MovieList.fromIdPosterTitleOverview(state.tvSeries);
             } else if (state is TopRatedTvSeriesError) {
-              return DitontonErrorWidget(state.message, retry: state.retry);
+              return AppErrorWidget(state.message, retry: state.retry);
             } else {
               return Container();
             }

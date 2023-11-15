@@ -1,5 +1,5 @@
 import 'package:ditonton/presentation/bloc/top_rated_movie/top_rated_movie_bloc.dart';
-import 'package:ditonton/presentation/widgets/ditonton_error_widget.dart';
+import 'package:ditonton/presentation/widgets/app_error_widget.dart';
 import 'package:ditonton/presentation/widgets/id_poster_title_overview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +36,7 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
                 itemCount: state.movies.length,
               );
             } else if (state is TopRatedMovieError) {
-              return DitontonErrorWidget(
+              return AppErrorWidget(
                 state.message,
                 retry: state.retry,
               );

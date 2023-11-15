@@ -1,5 +1,5 @@
 import 'package:ditonton/presentation/bloc/watchlist/watchlist_bloc.dart';
-import 'package:ditonton/presentation/widgets/ditonton_error_widget.dart';
+import 'package:ditonton/presentation/widgets/app_error_widget.dart';
 import 'package:ditonton/presentation/widgets/id_poster_title_overview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,7 +52,7 @@ class WatchlistPage extends StatelessWidget {
                 } else if (state is WatchlistError) {
                   return Center(
                     key: Key('error_message'),
-                    child: DitontonErrorWidget(
+                    child: AppErrorWidget(
                       state.message,
                       retry: state.retry,
                     ),

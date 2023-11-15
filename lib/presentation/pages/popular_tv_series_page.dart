@@ -1,5 +1,5 @@
 import 'package:ditonton/presentation/bloc/popular_tv_series/popular_tv_series_bloc.dart';
-import 'package:ditonton/presentation/widgets/ditonton_error_widget.dart';
+import 'package:ditonton/presentation/widgets/app_error_widget.dart';
 import 'package:ditonton/presentation/widgets/id_poster_title_overview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +32,7 @@ class PopularTvSeriesPage extends StatelessWidget {
                 itemCount: state.tvSeries.length,
               );
             } else if (state is PopularTvSeriesError) {
-              return DitontonErrorWidget(
+              return AppErrorWidget(
                 state.message,
                 retry: state.retry,
               );
