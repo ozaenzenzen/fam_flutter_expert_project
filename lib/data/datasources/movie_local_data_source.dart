@@ -50,7 +50,9 @@ class WatchlistLocalDataSourceImpl implements WatchlistLocalDataSource {
     List<WatchlistTable> dataWatchlist = [];
     try {
       final result = await databaseHelper.getWatchlistMovies();
-      dataWatchlist = result.map((data) => WatchlistTable.fromMap(data)).toList();
+      dataWatchlist = result.map((data) {
+        return WatchlistTable.fromMap(data);
+      }).toList();
       return dataWatchlist;
     } catch (e) {
       return dataWatchlist;
