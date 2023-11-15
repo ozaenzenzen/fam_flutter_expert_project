@@ -111,7 +111,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             ),
           ),
           appBar: AppBar(
-            title: Text('Ditonton ${stateHome == HomeState.Movies ? 'Movie' : 'Tv'}'),
+            title: Text('Ditonton ${stateHome == HomeState.Movies ? 'Movie' : 'Tv Series'}'),
             actions: [
               IconButton(
                 onPressed: () {
