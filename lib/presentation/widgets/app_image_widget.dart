@@ -2,17 +2,23 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:flutter/material.dart';
 
-class DitontonImage extends StatelessWidget {
+class AppImageWidget extends StatelessWidget {
   final String posterPath;
   final double? width;
   final double? height;
 
-  DitontonImage(this.posterPath, {this.width, this.height});
+  AppImageWidget(
+    this.posterPath, {
+    this.width,
+    this.height,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(16)),
+      borderRadius: BorderRadius.all(
+        Radius.circular(16),
+      ),
       child: CachedNetworkImage(
         width: width,
         height: height,
@@ -24,7 +30,9 @@ class DitontonImage extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
         ),
-        errorWidget: (context, url, error) => Icon(Icons.error),
+        errorWidget: (context, url, error) => Icon(
+          Icons.error,
+        ),
       ),
     );
   }

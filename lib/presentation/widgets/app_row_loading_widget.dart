@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RowLoading extends StatelessWidget {
+class AppRowLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

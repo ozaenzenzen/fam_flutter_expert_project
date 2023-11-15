@@ -7,8 +7,8 @@ import 'package:ditonton/domain/entities/item_data_model.dart';
 import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
-import 'package:ditonton/presentation/widgets/ditonton_image.dart';
-import 'package:ditonton/presentation/widgets/watchlist_button.dart';
+import 'package:ditonton/presentation/widgets/app_image_widget.dart';
+import 'package:ditonton/presentation/widgets/app_watchlist_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -23,7 +23,7 @@ class DetailContent extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     return Stack(
       children: [
-        DitontonImage(
+        AppImageWidget(
           itemDataModel.posterPath,
           width: screenWidth,
         ),
@@ -54,7 +54,7 @@ class DetailContent extends StatelessWidget {
                               itemDataModel.title,
                               style: kHeading5,
                             ),
-                            WatchlistButton(itemDataModel),
+                            AppWatchlistButton(itemDataModel),
                             Text(
                               _showGenres(itemDataModel.genres),
                             ),
@@ -160,7 +160,7 @@ class DetailContent extends StatelessWidget {
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
                       ),
-                      child: DitontonImage(movies.poster),
+                      child: AppImageWidget(movies.poster),
                     ),
                   ),
                 );
@@ -211,7 +211,7 @@ class DetailContent extends StatelessWidget {
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
                       ),
-                      child: DitontonImage(idPosterDataType.poster),
+                      child: AppImageWidget(idPosterDataType.poster),
                     ),
                   ),
                 );

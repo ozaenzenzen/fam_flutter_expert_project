@@ -16,7 +16,7 @@ import 'package:ditonton/presentation/pages/top_rated_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
 import 'package:ditonton/presentation/widgets/app_error_widget.dart';
 import 'package:ditonton/presentation/widgets/movie_list.dart';
-import 'package:ditonton/presentation/widgets/row_loading.dart';
+import 'package:ditonton/presentation/widgets/app_row_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -145,7 +145,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           ),
           BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState>(builder: (context, state) {
             if (state is NowPlayingMovieLoading) {
-              return RowLoading();
+              return AppRowLoadingWidget();
             } else if (state is NowPlayingMovieSuccess) {
               return MovieList(state.movies);
             } else if (state is NowPlayingMovieError) {
@@ -160,7 +160,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           ),
           BlocBuilder<PopularMovieBloc, PopularMovieState>(builder: (context, state) {
             if (state is PopularMovieLoading) {
-              return RowLoading();
+              return AppRowLoadingWidget();
             } else if (state is PopularMovieSuccess) {
               return MovieList.fromIdPosterTitleOverview(state.movies);
             } else if (state is PopularMovieError) {
@@ -175,7 +175,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           ),
           BlocBuilder<TopRatedMovieBloc, TopRatedMovieState>(builder: (context, state) {
             if (state is TopRatedMovieLoading) {
-              return RowLoading();
+              return AppRowLoadingWidget();
             } else if (state is TopRatedMovieSuccess) {
               return MovieList.fromIdPosterTitleOverview(state.movies);
             } else if (state is TopRatedMovieError) {
@@ -203,7 +203,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           ),
           BlocBuilder<OnTheAirTvSeriesBloc, OnTheAirTvSeriesState>(builder: (context, state) {
             if (state is OnTheAirTvSeriesLoading) {
-              return RowLoading();
+              return AppRowLoadingWidget();
             } else if (state is OnTheAirTvSeriesSuccess) {
               return MovieList(state.tvSeries);
             } else if (state is OnTheAirTvSeriesError) {
@@ -218,7 +218,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           ),
           BlocBuilder<PopularTvSeriesBloc, PopularTvSeriesState>(builder: (context, state) {
             if (state is PopularTvSeriesLoading) {
-              return RowLoading();
+              return AppRowLoadingWidget();
             } else if (state is PopularTvSeriesSuccess) {
               return MovieList.fromIdPosterTitleOverview(state.tvSeries);
             } else if (state is PopularTvSeriesError) {
@@ -233,7 +233,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           ),
           BlocBuilder<TopRatedTvSeriesBloc, TopRatedTvSeriesState>(builder: (context, state) {
             if (state is TopRatedTvSeriesLoading) {
-              return RowLoading();
+              return AppRowLoadingWidget();
             } else if (state is TopRatedTvSeriesSuccess) {
               return MovieList.fromIdPosterTitleOverview(state.tvSeries);
             } else if (state is TopRatedTvSeriesError) {

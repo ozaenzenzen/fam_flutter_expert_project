@@ -3,7 +3,7 @@ import 'package:ditonton/domain/entities/id_and_data_type.dart';
 import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
-import 'package:ditonton/presentation/widgets/ditonton_image.dart';
+import 'package:ditonton/presentation/widgets/app_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class IdPosterTitleOverviewCard extends StatelessWidget {
@@ -11,13 +11,14 @@ class IdPosterTitleOverviewCard extends StatelessWidget {
 
   IdPosterTitleOverviewCard(this.data);
 
-  factory IdPosterTitleOverviewCard.fromMovie(Movie movie) =>
-      IdPosterTitleOverviewCard(IdPosterTitleOverview.fromMovie(movie));
+  factory IdPosterTitleOverviewCard.fromMovie(Movie movie) => IdPosterTitleOverviewCard(IdPosterTitleOverview.fromMovie(movie));
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 4),
+      margin: const EdgeInsets.symmetric(
+        vertical: 4,
+      ),
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(
@@ -61,12 +62,14 @@ class IdPosterTitleOverviewCard extends StatelessWidget {
                 bottom: 16,
               ),
               child: ClipRRect(
-                child: DitontonImage(
+                child: AppImageWidget(
                   data.poster,
                   width: 80,
                   height: 120,
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
               ),
             ),
           ],
