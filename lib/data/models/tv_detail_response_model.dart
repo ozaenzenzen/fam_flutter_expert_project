@@ -194,7 +194,7 @@ class LastEpisodeToAir {
   int? id;
   String? name;
   String? overview;
-  int? voteAverage;
+  dynamic voteAverage;
   int? voteCount;
   DateTime? airDate;
   int? episodeNumber;
@@ -225,9 +225,9 @@ class LastEpisodeToAir {
         id: json["id"],
         name: json["name"],
         overview: json["overview"],
-        voteAverage: json["vote_average"],
+        voteAverage: json["vote_average"].toDouble(),
         voteCount: json["vote_count"],
-        airDate: DateTime.parse(json["air_date"]),
+        airDate: json["air_date"] == null ? null : DateTime.parse(json["air_date"]),
         episodeNumber: json["episode_number"],
         episodeType: json["episode_type"],
         productionCode: json["production_code"],
