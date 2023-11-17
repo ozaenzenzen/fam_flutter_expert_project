@@ -1,3 +1,4 @@
+import 'package:ditonton/common/enum/enum_data_type.dart';
 import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
 import 'package:ditonton/domain/entities/item_data_model.dart';
 import 'package:ditonton/domain/entities/movie_entity.dart';

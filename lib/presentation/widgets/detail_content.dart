@@ -1,8 +1,8 @@
 import 'package:ditonton/common/constants.dart';
+import 'package:ditonton/common/enum/enum_data_type.dart';
 import 'package:ditonton/common/extension.dart';
 import 'package:ditonton/domain/entities/genre_entity.dart';
 import 'package:ditonton/domain/entities/id_and_data_type.dart';
-import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
 import 'package:ditonton/domain/entities/item_data_model.dart';
 import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv_detail/tv_detail_bloc.dart';
