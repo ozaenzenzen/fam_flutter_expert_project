@@ -3,7 +3,7 @@
 import 'package:bloc/bloc.dart';
 // import 'package:ditonton/domain/entities/content_data.dart';
 import 'package:ditonton/domain/entities/id_and_data_type.dart';
-import 'package:ditonton/domain/entities/item_data_model.dart';
+import 'package:ditonton/domain/entities/item_data_entity.dart';
 import 'package:ditonton/domain/usecases/get_watchlist_status.dart';
 import 'package:ditonton/domain/usecases/remove_watchlist.dart';
 import 'package:ditonton/domain/usecases/save_watchlist.dart';

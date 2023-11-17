@@ -4,7 +4,7 @@ import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/datasources/watchlist_local_data_source.dart';
 import 'package:ditonton/data/models/watchlist_table.dart';
 import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
-import 'package:ditonton/domain/entities/item_data_model.dart';
+import 'package:ditonton/domain/entities/item_data_entity.dart';
 import 'package:ditonton/domain/repositories/watch_list_repository.dart';
 
 class WatchlistRepositoryImpl extends WatchlistRepository {

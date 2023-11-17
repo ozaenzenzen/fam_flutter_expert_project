@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/entities/item_data_model.dart';
+import 'package:ditonton/domain/entities/item_data_entity.dart';
 import 'package:ditonton/domain/repositories/watch_list_repository.dart';
 
 class SaveWatchlist {

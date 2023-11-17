@@ -2,7 +2,7 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:ditonton/domain/entities/id_poster_data_type.dart';
-import 'package:ditonton/domain/entities/item_data_model.dart';
+import 'package:ditonton/domain/entities/item_data_entity.dart';
 import 'package:ditonton/domain/usecases/get_movie_detail.dart';
 import 'package:ditonton/domain/usecases/get_movie_recommendations.dart';
 import 'package:equatable/equatable.dart';

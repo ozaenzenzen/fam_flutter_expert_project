@@ -1,5 +1,5 @@
 import 'package:ditonton/domain/entities/id_and_data_type.dart';
-import 'package:ditonton/domain/entities/item_data_model.dart';
+import 'package:ditonton/domain/entities/item_data_entity.dart';
 import 'package:ditonton/presentation/bloc/watchlist_status/watchlist_status_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
