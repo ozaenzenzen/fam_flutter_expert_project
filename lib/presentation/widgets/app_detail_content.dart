@@ -61,11 +61,15 @@ class AppDetailContent extends StatelessWidget {
                             Text(
                               _showGenres(itemDataEntity.genres),
                             ),
-                            Text(
-                              _showDuration(
-                                int.fromEnvironment(itemDataEntity.runtime),
-                              ),
-                            ),
+                            itemDataEntity.dataType == DataType.Movie
+                                ? Text(
+                                    _showDuration(
+                                      int.fromEnvironment(itemDataEntity.runtime),
+                                    ),
+                                  )
+                                : Text(
+                                    itemDataEntity.runtime,
+                                  ),
                             Row(
                               children: [
                                 RatingBarIndicator(
