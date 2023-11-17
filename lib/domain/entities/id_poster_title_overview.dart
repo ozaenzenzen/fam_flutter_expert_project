@@ -28,7 +28,7 @@ class IdPosterTitleOverview extends Equatable {
         dataType: DataType.Movie,
       );
 
-  factory IdPosterTitleOverview.fromMovieDetail(MovieDetail movieDetail) => IdPosterTitleOverview(
+  factory IdPosterTitleOverview.fromMovieDetail(MovieDetailEntity movieDetail) => IdPosterTitleOverview(
         movieDetail.id,
         movieDetail.posterPath,
         movieDetail.title,

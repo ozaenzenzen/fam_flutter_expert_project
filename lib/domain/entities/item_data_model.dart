@@ -25,7 +25,7 @@ class ItemDataModel extends Equatable {
     required this.dataType,
   });
 
-  factory ItemDataModel.fromMovie(MovieDetail movie) => ItemDataModel(
+  factory ItemDataModel.fromMovie(MovieDetailEntity movie) => ItemDataModel(
         id: movie.id,
         title: movie.title,
         genres: movie.genres,

@@ -7,7 +7,7 @@ abstract class MovieRepository {
   Future<Either<Failure, List<MovieEntity>>> getNowPlayingMovies();
   Future<Either<Failure, List<MovieEntity>>> getPopularMovies();
   Future<Either<Failure, List<MovieEntity>>> getTopRatedMovies();
-  Future<Either<Failure, MovieDetail>> getMovieDetail(int id);
+  Future<Either<Failure, MovieDetailEntity>> getMovieDetail(int id);
   Future<Either<Failure, List<MovieEntity>>> getMovieRecommendations(int id);
   Future<Either<Failure, List<MovieEntity>>> searchMovies(String query);
   // Future<Either<Failure, String>> saveWatchlist(MovieDetail movie);

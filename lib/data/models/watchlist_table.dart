@@ -19,7 +19,7 @@ class WatchlistTable extends Equatable {
     required this.dataType,
   });
 
-  factory WatchlistTable.fromMovieDetail(MovieDetail movie) => WatchlistTable(
+  factory WatchlistTable.fromMovieDetail(MovieDetailEntity movie) => WatchlistTable(
         id: movie.id,
         title: movie.title,
         posterPath: movie.posterPath,
