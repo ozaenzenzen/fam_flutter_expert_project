@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:ditonton/domain/entities/movie.dart';
+import 'package:ditonton/domain/entities/movie_entity.dart';
 import 'package:ditonton/domain/usecases/search_movies.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/src/transformers/backpressure/debounce.dart';
