@@ -12,13 +12,13 @@ class TvDetailInitial extends TvDetailState {}
 class TvDetailLoading extends TvDetailState {}
 
 class TvDetailSuccess extends TvDetailState {
-  final ItemDataModel itemDataModel;
+  final ItemDataEntity itemDataEntity;
   final List<IdPosterDataType> recommendations;
 
-  TvDetailSuccess(this.itemDataModel, {this.recommendations = const []});
+  TvDetailSuccess(this.itemDataEntity, {this.recommendations = const []});
 
   @override
-  List<Object> get props => [itemDataModel, recommendations];
+  List<Object> get props => [itemDataEntity, recommendations];
 }
 
 class TvDetailError extends TvDetailState {

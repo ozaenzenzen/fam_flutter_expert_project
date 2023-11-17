@@ -8,12 +8,12 @@ abstract class WatchlistStatusEvent extends Equatable {
 }
 
 class OnWatchlistAdded extends WatchlistStatusEvent {
-  final ItemDataModel itemDataModel;
+  final ItemDataEntity itemDataEntity;
 
-  OnWatchlistAdded(this.itemDataModel);
+  OnWatchlistAdded(this.itemDataEntity);
 
   @override
-  List<Object> get props => [itemDataModel];
+  List<Object> get props => [itemDataEntity];
 }
 
 class OnWatchlistRemoved extends WatchlistStatusEvent {

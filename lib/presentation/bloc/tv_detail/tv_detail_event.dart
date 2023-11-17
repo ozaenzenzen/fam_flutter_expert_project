@@ -17,10 +17,10 @@ class OnTvDetailDataRequested extends TvDetailEvent {
 }
 
 class OnTvRecommendationRequested extends TvDetailEvent {
-  final ItemDataModel itemDataModel;
+  final ItemDataEntity itemDataEntity;
 
-  OnTvRecommendationRequested(this.itemDataModel);
+  OnTvRecommendationRequested(this.itemDataEntity);
 
   @override
-  List<Object> get props => [itemDataModel];
+  List<Object> get props => [itemDataEntity];
 }

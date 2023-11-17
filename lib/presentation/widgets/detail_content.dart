@@ -14,9 +14,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailContent extends StatelessWidget {
-  final ItemDataModel itemDataModel;
+  final ItemDataEntity itemDataEntity;
 
-  DetailContent(this.itemDataModel);
+  DetailContent(this.itemDataEntity);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class DetailContent extends StatelessWidget {
     return Stack(
       children: [
         AppImageWidget(
-          itemDataModel.posterPath,
+          itemDataEntity.posterPath,
           width: screenWidth,
         ),
         Container(
@@ -53,22 +53,22 @@ class DetailContent extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              itemDataModel.title,
+                              itemDataEntity.title,
                               style: kHeading5,
                             ),
-                            AppWatchlistButton(itemDataModel),
+                            AppWatchlistButton(itemDataEntity),
                             Text(
-                              _showGenres(itemDataModel.genres),
+                              _showGenres(itemDataEntity.genres),
                             ),
                             Text(
                               _showDuration(
-                                int.fromEnvironment(itemDataModel.runtime),
+                                int.fromEnvironment(itemDataEntity.runtime),
                               ),
                             ),
                             Row(
                               children: [
                                 RatingBarIndicator(
-                                  rating: itemDataModel.voteAverage / 2,
+                                  rating: itemDataEntity.voteAverage / 2,
                                   itemCount: 5,
                                   itemBuilder: (context, index) {
                                     return Icon(
@@ -78,7 +78,7 @@ class DetailContent extends StatelessWidget {
                                   },
                                   itemSize: 24,
                                 ),
-                                Text('${itemDataModel.voteAverage}')
+                                Text('${itemDataEntity.voteAverage}')
                               ],
                             ),
                             SizedBox(height: 16),
@@ -87,14 +87,14 @@ class DetailContent extends StatelessWidget {
                               style: kHeading6,
                             ),
                             Text(
-                              itemDataModel.overview,
+                              itemDataEntity.overview,
                             ),
                             SizedBox(height: 16),
                             Text(
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            if (itemDataModel.dataType == DataType.TvSeries) tvDetailSection() else movieDetailSection()
+                            if (itemDataEntity.dataType == DataType.TvSeries) tvDetailSection() else movieDetailSection()
                           ],
                         ),
                       ),

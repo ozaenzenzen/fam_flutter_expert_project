@@ -12,10 +12,10 @@ class MovieDetailInitial extends MovieDetailState {}
 class MovieDetailLoading extends MovieDetailState {}
 
 class MovieDetailSuccess extends MovieDetailState {
-  final ItemDataModel itemDataModel;
+  final ItemDataEntity itemDataEntity;
   final List<IdPosterDataType> recommendations;
 
-  MovieDetailSuccess(this.itemDataModel, {this.recommendations = const []});
+  MovieDetailSuccess(this.itemDataEntity, {this.recommendations = const []});
 }
 
 class MovieDetailError extends MovieDetailState {

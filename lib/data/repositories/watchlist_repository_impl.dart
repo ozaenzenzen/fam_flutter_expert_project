@@ -35,9 +35,9 @@ class WatchlistRepositoryImpl extends WatchlistRepository {
   }
 
   @override
-  Future<Either<Failure, String>> saveWatchlist(ItemDataModel contentData) async {
+  Future<Either<Failure, String>> saveWatchlist(ItemDataEntity itemDataEntity) async {
     try {
-      final WatchlistTable data = WatchlistTable.fromContentData(contentData);
+      final WatchlistTable data = WatchlistTable.fromContentData(itemDataEntity);
       final result = await localDataSource.insertWatchlist(data);
       return Right(result);
     } on DatabaseException catch (e) {

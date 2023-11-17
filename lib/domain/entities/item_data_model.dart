@@ -4,7 +4,7 @@ import 'package:ditonton/domain/entities/genre_entity.dart';
 import 'package:ditonton/domain/entities/movie_detail_entity.dart';
 import 'package:equatable/equatable.dart';
 
-class ItemDataModel extends Equatable {
+class ItemDataEntity extends Equatable {
   final int id;
   final String title;
   final List<GenreEntity> genres;
@@ -14,7 +14,7 @@ class ItemDataModel extends Equatable {
   final String overview;
   final DataType dataType;
 
-  ItemDataModel({
+  ItemDataEntity({
     required this.id,
     required this.title,
     required this.genres,
@@ -25,7 +25,7 @@ class ItemDataModel extends Equatable {
     required this.dataType,
   });
 
-  factory ItemDataModel.fromMovie(MovieDetailEntity movie) => ItemDataModel(
+  factory ItemDataEntity.fromMovie(MovieDetailEntity movie) => ItemDataEntity(
         id: movie.id,
         title: movie.title,
         genres: movie.genres,
@@ -36,7 +36,7 @@ class ItemDataModel extends Equatable {
         dataType: DataType.Movie,
       );
 
-  factory ItemDataModel.fromTvSeries(TvDetailResponseModel tvSeries) => ItemDataModel(
+  factory ItemDataEntity.fromTvSeries(TvDetailResponseModel tvSeries) => ItemDataEntity(
       id: tvSeries.id!,
       title: tvSeries.name!,
       genres: tvSeries.genres!.map((e) => GenreEntity(id: e.id!, name: e.name!)).toList(),

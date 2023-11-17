@@ -53,7 +53,7 @@ class _DetailPageState extends State<DetailPage> {
             child: CircularProgressIndicator(),
           );
         } else if (state is MovieDetailSuccess) {
-          final movie = state.itemDataModel;
+          final movie = state.itemDataEntity;
           return SafeArea(
             child: DetailContent(movie),
           );
@@ -77,7 +77,7 @@ class _DetailPageState extends State<DetailPage> {
             child: CircularProgressIndicator(),
           );
         } else if (state is TvDetailSuccess) {
-          final tv = state.itemDataModel;
+          final tv = state.itemDataEntity;
           return SafeArea(
             child: DetailContent(tv),
           );

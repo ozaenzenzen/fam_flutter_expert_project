@@ -16,7 +16,7 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
       if (event is OnMovieDetailDataRequested) {
         onMovieDetailDataRequested(getMovieDetail, getMovieRecommendations, event.id);
       } else if (event is OnMovieRecommendationsRequested) {
-        onMovieRecommendationsRequested(getMovieRecommendations, event.itemDataModel);
+        onMovieRecommendationsRequested(getMovieRecommendations, event.itemDataEntity);
       }
     });
   }
@@ -34,23 +34,23 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
 
       emit(state);
     }, (data) async {
-      final itemDataModel = ItemDataModel.fromMovie(data);
+      final itemDataEntity = ItemDataEntity.fromMovie(data);
       final recommendation = await futureRecommendation;
 
       recommendation.fold((failure) {
         final state = MovieDetailError(failure.message, retry: () {
-          add(OnMovieRecommendationsRequested(itemDataModel));
+          add(OnMovieRecommendationsRequested(itemDataEntity));
         });
 
         emit(state);
 
-        final detailState = MovieDetailSuccess(itemDataModel);
+        final detailState = MovieDetailSuccess(itemDataEntity);
         emit(detailState);
       }, (data) {
         final recommendationResult = data.map((e) => IdPosterDataType.fromMovie(e)).toList();
 
         final state = MovieDetailSuccess(
-          itemDataModel,
+          itemDataEntity,
           recommendations: recommendationResult,
         );
         emit(state);
@@ -60,21 +60,21 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
 
   Future<void> onMovieRecommendationsRequested(
     GetMovieRecommendations getMovieRecommendations,
-    ItemDataModel itemDataModel,
+    ItemDataEntity itemDataEntity,
   ) async {
     emit(MovieDetailLoading());
-    final result = await getMovieRecommendations.execute(itemDataModel.id);
+    final result = await getMovieRecommendations.execute(itemDataEntity.id);
 
     result.fold((failure) {
       final state = MovieDetailError(failure.message, retry: () {
-        add(OnMovieRecommendationsRequested(itemDataModel));
+        add(OnMovieRecommendationsRequested(itemDataEntity));
       });
 
       emit(state);
     }, (data) async {
       final recommendation = data.map((e) => IdPosterDataType.fromMovie(e)).toList();
       final state = MovieDetailSuccess(
-        itemDataModel,
+        itemDataEntity,
         recommendations: recommendation,
       );
 

@@ -36,7 +36,7 @@ class WatchlistTable extends Equatable {
         dataType: map['dataType'],
       );
 
-  factory WatchlistTable.fromContentData(ItemDataModel data) => WatchlistTable(
+  factory WatchlistTable.fromContentData(ItemDataEntity data) => WatchlistTable(
         id: data.id,
         title: data.title,
         posterPath: data.posterPath,

@@ -28,7 +28,7 @@ class WatchlistStatusBloc extends Bloc<WatchlistStatusEvent, WatchlistStatusStat
         await onWatchlistAdded(
           watchlistBloc,
           saveWatchlist,
-          event.itemDataModel,
+          event.itemDataEntity,
         );
       } else if (event is OnWatchlistRemoved) {
         await onWatchListRemoved(
@@ -84,29 +84,29 @@ class WatchlistStatusBloc extends Bloc<WatchlistStatusEvent, WatchlistStatusStat
   Future<void> onWatchlistAdded(
     WatchlistBloc watchlistBloc,
     SaveWatchlist saveWatchlist,
-    ItemDataModel itemDataModel,
+    ItemDataEntity itemDataEntity,
   ) async {
     emit(WatchlistStatusLoading());
-    final result = await saveWatchlist.execute(itemDataModel);
+    final result = await saveWatchlist.execute(itemDataEntity);
 
     result.fold((failure) {
       final state = WatchlistStatusError(
         failure.message,
         retry: () {
-          add(OnWatchlistAdded(itemDataModel));
+          add(OnWatchlistAdded(itemDataEntity));
         },
       );
 
       emit(state);
     }, (data) {
-      final state = WatchlistStatusSuccess('Success Added ${itemDataModel.title} to watchlist');
+      final state = WatchlistStatusSuccess('Success Added ${itemDataEntity.title} to watchlist');
       emit(state);
 
       add(
         OnWatchlistStatusChecked(
           IdAndDataType(
-            id: itemDataModel.id,
-            dataType: itemDataModel.dataType,
+            id: itemDataEntity.id,
+            dataType: itemDataEntity.dataType,
           ),
         ),
       );

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppWatchlistButton extends StatelessWidget {
-  final ItemDataModel itemDataModel;
+  final ItemDataEntity itemDataEntity;
 
-  AppWatchlistButton(this.itemDataModel);
+  AppWatchlistButton(this.itemDataEntity);
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +36,15 @@ class AppWatchlistButton extends StatelessWidget {
       },
       builder: (BuildContext context, state) {
         final idAndDataType = IdAndDataType(
-          id: itemDataModel.id,
-          dataType: itemDataModel.dataType,
+          id: itemDataEntity.id,
+          dataType: itemDataEntity.dataType,
         );
         context.read<WatchlistStatusBloc>().add(OnWatchlistStatusChecked(idAndDataType));
 
         return ElevatedButton(
           onPressed: () async {
             if (state is WatchlistStatusLoaded) {
-              context.read<WatchlistStatusBloc>().add(state.isAdded ? OnWatchlistRemoved(idAndDataType) : OnWatchlistAdded(itemDataModel));
+              context.read<WatchlistStatusBloc>().add(state.isAdded ? OnWatchlistRemoved(idAndDataType) : OnWatchlistAdded(itemDataEntity));
             }
           },
           child: Row(

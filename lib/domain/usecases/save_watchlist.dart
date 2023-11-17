@@ -8,7 +8,7 @@ class SaveWatchlist {
 
   SaveWatchlist(this.repository);
 
-  Future<Either<Failure, String>> execute(ItemDataModel movie) {
-    return repository.saveWatchlist(movie);
+  Future<Either<Failure, String>> execute(ItemDataEntity itemDataEntity) {
+    return repository.saveWatchlist(itemDataEntity);
   }
 }

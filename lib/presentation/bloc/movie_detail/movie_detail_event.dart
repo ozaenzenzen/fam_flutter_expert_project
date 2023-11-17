@@ -17,10 +17,10 @@ class OnMovieDetailDataRequested extends MovieDetailEvent {
 }
 
 class OnMovieRecommendationsRequested extends MovieDetailEvent {
-  final ItemDataModel itemDataModel;
+  final ItemDataEntity itemDataEntity;
 
-  OnMovieRecommendationsRequested(this.itemDataModel);
+  OnMovieRecommendationsRequested(this.itemDataEntity);
 
   @override
-  List<Object> get props => [itemDataModel];
+  List<Object> get props => [itemDataEntity];
 }

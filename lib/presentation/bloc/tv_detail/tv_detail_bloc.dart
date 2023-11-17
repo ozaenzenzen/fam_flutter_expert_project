@@ -27,7 +27,7 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState> {
       } else if (event is OnTvRecommendationRequested) {
         await onTvRecommendationRequested(
           getTvSeriesRecommendations,
-          event.itemDataModel,
+          event.itemDataEntity,
         );
       }
     });
@@ -49,22 +49,22 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState> {
 
       emit(state);
     }, (data) async {
-      final contentData = ItemDataModel.fromTvSeries(data);
+      final itemDataEntity = ItemDataEntity.fromTvSeries(data);
 
       final recommendation = await recommendationFuture;
       recommendation.fold((failure) {
         final state = TvDetailError(failure.message, retry: () {
-          add(OnTvRecommendationRequested(contentData));
+          add(OnTvRecommendationRequested(itemDataEntity));
         });
 
         emit(state);
 
-        final stateDetail = TvDetailSuccess(contentData);
+        final stateDetail = TvDetailSuccess(itemDataEntity);
         emit(stateDetail);
       }, (data) {
         final result = data.results!.map((e) => IdPosterDataType.fromTvSeries(e)).toList();
         final successState = TvDetailSuccess(
-          contentData,
+          itemDataEntity,
           recommendations: result,
         );
 
@@ -75,22 +75,22 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState> {
 
   Future<void> onTvRecommendationRequested(
     GetTvSeriesRecommendations getTvSeriesRecommendations,
-    ItemDataModel itemDataModel,
+    ItemDataEntity itemDataEntity,
   ) async {
     emit(TvDetailLoading());
-    final recommendation = await getTvSeriesRecommendations.execute(itemDataModel.id);
+    final recommendation = await getTvSeriesRecommendations.execute(itemDataEntity.id);
 
     recommendation.fold((failure) {
       final state = TvDetailError(failure.message, retry: () {
-        add(OnTvRecommendationRequested(itemDataModel));
+        add(OnTvRecommendationRequested(itemDataEntity));
       });
 
       emit(state);
-      emit(TvDetailSuccess(itemDataModel));
+      emit(TvDetailSuccess(itemDataEntity));
     }, (data) {
       final result = data.results!.map((e) => IdPosterDataType.fromTvSeries(e)).toList();
       final state = TvDetailSuccess(
-        itemDataModel,
+        itemDataEntity,
         recommendations: result,
       );
 
