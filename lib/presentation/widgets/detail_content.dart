@@ -13,22 +13,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class DetailContent extends StatelessWidget {
+class AppDetailContent extends StatelessWidget {
   final ItemDataEntity itemDataEntity;
 
-  DetailContent(this.itemDataEntity);
+  AppDetailContent(this.itemDataEntity);
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     return Stack(
       children: [
         AppImageWidget(
           itemDataEntity.posterPath,
-          width: screenWidth,
+          width: MediaQuery.of(context).size.width,
         ),
         Container(
-          margin: const EdgeInsets.only(top: 48 + 8),
+          margin: const EdgeInsets.only(
+            top: 56,
+          ),
           child: DraggableScrollableSheet(
             builder: (context, scrollController) {
               return Container(

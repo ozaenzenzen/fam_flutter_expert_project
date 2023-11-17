@@ -55,7 +55,7 @@ class _DetailPageState extends State<DetailPage> {
         } else if (state is MovieDetailSuccess) {
           final movie = state.itemDataEntity;
           return SafeArea(
-            child: DetailContent(movie),
+            child: AppDetailContent(movie),
           );
         } else {
           return Container();
@@ -79,7 +79,7 @@ class _DetailPageState extends State<DetailPage> {
         } else if (state is TvDetailSuccess) {
           final tv = state.itemDataEntity;
           return SafeArea(
-            child: DetailContent(tv),
+            child: AppDetailContent(tv),
           );
         } else {
           return Container();
