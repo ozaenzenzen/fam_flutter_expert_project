@@ -12,7 +12,7 @@ class PopularTvSeriesInitial extends PopularTvSeriesState {}
 class PopularTvSeriesLoading extends PopularTvSeriesState {}
 
 class PopularTvSeriesSuccess extends PopularTvSeriesState {
-  final List<IdPosterTitleOverview> tvSeries;
+  final List<Poster5Entity> tvSeries;
 
   PopularTvSeriesSuccess(this.tvSeries);
 

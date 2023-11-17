@@ -1,6 +1,6 @@
 import 'package:ditonton/presentation/bloc/popular_tv_series/popular_tv_series_bloc.dart';
 import 'package:ditonton/presentation/widgets/app_error_widget.dart';
-import 'package:ditonton/presentation/widgets/id_poster_title_overview_card.dart';
+import 'package:ditonton/presentation/widgets/poster_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +27,7 @@ class PopularTvSeriesPage extends StatelessWidget {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final movie = state.tvSeries[index];
-                  return IdPosterTitleOverviewCard(movie);
+                  return PosterItemWidget(movie);
                 },
                 itemCount: state.tvSeries.length,
               );

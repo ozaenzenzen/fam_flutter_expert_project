@@ -13,7 +13,7 @@ class MovieDetailLoading extends MovieDetailState {}
 
 class MovieDetailSuccess extends MovieDetailState {
   final ItemDataEntity itemDataEntity;
-  final List<IdPosterDataType> recommendations;
+  final List<Poster3Entity> recommendations;
 
   MovieDetailSuccess(this.itemDataEntity, {this.recommendations = const []});
 }

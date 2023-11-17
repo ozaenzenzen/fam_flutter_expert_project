@@ -1,9 +1,8 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
 import 'package:bloc/bloc.dart';
-// import 'package:ditonton/domain/entities/content_data.dart';
-import 'package:ditonton/domain/entities/id_and_data_type.dart';
 import 'package:ditonton/domain/entities/item_data_entity.dart';
+import 'package:ditonton/domain/entities/poster_2_entity.dart';
 import 'package:ditonton/domain/usecases/get_watchlist_status.dart';
 import 'package:ditonton/domain/usecases/remove_watchlist.dart';
 import 'package:ditonton/domain/usecases/save_watchlist.dart';
@@ -34,12 +33,12 @@ class WatchlistStatusBloc extends Bloc<WatchlistStatusEvent, WatchlistStatusStat
         await onWatchListRemoved(
           watchlistBloc,
           removeWatchlist,
-          event.idAndDataType,
+          event.poster2Entity,
         );
       } else if (event is OnWatchlistStatusChecked) {
         await onWatchListStatusChecked(
           getWatchListStatus,
-          event.idAndDataType,
+          event.poster2Entity,
         );
       }
     });
@@ -47,11 +46,11 @@ class WatchlistStatusBloc extends Bloc<WatchlistStatusEvent, WatchlistStatusStat
 
   Future<void> onWatchListStatusChecked(
     GetWatchListStatus getWatchListStatus,
-    IdAndDataType idAndDataType,
+    Poster2Entity poster2Entity,
   ) async {
     final isAdded = await getWatchListStatus.execute(
-      idAndDataType.id,
-      idAndDataType.dataType.index,
+      poster2Entity.id,
+      poster2Entity.dataType.index,
     );
 
     emit(WatchlistStatusLoaded(isAdded));
@@ -60,14 +59,14 @@ class WatchlistStatusBloc extends Bloc<WatchlistStatusEvent, WatchlistStatusStat
   Future<void> onWatchListRemoved(
     WatchlistBloc watchlistBloc,
     RemoveWatchlist removeWatchlist,
-    IdAndDataType idAndDataType,
+    Poster2Entity poster2Entity,
   ) async {
     emit(WatchlistStatusLoading());
-    final result = await removeWatchlist.execute(idAndDataType);
+    final result = await removeWatchlist.execute(poster2Entity);
 
     result.fold((failure) {
       final state = WatchlistStatusError(failure.message, retry: () {
-        add(OnWatchlistRemoved(idAndDataType));
+        add(OnWatchlistRemoved(poster2Entity));
       });
 
       emit(state);
@@ -75,7 +74,7 @@ class WatchlistStatusBloc extends Bloc<WatchlistStatusEvent, WatchlistStatusStat
       final state = WatchlistStatusSuccess('Success Removed');
       emit(state);
 
-      add(OnWatchlistStatusChecked(idAndDataType));
+      add(OnWatchlistStatusChecked(poster2Entity));
 
       watchlistBloc.add(OnWatchlistDataRequested());
     });
@@ -104,7 +103,7 @@ class WatchlistStatusBloc extends Bloc<WatchlistStatusEvent, WatchlistStatusStat
 
       add(
         OnWatchlistStatusChecked(
-          IdAndDataType(
+          Poster2Entity(
             id: itemDataEntity.id,
             dataType: itemDataEntity.dataType,
           ),

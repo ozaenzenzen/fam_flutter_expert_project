@@ -1,7 +1,7 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/enum/enum_home_state.dart';
 import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/domain/entities/id_and_data_type.dart';
+import 'package:ditonton/domain/entities/poster_2_entity.dart';
 import 'package:ditonton/presentation/bloc/home_state_handler/home_state_handler_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie_search/movie_search_bloc.dart';
@@ -82,9 +82,9 @@ class MyApp extends StatelessWidget {
                 builder: (_) => TopRatedMoviesPage(),
               );
             case DetailPage.ROUTE_NAME:
-              final id = settings.arguments as IdAndDataType;
+              final id = settings.arguments as Poster2Entity;
               return MaterialPageRoute(
-                builder: (_) => DetailPage(idAndDataType: id),
+                builder: (_) => DetailPage(poster2Entity: id),
                 settings: settings,
               );
             case SearchPage.ROUTE_NAME:

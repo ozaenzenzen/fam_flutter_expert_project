@@ -1,17 +1,17 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/domain/entities/id_and_data_type.dart';
-import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
 import 'package:ditonton/domain/entities/movie_entity.dart';
+import 'package:ditonton/domain/entities/poster_2_entity.dart';
+import 'package:ditonton/domain/entities/poster_5_entity.dart';
 import 'package:ditonton/presentation/pages/detail_page.dart';
 import 'package:ditonton/presentation/widgets/app_image_widget.dart';
 import 'package:flutter/material.dart';
 
-class IdPosterTitleOverviewCard extends StatelessWidget {
-  final IdPosterTitleOverview data;
+class PosterItemWidget extends StatelessWidget {
+  final Poster5Entity data;
 
-  IdPosterTitleOverviewCard(this.data);
+  PosterItemWidget(this.data);
 
-  factory IdPosterTitleOverviewCard.fromMovie(MovieEntity movie) => IdPosterTitleOverviewCard(IdPosterTitleOverview.fromMovie(movie));
+  factory PosterItemWidget.fromMovie(MovieEntity movie) => PosterItemWidget(Poster5Entity.fromMovie(movie));
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class IdPosterTitleOverviewCard extends StatelessWidget {
           Navigator.pushNamed(
             context,
             DetailPage.ROUTE_NAME,
-            arguments: IdAndDataType.from(data),
+            arguments: Poster2Entity.from(data),
           );
         },
         child: Stack(

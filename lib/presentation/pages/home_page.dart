@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
             if (state is PopularMovieLoading) {
               return AppRowLoadingWidget();
             } else if (state is PopularMovieSuccess) {
-              return MovieList.fromIdPosterTitleOverview(state.movies);
+              return MovieList.fromPoster5Entity(state.movies);
             } else if (state is PopularMovieError) {
               return AppErrorWidget(state.message, retry: state.retry);
             } else {
@@ -177,7 +177,7 @@ class _HomePageState extends State<HomePage> {
             if (state is TopRatedMovieLoading) {
               return AppRowLoadingWidget();
             } else if (state is TopRatedMovieSuccess) {
-              return MovieList.fromIdPosterTitleOverview(state.movies);
+              return MovieList.fromPoster5Entity(state.movies);
             } else if (state is TopRatedMovieError) {
               return AppErrorWidget(
                 state.message,
@@ -220,7 +220,7 @@ class _HomePageState extends State<HomePage> {
             if (state is PopularTvSeriesLoading) {
               return AppRowLoadingWidget();
             } else if (state is PopularTvSeriesSuccess) {
-              return MovieList.fromIdPosterTitleOverview(state.tvSeries);
+              return MovieList.fromPoster5Entity(state.tvSeries);
             } else if (state is PopularTvSeriesError) {
               return AppErrorWidget(state.message, retry: state.retry);
             } else {
@@ -235,7 +235,7 @@ class _HomePageState extends State<HomePage> {
             if (state is TopRatedTvSeriesLoading) {
               return AppRowLoadingWidget();
             } else if (state is TopRatedTvSeriesSuccess) {
-              return MovieList.fromIdPosterTitleOverview(state.tvSeries);
+              return MovieList.fromPoster5Entity(state.tvSeries);
             } else if (state is TopRatedTvSeriesError) {
               return AppErrorWidget(state.message, retry: state.retry);
             } else {

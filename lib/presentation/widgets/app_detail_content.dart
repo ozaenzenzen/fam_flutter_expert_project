@@ -2,8 +2,8 @@ import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/enum/enum_data_type.dart';
 import 'package:ditonton/common/extension.dart';
 import 'package:ditonton/domain/entities/genre_entity.dart';
-import 'package:ditonton/domain/entities/id_and_data_type.dart';
 import 'package:ditonton/domain/entities/item_data_entity.dart';
+import 'package:ditonton/domain/entities/poster_2_entity.dart';
 import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import 'package:ditonton/presentation/pages/detail_page.dart';
@@ -160,7 +160,7 @@ class AppDetailContent extends StatelessWidget {
                       Navigator.pushReplacementNamed(
                         context,
                         DetailPage.ROUTE_NAME,
-                        arguments: IdAndDataType.fromIdPosterDataType(movies),
+                        arguments: Poster2Entity.fromPoster3Entity(movies),
                       );
                     },
                     child: ClipRRect(
@@ -200,7 +200,7 @@ class AppDetailContent extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                final idPosterDataType = state.recommendations[index];
+                final poster3Entity = state.recommendations[index];
                 return Container(
                   width: 120,
                   padding: const EdgeInsets.all(4.0),
@@ -209,8 +209,8 @@ class AppDetailContent extends StatelessWidget {
                       Navigator.pushReplacementNamed(
                         context,
                         DetailPage.ROUTE_NAME,
-                        arguments: IdAndDataType.fromIdPosterDataType(
-                          idPosterDataType,
+                        arguments: Poster2Entity.fromPoster3Entity(
+                          poster3Entity,
                         ),
                       );
                     },
@@ -218,7 +218,7 @@ class AppDetailContent extends StatelessWidget {
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
                       ),
-                      child: AppImageWidget(idPosterDataType.poster),
+                      child: AppImageWidget(poster3Entity.poster),
                     ),
                   ),
                 );

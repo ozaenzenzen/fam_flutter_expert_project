@@ -1,8 +1,8 @@
 import 'package:ditonton/common/enum/enum_data_type.dart';
-import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
 import 'package:ditonton/domain/entities/item_data_entity.dart';
 import 'package:ditonton/domain/entities/movie_entity.dart';
 import 'package:ditonton/domain/entities/movie_detail_entity.dart';
+import 'package:ditonton/domain/entities/poster_5_entity.dart';
 import 'package:equatable/equatable.dart';
 
 class WatchlistTable extends Equatable {
@@ -44,12 +44,12 @@ class WatchlistTable extends Equatable {
         dataType: data.dataType.index,
       );
 
-  factory WatchlistTable.fromIdPosterTitleOverview(IdPosterTitleOverview idPosterTitleOverview) => WatchlistTable(
-        id: idPosterTitleOverview.id,
-        title: idPosterTitleOverview.title,
-        posterPath: idPosterTitleOverview.poster,
-        overview: idPosterTitleOverview.overview,
-        dataType: idPosterTitleOverview.dataType.index,
+  factory WatchlistTable.fromPoster5Entity(Poster5Entity poster5Entity) => WatchlistTable(
+        id: poster5Entity.id,
+        title: poster5Entity.title,
+        posterPath: poster5Entity.poster,
+        overview: poster5Entity.overview,
+        dataType: poster5Entity.dataType.index,
       );
 
   Map<String, dynamic> toJson() => {
@@ -67,7 +67,7 @@ class WatchlistTable extends Equatable {
         title: title,
       );
 
-  IdPosterTitleOverview toIdPosterTitleOverview() => IdPosterTitleOverview(
+  Poster5Entity toPoster5Entity() => Poster5Entity(
         id: id,
         poster: posterPath ?? "",
         title: title ?? "No Title",

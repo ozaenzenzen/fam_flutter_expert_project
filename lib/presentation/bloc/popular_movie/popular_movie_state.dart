@@ -12,7 +12,7 @@ class PopularMovieInitial extends PopularMovieState {}
 class PopularMovieLoading extends PopularMovieState {}
 
 class PopularMovieSuccess extends PopularMovieState {
-  final List<IdPosterTitleOverview> movies;
+  final List<Poster5Entity> movies;
 
   PopularMovieSuccess(this.movies);
 

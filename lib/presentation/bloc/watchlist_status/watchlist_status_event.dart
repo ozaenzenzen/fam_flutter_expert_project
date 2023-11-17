@@ -17,18 +17,18 @@ class OnWatchlistAdded extends WatchlistStatusEvent {
 }
 
 class OnWatchlistRemoved extends WatchlistStatusEvent {
-  final IdAndDataType idAndDataType;
+  final Poster2Entity poster2Entity;
 
-  OnWatchlistRemoved(this.idAndDataType);
+  OnWatchlistRemoved(this.poster2Entity);
 
   @override
-  List<Object> get props => [idAndDataType];
+  List<Object> get props => [poster2Entity];
 }
 
 class OnWatchlistStatusChecked extends WatchlistStatusEvent {
-  final IdAndDataType idAndDataType;
+  final Poster2Entity poster2Entity;
 
-  OnWatchlistStatusChecked(this.idAndDataType);
+  OnWatchlistStatusChecked(this.poster2Entity);
 
-  List<Object> get props => [idAndDataType];
+  List<Object> get props => [poster2Entity];
 }

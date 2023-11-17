@@ -1,17 +1,17 @@
-import 'package:ditonton/domain/entities/id_and_data_type.dart';
-import 'package:ditonton/domain/entities/id_poster_data_type.dart';
-import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
+import 'package:ditonton/domain/entities/poster_2_entity.dart';
+import 'package:ditonton/domain/entities/poster_3_entity.dart';
+import 'package:ditonton/domain/entities/poster_5_entity.dart';
 import 'package:ditonton/presentation/pages/detail_page.dart';
 import 'package:ditonton/presentation/widgets/app_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class MovieList extends StatelessWidget {
-  final List<IdPosterDataType> idAndPoster;
+  final List<Poster3Entity> idAndPoster;
 
   MovieList(this.idAndPoster);
 
-  factory MovieList.fromIdPosterTitleOverview(List<IdPosterTitleOverview> movies) {
-    final idAndPoster = movies.map((e) => IdPosterDataType.fromIdPosterTitleOverview(e)).toList();
+  factory MovieList.fromPoster5Entity(List<Poster5Entity> movies) {
+    final idAndPoster = movies.map((e) => Poster3Entity.fromPoster5Entity(e)).toList();
     return MovieList(idAndPoster);
   }
 
@@ -32,7 +32,7 @@ class MovieList extends StatelessWidget {
                 Navigator.pushNamed(
                   context,
                   DetailPage.ROUTE_NAME,
-                  arguments: IdAndDataType.fromIdPosterDataType(idPoster),
+                  arguments: Poster2Entity.fromPoster3Entity(idPoster),
                 );
               },
               child: AppImageWidget(idPoster.poster),

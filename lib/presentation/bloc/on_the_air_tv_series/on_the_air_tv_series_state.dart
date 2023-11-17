@@ -12,7 +12,7 @@ class OnTheAirTvSeriesInitial extends OnTheAirTvSeriesState {}
 class OnTheAirTvSeriesLoading extends OnTheAirTvSeriesState {}
 
 class OnTheAirTvSeriesSuccess extends OnTheAirTvSeriesState {
-  final List<IdPosterDataType> tvSeries;
+  final List<Poster3Entity> tvSeries;
 
   OnTheAirTvSeriesSuccess(this.tvSeries);
 

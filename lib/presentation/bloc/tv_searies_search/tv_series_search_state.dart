@@ -18,7 +18,7 @@ class TvSeriesSearchEmpty extends TvSeriesSearchState {
 }
 
 class TvSeriesSearchHasData extends TvSeriesSearchState {
-  final List<IdPosterTitleOverview> data;
+  final List<Poster5Entity> data;
 
   TvSeriesSearchHasData(this.data);
 

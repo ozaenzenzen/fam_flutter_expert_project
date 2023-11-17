@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
+import 'package:ditonton/domain/entities/poster_5_entity.dart';
 import 'package:ditonton/domain/usecases/search_tv_series.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -33,7 +33,7 @@ class TvSeriesSearchBloc
         }, (data) async {
           if (data.results!.isNotEmpty) {
             final result =
-                data.results!.map((e) => IdPosterTitleOverview.fromTvSeries(e)).toList();
+                data.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
             final resultState = TvSeriesSearchHasData(result);
 
             emit(resultState);

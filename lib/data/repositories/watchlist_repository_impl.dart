@@ -3,8 +3,8 @@ import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/datasources/watchlist_local_data_source.dart';
 import 'package:ditonton/data/models/watchlist_table.dart';
-import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
 import 'package:ditonton/domain/entities/item_data_entity.dart';
+import 'package:ditonton/domain/entities/poster_5_entity.dart';
 import 'package:ditonton/domain/repositories/watch_list_repository.dart';
 
 class WatchlistRepositoryImpl extends WatchlistRepository {
@@ -13,9 +13,9 @@ class WatchlistRepositoryImpl extends WatchlistRepository {
   WatchlistRepositoryImpl(this.localDataSource);
 
   @override
-  Future<Either<Failure, List<IdPosterTitleOverview>>> getWatchlist() async {
+  Future<Either<Failure, List<Poster5Entity>>> getWatchlist() async {
     final result = await localDataSource.getWatchlistMovies();
-    return Right(result.map((data) => data.toIdPosterTitleOverview()).toList());
+    return Right(result.map((data) => data.toPoster5Entity()).toList());
   }
 
   @override

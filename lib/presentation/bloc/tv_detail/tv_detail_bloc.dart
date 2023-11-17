@@ -3,8 +3,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:ditonton/domain/entities/id_poster_data_type.dart';
 import 'package:ditonton/domain/entities/item_data_entity.dart';
+import 'package:ditonton/domain/entities/poster_3_entity.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_detail.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_recommendations.dart';
 import 'package:equatable/equatable.dart';
@@ -62,7 +62,7 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState> {
         final stateDetail = TvDetailSuccess(itemDataEntity);
         emit(stateDetail);
       }, (data) {
-        final result = data.results!.map((e) => IdPosterDataType.fromTvSeries(e)).toList();
+        final result = data.results!.map((e) => Poster3Entity.fromTvSeries(e)).toList();
         final successState = TvDetailSuccess(
           itemDataEntity,
           recommendations: result,
@@ -88,7 +88,7 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState> {
       emit(state);
       emit(TvDetailSuccess(itemDataEntity));
     }, (data) {
-      final result = data.results!.map((e) => IdPosterDataType.fromTvSeries(e)).toList();
+      final result = data.results!.map((e) => Poster3Entity.fromTvSeries(e)).toList();
       final state = TvDetailSuccess(
         itemDataEntity,
         recommendations: result,

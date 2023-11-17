@@ -14,7 +14,7 @@ class WatchlistLoading extends WatchlistState {}
 class WatchlistEmpty extends WatchlistState {}
 
 class WatchlistHasData extends WatchlistState {
-  final List<IdPosterTitleOverview> data;
+  final List<Poster5Entity> data;
 
   WatchlistHasData(this.data);
 

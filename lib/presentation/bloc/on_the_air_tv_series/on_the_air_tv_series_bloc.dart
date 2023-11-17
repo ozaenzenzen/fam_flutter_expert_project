@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
 import 'package:bloc/bloc.dart';
-import 'package:ditonton/domain/entities/id_poster_data_type.dart';
+import 'package:ditonton/domain/entities/poster_3_entity.dart';
 import 'package:ditonton/domain/usecases/get_on_the_air_tv_series.dart';
 import 'package:equatable/equatable.dart';
 
@@ -28,7 +28,7 @@ class OnTheAirTvSeriesBloc extends Bloc<OnTheAirTvSeriesEvent, OnTheAirTvSeriesS
 
       emit(state);
     }, (data) {
-      final result = data.results!.map((e) => IdPosterDataType.fromTvSeries(e)).toList();
+      final result = data.results!.map((e) => Poster3Entity.fromTvSeries(e)).toList();
       final state = OnTheAirTvSeriesSuccess(result);
 
       emit(state);

@@ -1,5 +1,5 @@
-import 'package:ditonton/domain/entities/id_and_data_type.dart';
 import 'package:ditonton/domain/entities/item_data_entity.dart';
+import 'package:ditonton/domain/entities/poster_2_entity.dart';
 import 'package:ditonton/presentation/bloc/watchlist_status/watchlist_status_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,16 +35,16 @@ class AppWatchlistButton extends StatelessWidget {
         }
       },
       builder: (BuildContext context, state) {
-        final idAndDataType = IdAndDataType(
+        final poster2Entity = Poster2Entity(
           id: itemDataEntity.id,
           dataType: itemDataEntity.dataType,
         );
-        context.read<WatchlistStatusBloc>().add(OnWatchlistStatusChecked(idAndDataType));
+        context.read<WatchlistStatusBloc>().add(OnWatchlistStatusChecked(poster2Entity));
 
         return ElevatedButton(
           onPressed: () async {
             if (state is WatchlistStatusLoaded) {
-              context.read<WatchlistStatusBloc>().add(state.isAdded ? OnWatchlistRemoved(idAndDataType) : OnWatchlistAdded(itemDataEntity));
+              context.read<WatchlistStatusBloc>().add(state.isAdded ? OnWatchlistRemoved(poster2Entity) : OnWatchlistAdded(itemDataEntity));
             }
           },
           child: Row(

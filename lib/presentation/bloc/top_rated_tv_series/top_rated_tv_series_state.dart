@@ -12,7 +12,7 @@ class TopRatedTvSeriesInitial extends TopRatedTvSeriesState {}
 class TopRatedTvSeriesLoading extends TopRatedTvSeriesState {}
 
 class TopRatedTvSeriesSuccess extends TopRatedTvSeriesState {
-  final List<IdPosterTitleOverview> tvSeries;
+  final List<Poster5Entity> tvSeries;
 
   TopRatedTvSeriesSuccess(this.tvSeries);
 

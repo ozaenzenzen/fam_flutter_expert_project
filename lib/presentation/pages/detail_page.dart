@@ -1,6 +1,6 @@
 import 'package:ditonton/common/enum/enum_data_type.dart';
 import 'package:ditonton/common/extension.dart';
-import 'package:ditonton/domain/entities/id_and_data_type.dart';
+import 'package:ditonton/domain/entities/poster_2_entity.dart';
 import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import 'package:ditonton/presentation/widgets/app_detail_content.dart';
@@ -10,9 +10,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class DetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/detail';
 
-  final IdAndDataType idAndDataType;
+  final Poster2Entity poster2Entity;
 
-  DetailPage({required this.idAndDataType});
+  DetailPage({required this.poster2Entity});
 
   @override
   _DetailPageState createState() => _DetailPageState();
@@ -22,13 +22,13 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
     super.initState();
-    if (widget.idAndDataType.dataType == DataType.Movie) {
+    if (widget.poster2Entity.dataType == DataType.Movie) {
       context.read<MovieDetailBloc>().add(
-            OnMovieDetailDataRequested(widget.idAndDataType.id),
+            OnMovieDetailDataRequested(widget.poster2Entity.id),
           );
-    } else if (widget.idAndDataType.dataType == DataType.TvSeries) {
+    } else if (widget.poster2Entity.dataType == DataType.TvSeries) {
       context.read<TvDetailBloc>().add(
-            OnTvDetailDataRequested(widget.idAndDataType.id),
+            OnTvDetailDataRequested(widget.poster2Entity.id),
           );
     }
   }
@@ -36,7 +36,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.idAndDataType.dataType == DataType.TvSeries ? tvDetailSection() : movieDetailSection(),
+      body: widget.poster2Entity.dataType == DataType.TvSeries ? tvDetailSection() : movieDetailSection(),
     );
   }
 

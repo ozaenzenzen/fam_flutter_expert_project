@@ -12,7 +12,7 @@ class TopRatedMovieInitial extends TopRatedMovieState {}
 class TopRatedMovieLoading extends TopRatedMovieState {}
 
 class TopRatedMovieSuccess extends TopRatedMovieState {
-  final List<IdPosterTitleOverview> movies;
+  final List<Poster5Entity> movies;
   
   TopRatedMovieSuccess(this.movies);
 

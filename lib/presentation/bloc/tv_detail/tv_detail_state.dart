@@ -13,7 +13,7 @@ class TvDetailLoading extends TvDetailState {}
 
 class TvDetailSuccess extends TvDetailState {
   final ItemDataEntity itemDataEntity;
-  final List<IdPosterDataType> recommendations;
+  final List<Poster3Entity> recommendations;
 
   TvDetailSuccess(this.itemDataEntity, {this.recommendations = const []});
 

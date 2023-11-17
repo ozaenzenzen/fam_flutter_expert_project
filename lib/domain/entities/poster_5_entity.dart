@@ -4,14 +4,14 @@ import 'package:ditonton/domain/entities/movie_entity.dart';
 import 'package:ditonton/domain/entities/movie_detail_entity.dart';
 import 'package:equatable/equatable.dart';
 
-class IdPosterTitleOverview extends Equatable {
+class Poster5Entity extends Equatable {
   final int id;
   final String poster;
   final String title;
   final String overview;
   final DataType dataType;
 
-  IdPosterTitleOverview({
+  Poster5Entity({
     required this.id,
     required this.poster,
     required this.title,
@@ -19,7 +19,7 @@ class IdPosterTitleOverview extends Equatable {
     required this.dataType,
   });
 
-  factory IdPosterTitleOverview.fromMovie(MovieEntity movie) => IdPosterTitleOverview(
+  factory Poster5Entity.fromMovie(MovieEntity movie) => Poster5Entity(
         id: movie.id,
         poster: movie.posterPath ?? "",
         title: movie.title ?? "No Title",
@@ -27,7 +27,7 @@ class IdPosterTitleOverview extends Equatable {
         dataType: DataType.Movie,
       );
 
-  factory IdPosterTitleOverview.fromMovieDetail(MovieDetailEntity movieDetail) => IdPosterTitleOverview(
+  factory Poster5Entity.fromMovieDetail(MovieDetailEntity movieDetail) => Poster5Entity(
         id: movieDetail.id,
         poster: movieDetail.posterPath,
         title: movieDetail.title,
@@ -35,7 +35,7 @@ class IdPosterTitleOverview extends Equatable {
         dataType: DataType.Movie,
       );
 
-  factory IdPosterTitleOverview.fromTvSeries(ResultTvSeries tvSeries) => IdPosterTitleOverview(
+  factory Poster5Entity.fromTvSeries(ResultTvSeries tvSeries) => Poster5Entity(
         id: tvSeries.id!,
         poster: tvSeries.posterPath ?? "",
         title: tvSeries.name!,
