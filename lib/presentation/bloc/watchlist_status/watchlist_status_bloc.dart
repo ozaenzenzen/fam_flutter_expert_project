@@ -102,10 +102,14 @@ class WatchlistStatusBloc extends Bloc<WatchlistStatusEvent, WatchlistStatusStat
       final state = WatchlistStatusSuccess('Success Added ${itemDataModel.title} to watchlist');
       emit(state);
 
-      add(OnWatchlistStatusChecked(IdAndDataType(
-        itemDataModel.id,
-        itemDataModel.dataType,
-      )));
+      add(
+        OnWatchlistStatusChecked(
+          IdAndDataType(
+            id: itemDataModel.id,
+            dataType: itemDataModel.dataType,
+          ),
+        ),
+      );
       watchlistBloc.add(OnWatchlistDataRequested());
     });
   }

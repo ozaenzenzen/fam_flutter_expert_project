@@ -67,14 +67,12 @@ class WatchlistTable extends Equatable {
         title: title,
       );
 
-  DataType _intToDataType() => dataType == DataType.TvSeries.index ? DataType.TvSeries : DataType.Movie;
-
   IdPosterTitleOverview toIdPosterTitleOverview() => IdPosterTitleOverview(
-        id,
-        posterPath ?? "",
-        title ?? "No Title",
-        overview ?? "No Overview",
-        dataType: _intToDataType(),
+        id: id,
+        poster: posterPath ?? "",
+        title: title ?? "No Title",
+        overview: overview ?? "No Overview",
+        dataType: dataType == DataType.TvSeries.index ? DataType.TvSeries : DataType.Movie,
       );
 
   @override

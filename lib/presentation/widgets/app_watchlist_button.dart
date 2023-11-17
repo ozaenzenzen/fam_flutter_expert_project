@@ -35,7 +35,10 @@ class AppWatchlistButton extends StatelessWidget {
         }
       },
       builder: (BuildContext context, state) {
-        final idAndDataType = IdAndDataType(itemDataModel.id, itemDataModel.dataType);
+        final idAndDataType = IdAndDataType(
+          id: itemDataModel.id,
+          dataType: itemDataModel.dataType,
+        );
         context.read<WatchlistStatusBloc>().add(OnWatchlistStatusChecked(idAndDataType));
 
         return ElevatedButton(

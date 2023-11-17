@@ -9,24 +9,28 @@ class IdPosterDataType extends Equatable {
   final String poster;
   final DataType dataType;
 
-  IdPosterDataType(this.id, this.poster, this.dataType);
+  IdPosterDataType({
+    required this.id,
+    required this.poster,
+    required this.dataType,
+  });
 
   factory IdPosterDataType.fromMovie(MovieEntity movie) => IdPosterDataType(
-        movie.id,
-        movie.posterPath ?? "",
-        DataType.Movie,
+        id: movie.id,
+        poster: movie.posterPath ?? "",
+        dataType: DataType.Movie,
       );
 
   factory IdPosterDataType.fromTvSeries(ResultTvSeries tvSeries) => IdPosterDataType(
-        tvSeries.id!,
-        tvSeries.posterPath ?? "",
-        DataType.TvSeries,
+        id: tvSeries.id!,
+        poster: tvSeries.posterPath ?? "",
+        dataType: DataType.TvSeries,
       );
 
   factory IdPosterDataType.fromIdPosterTitleOverview(IdPosterTitleOverview idPosterTitleOverview) => IdPosterDataType(
-        idPosterTitleOverview.id,
-        idPosterTitleOverview.poster,
-        idPosterTitleOverview.dataType,
+        id: idPosterTitleOverview.id,
+        poster: idPosterTitleOverview.poster,
+        dataType: idPosterTitleOverview.dataType,
       );
 
   @override

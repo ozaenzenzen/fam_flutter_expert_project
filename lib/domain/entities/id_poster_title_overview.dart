@@ -11,35 +11,35 @@ class IdPosterTitleOverview extends Equatable {
   final String overview;
   final DataType dataType;
 
-  IdPosterTitleOverview(
-    this.id,
-    this.poster,
-    this.title,
-    this.overview, {
+  IdPosterTitleOverview({
+    required this.id,
+    required this.poster,
+    required this.title,
+    required this.overview,
     required this.dataType,
   });
 
   factory IdPosterTitleOverview.fromMovie(MovieEntity movie) => IdPosterTitleOverview(
-        movie.id,
-        movie.posterPath ?? "",
-        movie.title ?? "No Title",
-        movie.overview ?? "No Overview",
+        id: movie.id,
+        poster: movie.posterPath ?? "",
+        title: movie.title ?? "No Title",
+        overview: movie.overview ?? "No Overview",
         dataType: DataType.Movie,
       );
 
   factory IdPosterTitleOverview.fromMovieDetail(MovieDetailEntity movieDetail) => IdPosterTitleOverview(
-        movieDetail.id,
-        movieDetail.posterPath,
-        movieDetail.title,
-        movieDetail.overview,
+        id: movieDetail.id,
+        poster: movieDetail.posterPath,
+        title: movieDetail.title,
+        overview: movieDetail.overview,
         dataType: DataType.Movie,
       );
 
   factory IdPosterTitleOverview.fromTvSeries(ResultTvSeries tvSeries) => IdPosterTitleOverview(
-        tvSeries.id!,
-        tvSeries.posterPath ?? "",
-        tvSeries.name!,
-        tvSeries.overview!,
+        id: tvSeries.id!,
+        poster: tvSeries.posterPath ?? "",
+        title: tvSeries.name!,
+        overview: tvSeries.overview!,
         dataType: DataType.TvSeries,
       );
 

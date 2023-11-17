@@ -7,20 +7,23 @@ class IdAndDataType {
   int id;
   DataType dataType;
 
-  IdAndDataType(this.id, this.dataType);
+  IdAndDataType({
+    required this.id,
+    required this.dataType,
+  });
 
   factory IdAndDataType.from(IdPosterTitleOverview idPosterTitleOverview) => IdAndDataType(
-        idPosterTitleOverview.id,
-        idPosterTitleOverview.dataType,
+        id: idPosterTitleOverview.id,
+        dataType: idPosterTitleOverview.dataType,
       );
 
   factory IdAndDataType.fromMovie(MovieEntity movie) => IdAndDataType(
-        movie.id,
-        DataType.Movie,
+        id: movie.id,
+        dataType: DataType.Movie,
       );
 
   factory IdAndDataType.fromIdPosterDataType(IdPosterDataType idPosterDataType) => IdAndDataType(
-        idPosterDataType.id,
-        idPosterDataType.dataType,
+        id: idPosterDataType.id,
+        dataType: idPosterDataType.dataType,
       );
 }
