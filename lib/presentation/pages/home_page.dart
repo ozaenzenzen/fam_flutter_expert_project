@@ -1,6 +1,6 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/enum/enum_home_state.dart';
-import 'package:ditonton/presentation/bloc/bloc/home_state_handler_bloc.dart';
+import 'package:ditonton/presentation/bloc/home_state_handler/home_state_handler_bloc.dart';
 import 'package:ditonton/presentation/bloc/now_playing_movie/now_playing_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/on_the_air_tv_series/on_the_air_tv_series_bloc.dart';
 import 'package:ditonton/presentation/bloc/popular_movie/popular_movie_bloc.dart';

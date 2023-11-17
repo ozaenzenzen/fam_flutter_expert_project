@@ -2,7 +2,7 @@ import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/enum/enum_home_state.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/domain/entities/id_and_data_type.dart';
-import 'package:ditonton/presentation/bloc/bloc/home_state_handler_bloc.dart';
+import 'package:ditonton/presentation/bloc/home_state_handler/home_state_handler_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie_search/movie_search_bloc.dart';
 import 'package:ditonton/presentation/bloc/now_playing_movie/now_playing_movie_bloc.dart';
