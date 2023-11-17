@@ -53,8 +53,8 @@ class DatabaseHelper {
     return await db!.delete(
       _tblWatchlist,
       // where: 'id = ?',
-      // whereArgs: [movie.id],
       where: 'id = ? and dataType = ?',
+      // whereArgs: [movie.id],
       whereArgs: [id, dataType],
     );
   }
@@ -64,8 +64,8 @@ class DatabaseHelper {
     final results = await db!.query(
       _tblWatchlist,
       // where: 'id = ?',
-      // whereArgs: [id],
       where: 'id = ? and dataType = ?',
+      // whereArgs: [id],
       whereArgs: [id, dataType],
     );
 
