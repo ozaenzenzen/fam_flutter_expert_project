@@ -13,7 +13,7 @@ class IdAndDataType {
         idPosterTitleOverview.dataType,
       );
 
-  factory IdAndDataType.fromMovie(Movie movie) => IdAndDataType(
+  factory IdAndDataType.fromMovie(MovieEntity movie) => IdAndDataType(
         movie.id,
         DataType.Movie,
       );

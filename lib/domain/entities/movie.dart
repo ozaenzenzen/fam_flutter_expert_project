@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
-class Movie extends Equatable {
-  Movie({
+class MovieEntity extends Equatable {
+  MovieEntity({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -18,7 +18,7 @@ class Movie extends Equatable {
     required this.voteCount,
   });
 
-  Movie.watchlist({
+  MovieEntity.watchlist({
     required this.id,
     required this.overview,
     required this.posterPath,

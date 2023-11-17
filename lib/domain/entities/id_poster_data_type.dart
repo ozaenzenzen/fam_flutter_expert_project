@@ -10,7 +10,7 @@ class IdPosterDataType extends Equatable {
 
   IdPosterDataType(this.id, this.poster, this.dataType);
 
-  factory IdPosterDataType.fromMovie(Movie movie) => IdPosterDataType(
+  factory IdPosterDataType.fromMovie(MovieEntity movie) => IdPosterDataType(
         movie.id,
         movie.posterPath ?? "",
         DataType.Movie,

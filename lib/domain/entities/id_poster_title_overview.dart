@@ -20,7 +20,7 @@ class IdPosterTitleOverview extends Equatable {
     required this.dataType,
   });
 
-  factory IdPosterTitleOverview.fromMovie(Movie movie) => IdPosterTitleOverview(
+  factory IdPosterTitleOverview.fromMovie(MovieEntity movie) => IdPosterTitleOverview(
         movie.id,
         movie.posterPath ?? "",
         movie.title ?? "No Title",

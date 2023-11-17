@@ -64,8 +64,8 @@ class MovieModel extends Equatable {
         "vote_count": voteCount,
       };
 
-  Movie toEntity() {
-    return Movie(
+  MovieEntity toEntity() {
+    return MovieEntity(
       adult: this.adult,
       backdropPath: this.backdropPath,
       genreIds: this.genreIds,

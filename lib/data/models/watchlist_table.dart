@@ -32,7 +32,6 @@ class WatchlistTable extends Equatable {
         title: map['title'],
         posterPath: map['posterPath'],
         overview: map['overview'],
-        // dataType: map['dataType'] is Enum ? map['dataType'].index : map['dataType'],
         dataType: map['dataType'],
       );
 
@@ -60,7 +59,7 @@ class WatchlistTable extends Equatable {
         'dataType': dataType,
       };
 
-  Movie toEntity() => Movie.watchlist(
+  MovieEntity toEntity() => MovieEntity.watchlist(
         id: id,
         overview: overview,
         posterPath: posterPath,

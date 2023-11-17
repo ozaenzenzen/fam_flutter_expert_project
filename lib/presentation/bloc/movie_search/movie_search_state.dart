@@ -28,7 +28,7 @@ class MovieSearchError extends MovieSearchState {
 }
 
 class MovieSearchHasData extends MovieSearchState {
-  final List<Movie> data;
+  final List<MovieEntity> data;
 
   MovieSearchHasData(this.data);
 

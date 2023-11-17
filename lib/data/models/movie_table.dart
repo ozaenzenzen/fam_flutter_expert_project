@@ -36,7 +36,7 @@ class MovieTable extends Equatable {
         'overview': overview,
       };
 
-  Movie toEntity() => Movie.watchlist(
+  MovieEntity toEntity() => MovieEntity.watchlist(
         id: id,
         overview: overview,
         posterPath: posterPath,

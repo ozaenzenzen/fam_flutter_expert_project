@@ -11,7 +11,7 @@ class IdPosterTitleOverviewCard extends StatelessWidget {
 
   IdPosterTitleOverviewCard(this.data);
 
-  factory IdPosterTitleOverviewCard.fromMovie(Movie movie) => IdPosterTitleOverviewCard(IdPosterTitleOverview.fromMovie(movie));
+  factory IdPosterTitleOverviewCard.fromMovie(MovieEntity movie) => IdPosterTitleOverviewCard(IdPosterTitleOverview.fromMovie(movie));
 
   @override
   Widget build(BuildContext context) {
