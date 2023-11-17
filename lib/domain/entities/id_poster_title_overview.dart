@@ -1,6 +1,6 @@
 import 'package:ditonton/data/models/tv_series_response_model.dart';
 import 'package:ditonton/domain/entities/movie_entity.dart';
-import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/movie_detail_entity.dart';
 import 'package:equatable/equatable.dart';
 
 enum DataType { Movie, TvSeries }

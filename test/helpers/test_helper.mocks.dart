@@ -16,7 +16,7 @@ import 'package:ditonton/data/models/movie_detail_model.dart' as _i3;
 import 'package:ditonton/data/models/movie_model.dart' as _i12;
 import 'package:ditonton/data/models/movie_table.dart' as _i14;
 import 'package:ditonton/domain/entities/movie_entity.dart' as _i9;
-import 'package:ditonton/domain/entities/movie_detail.dart' as _i10;
+import 'package:ditonton/domain/entities/movie_detail_entity.dart' as _i10;
 import 'package:ditonton/domain/repositories/movie_repository.dart' as _i6;
 import 'package:http/src/base_request.dart' as _i20;
 import 'package:http/src/client.dart' as _i17;

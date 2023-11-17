@@ -1,7 +1,7 @@
 import 'package:ditonton/data/models/tv_detail_response_model.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
-import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/movie_detail_entity.dart';
 import 'package:equatable/equatable.dart';
 
 class ItemDataModel extends Equatable {
