@@ -64,7 +64,7 @@ class AppDetailContent extends StatelessWidget {
                             itemDataEntity.dataType == DataType.Movie
                                 ? Text(
                                     _showDuration(
-                                      int.fromEnvironment(itemDataEntity.runtime),
+                                      int.parse(itemDataEntity.runtime),
                                     ),
                                   )
                                 : Text(
