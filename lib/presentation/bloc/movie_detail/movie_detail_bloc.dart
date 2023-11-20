@@ -27,35 +27,41 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
     final result = await getMovieDetail.execute(id);
     final futureRecommendation = getMovieRecommendations.execute(id);
 
-    result.fold((failure) {
-      final state = MovieDetailError(failure.message, retry: () {
-        add(OnMovieDetailDataRequested(id));
-      });
-
-      emit(state);
-    }, (data) async {
-      final itemDataEntity = ItemDataEntity.fromMovie(data);
-      final recommendation = await futureRecommendation;
-
-      recommendation.fold((failure) {
+    result.fold(
+      (failure) {
         final state = MovieDetailError(failure.message, retry: () {
-          add(OnMovieRecommendationsRequested(itemDataEntity));
+          add(OnMovieDetailDataRequested(id));
         });
 
         emit(state);
+      },
+      (data) async {
+        final itemDataEntity = ItemDataEntity.fromMovie(data);
+        final recommendation = await futureRecommendation;
 
-        final detailState = MovieDetailSuccess(itemDataEntity);
-        emit(detailState);
-      }, (data) {
-        final recommendationResult = data.map((e) => Poster3Entity.fromMovie(e)).toList();
+        recommendation.fold(
+          (failure) {
+            final state = MovieDetailError(failure.message, retry: () {
+              add(OnMovieRecommendationsRequested(itemDataEntity));
+            });
 
-        final state = MovieDetailSuccess(
-          itemDataEntity,
-          recommendations: recommendationResult,
+            emit(state);
+
+            final detailState = MovieDetailSuccess(itemDataEntity);
+            emit(detailState);
+          },
+          (data) {
+            final recommendationResult = data.map((e) => Poster3Entity.fromMovie(e)).toList();
+
+            final state = MovieDetailSuccess(
+              itemDataEntity,
+              recommendations: recommendationResult,
+            );
+            emit(state);
+          },
         );
-        emit(state);
-      });
-    });
+      },
+    );
   }
 
   Future<void> onMovieRecommendationsRequested(
