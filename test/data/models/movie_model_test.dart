@@ -19,7 +19,7 @@ void main() {
     voteCount: 1,
   );
 
-  final tMovie = Movie(
+  final tMovie = MovieEntity(
     adult: false,
     backdropPath: 'backdropPath',
     genreIds: [1, 2, 3],

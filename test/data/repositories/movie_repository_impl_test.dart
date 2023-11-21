@@ -1,14 +1,13 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/movie_detail_model.dart';
 import 'package:ditonton/data/models/movie_model.dart';
 import 'package:ditonton/data/repositories/movie_repository_impl.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/entities/movie.dart';
+import 'package:ditonton/domain/entities/movie_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -18,6 +17,8 @@ import '../../helpers/test_helper.mocks.dart';
 void main() {
   late MovieRepositoryImpl repository;
   late MockMovieRemoteDataSource mockRemoteDataSource;
+
+  String errorMessages = 'Failed to connect to the network';
 
   setUp(() {
     mockRemoteDataSource = MockMovieRemoteDataSource();
@@ -41,7 +42,7 @@ void main() {
     voteCount: 13507,
   );
 
-  final tMovie = Movie(
+  final tMovie = MovieEntity(
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
     genreIds: [14, 28],
@@ -59,7 +60,7 @@ void main() {
   );
 
   final tMovieModelList = <MovieModel>[tMovieModel];
-  final tMovieList = <Movie>[tMovie];
+  final tMovieList = <MovieEntity>[tMovie];
 
   group('Now Playing Movies', () {
     test(
@@ -87,7 +88,7 @@ void main() {
       final result = await repository.getNowPlayingMovies();
       // assert
       verify(mockRemoteDataSource.getNowPlayingMovies());
-      expect(result, equals(Left(ServerFailure())));
+      expect(result, equals(Left(ServerFailure("server failed"))));
     });
 
     test(
@@ -95,12 +96,12 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getNowPlayingMovies())
-          .thenThrow(SocketException(connectionErrorMessage));
+          .thenThrow(SocketException(errorMessages));
       // act
       final result = await repository.getNowPlayingMovies();
       // assert
       verify(mockRemoteDataSource.getNowPlayingMovies());
-      expect(result, equals(Left(ConnectionFailure())));
+      expect(result, equals(Left(ConnectionFailure("connection failed"))));
     });
   });
 
@@ -127,7 +128,7 @@ void main() {
       // act
       final result = await repository.getPopularMovies();
       // assert
-      expect(result, Left(ServerFailure()));
+      expect(result, Left(ServerFailure("server failed")));
     });
 
     test(
@@ -135,11 +136,11 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getPopularMovies())
-          .thenThrow(SocketException(connectionErrorMessage));
+          .thenThrow(SocketException(errorMessages));
       // act
       final result = await repository.getPopularMovies();
       // assert
-      expect(result, Left(ConnectionFailure()));
+      expect(result, Left(ConnectionFailure("connection failed")));
     });
   });
 
@@ -165,7 +166,7 @@ void main() {
       // act
       final result = await repository.getTopRatedMovies();
       // assert
-      expect(result, Left(ServerFailure()));
+      expect(result, Left(ServerFailure("server failed")));
     });
 
     test(
@@ -173,11 +174,11 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTopRatedMovies())
-          .thenThrow(SocketException(connectionErrorMessage));
+          .thenThrow(SocketException(errorMessages));
       // act
       final result = await repository.getTopRatedMovies();
       // assert
-      expect(result, Left(ConnectionFailure()));
+      expect(result, Left(ConnectionFailure("connection failed")));
     });
   });
 
@@ -230,7 +231,7 @@ void main() {
       final result = await repository.getMovieDetail(tId);
       // assert
       verify(mockRemoteDataSource.getMovieDetail(tId));
-      expect(result, equals(Left(ServerFailure())));
+      expect(result, equals(Left(ServerFailure("server failed"))));
     });
 
     test(
@@ -238,12 +239,12 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getMovieDetail(tId))
-          .thenThrow(SocketException(connectionErrorMessage));
+          .thenThrow(SocketException(errorMessages));
       // act
       final result = await repository.getMovieDetail(tId);
       // assert
       verify(mockRemoteDataSource.getMovieDetail(tId));
-      expect(result, equals(Left(ConnectionFailure())));
+      expect(result, equals(Left(ConnectionFailure("connection failed"))));
     });
   });
 
@@ -275,7 +276,7 @@ void main() {
       final result = await repository.getMovieRecommendations(tId);
       // assertbuild runner
       verify(mockRemoteDataSource.getMovieRecommendations(tId));
-      expect(result, equals(Left(ServerFailure())));
+      expect(result, equals(Left(ServerFailure("server failed"))));
     });
 
     test(
@@ -283,12 +284,12 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getMovieRecommendations(tId))
-          .thenThrow(SocketException(connectionErrorMessage));
+          .thenThrow(SocketException(errorMessages));
       // act
       final result = await repository.getMovieRecommendations(tId);
       // assert
       verify(mockRemoteDataSource.getMovieRecommendations(tId));
-      expect(result, equals(Left(ConnectionFailure())));
+      expect(result, equals(Left(ConnectionFailure("connection failed"))));
     });
   });
 
@@ -316,7 +317,7 @@ void main() {
       // act
       final result = await repository.searchMovies(tQuery);
       // assert
-      expect(result, Left(ServerFailure()));
+      expect(result, Left(ServerFailure("server failed")));
     });
 
     test(
@@ -324,11 +325,11 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.searchMovies(tQuery))
-          .thenThrow(SocketException(connectionErrorMessage));
+          .thenThrow(SocketException(errorMessages));
       // act
       final result = await repository.searchMovies(tQuery);
       // assert
-      expect(result, Left(ConnectionFailure()));
+      expect(result, Left(ConnectionFailure("connection failed")));
     });
   });
 }

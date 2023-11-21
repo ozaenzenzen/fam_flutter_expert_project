@@ -1,11 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/data/datasources/movie_local_data_source.dart';
 import 'package:ditonton/data/datasources/watchlist_local_data_source.dart';
 import 'package:ditonton/data/repositories/watchlist_repository_impl.dart';
-import 'package:ditonton/domain/entities/content_data.dart';
-import 'package:ditonton/domain/entities/id_poster_title_overview.dart';
 import 'package:ditonton/domain/entities/item_data_entity.dart';
 import 'package:ditonton/domain/entities/poster_5_entity.dart';
 import 'package:ditonton/domain/repositories/watch_list_repository.dart';

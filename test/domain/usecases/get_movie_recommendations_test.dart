@@ -16,7 +16,7 @@ void main() {
   });
 
   final tId = 1;
-  final tMovies = <Movie>[];
+  final tMovies = <MovieEntity>[];
 
   test('should get list of movie recommendations from the repository',
       () async {

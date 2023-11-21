@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/datasources/tv_remote_data_source.dart';
+import 'package:ditonton/data/models/tv_series_response_model.dart';
 import 'package:ditonton/data/repositories/tv_series_repository_impl.dart';
 import 'package:ditonton/domain/repositories/tv_series_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,6 +16,8 @@ import '../../helpers/test_helper.mocks.dart';
 void main() {
   late TvSeriesRepository repository;
   late TvRemoteDataSource dataSource;
+
+  String errorMessages = 'Failed to connect to the network';
 
   setUp(() {
     dataSource = MockTvRemoteDataSource();
@@ -33,7 +35,7 @@ void main() {
 
       //act
       final result = await repository.getPopularTvSeries();
-      final actual = result.getOrElse(() => []);
+      final actual = result.getOrElse(() => TvSeriesResponseModel());
 
       //assert
       verify(dataSource.getPopularTvSeries());
@@ -44,7 +46,7 @@ void main() {
     test('should return ServerFailure when call remote data unsuccessful',
         () async {
       //arrange
-      final failure = ServerFailure();
+      final failure = ServerFailure("server failed");
       final matcher = Left(failure);
 
       when(dataSource.getPopularTvSeries()).thenThrow(ServerException());
@@ -60,11 +62,11 @@ void main() {
     test('should return ConnectionFailure when call remote data unsuccessful',
         () async {
       //arrange
-      final failure = ConnectionFailure();
+      final failure = ConnectionFailure("connection failed");
       final matcher = Left(failure);
 
       when(dataSource.getPopularTvSeries())
-          .thenThrow(SocketException(connectionErrorMessage));
+          .thenThrow(SocketException(errorMessages));
 
       //act
       final actual = await repository.getPopularTvSeries();
@@ -101,7 +103,7 @@ void main() {
 
       //act
       final result = await repository.getOnTheAirTvSeries();
-      final actual = result.getOrElse(() => []);
+      final actual = result.getOrElse(() => TvSeriesResponseModel());
 
       //assert
       verify(dataSource.getOnTheAirTvSeries());
@@ -112,7 +114,7 @@ void main() {
         'should return ServerFailure when call remote data source unsuccessful',
         () async {
       //arrange
-      final failure = ServerFailure();
+      final failure = ServerFailure("server failed");
       final matcher = Left(failure);
 
       when(dataSource.getOnTheAirTvSeries()).thenThrow((ServerException()));
@@ -127,11 +129,11 @@ void main() {
 
     test('should return ConnectionFailure when trow SocketException', () async {
       //arrange
-      final failure = ConnectionFailure();
+      final failure = ConnectionFailure("connection failed");
       final matcher = Left(failure);
 
       when(dataSource.getOnTheAirTvSeries())
-          .thenThrow((SocketException(connectionErrorMessage)));
+          .thenThrow((SocketException(errorMessages)));
 
       //act
       final actual = await repository.getOnTheAirTvSeries();
@@ -168,7 +170,7 @@ void main() {
 
       //act
       final result = await repository.getTopRatedTvSeries();
-      final actual = result.getOrElse(() => []);
+      final actual = result.getOrElse(() => TvSeriesResponseModel());
 
       //assert
       verify(dataSource.getTopRatedTvSeries());
@@ -179,7 +181,7 @@ void main() {
         'should return ServerFailure when call remote data source unsuccessful',
         () async {
       //arrange
-      final failure = ServerFailure();
+      final failure = ServerFailure("server failed");
       final matcher = Left(failure);
 
       when(dataSource.getTopRatedTvSeries()).thenThrow((ServerException()));
@@ -194,11 +196,11 @@ void main() {
 
     test('should return ConnectionFailure when trow SocketException', () async {
       //arrange
-      final failure = ConnectionFailure();
+      final failure = ConnectionFailure("connection failed");
       final matcher = Left(failure);
 
       when(dataSource.getTopRatedTvSeries())
-          .thenThrow((SocketException(connectionErrorMessage)));
+          .thenThrow((SocketException(errorMessages)));
 
       //act
       final actual = await repository.getTopRatedTvSeries();
@@ -237,7 +239,7 @@ void main() {
       final result = await repository.searchTvSeries(tQuery);
       // assert
       /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
-      final resultList = result.getOrElse(() => []);
+      final resultList = result.getOrElse(() => TvSeriesResponseModel());
       expect(resultList, expected);
     });
 
@@ -248,7 +250,7 @@ void main() {
       // act
       final result = await repository.searchTvSeries(tQuery);
       // assert
-      expect(result, Left(ServerFailure()));
+      expect(result, Left(ServerFailure("server failed")));
     });
 
     test(
@@ -256,11 +258,11 @@ void main() {
         () async {
       // arrange
       when(dataSource.searchTvSeries(tQuery))
-          .thenThrow(SocketException(connectionErrorMessage));
+          .thenThrow(SocketException(errorMessages));
       // act
       final result = await repository.searchTvSeries(tQuery);
       // assert
-      expect(result, Left(ConnectionFailure()));
+      expect(result, Left(ConnectionFailure("connection failed")));
     });
   });
 
@@ -272,11 +274,11 @@ void main() {
         'should return tv detail data when the call to remote data source is successful',
         () async {
       // arrange
-      when(dataSource.getTvSeries(tId)).thenAnswer((_) async => response);
+      when(dataSource.getTvSeriesDetail(tId!)).thenAnswer((_) async => response);
       // act
-      final result = await repository.getTvSeries(tId);
+      final result = await repository.getTvSeriesDetail(tId);
       // assert
-      verify(dataSource.getTvSeries(tId));
+      verify(dataSource.getTvSeriesDetail(tId));
       expect(result, equals(Right(response)));
     });
 
@@ -284,25 +286,25 @@ void main() {
         'should return Server Failure when the call to remote data source is unsuccessful',
         () async {
       // arrange
-      when(dataSource.getTvSeries(tId)).thenThrow(ServerException());
+      when(dataSource.getTvSeriesDetail(tId!)).thenThrow(ServerException());
       // act
-      final result = await repository.getTvSeries(tId);
+      final result = await repository.getTvSeriesDetail(tId);
       // assert
-      verify(dataSource.getTvSeries(tId));
-      expect(result, equals(Left(ServerFailure())));
+      verify(dataSource.getTvSeriesDetail(tId));
+      expect(result, equals(Left(ServerFailure("server failed"))));
     });
 
     test(
         'should return connection failure when the device is not connected to internet',
         () async {
       // arrange
-      when(dataSource.getTvSeries(tId))
-          .thenThrow(SocketException(connectionErrorMessage));
+      when(dataSource.getTvSeriesDetail(tId!))
+          .thenThrow(SocketException(errorMessages));
       // act
-      final result = await repository.getTvSeries(tId);
+      final result = await repository.getTvSeriesDetail(tId);
       // assert
-      verify(dataSource.getTvSeries(tId));
-      expect(result, equals(Left(ConnectionFailure())));
+      verify(dataSource.getTvSeriesDetail(tId));
+      expect(result, equals(Left(ConnectionFailure("connection failed"))));
     });
   });
 
@@ -313,14 +315,14 @@ void main() {
         () async {
       // arrange
       final response = tTvRecommendationList;
-      when(dataSource.getTvSeriesRecommendation(tId))
+      when(dataSource.getTvSeriesRecommendation(tId!))
           .thenAnswer((_) async => response);
       // act
       final result = await repository.getTvSeriesRecommendation(tId);
       // assert
       verify(dataSource.getTvSeriesRecommendation(tId));
       /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
-      final resultList = result.getOrElse(() => []);
+      final resultList = result.getOrElse(() => TvSeriesResponseModel());
       expect(resultList, equals(response));
     });
 
@@ -328,26 +330,26 @@ void main() {
         'should return server failure when call to remote data source is unsuccessful',
         () async {
       // arrange
-      when(dataSource.getTvSeriesRecommendation(tId))
+      when(dataSource.getTvSeriesRecommendation(tId!))
           .thenThrow(ServerException());
       // act
       final result = await repository.getTvSeriesRecommendation(tId);
       // assertbuild runner
       verify(dataSource.getTvSeriesRecommendation(tId));
-      expect(result, equals(Left(ServerFailure())));
+      expect(result, equals(Left(ServerFailure("server failed"))));
     });
 
     test(
         'should return connection failure when the device is not connected to the internet',
         () async {
       // arrange
-      when(dataSource.getTvSeriesRecommendation(tId))
-          .thenThrow(SocketException(connectionErrorMessage));
+      when(dataSource.getTvSeriesRecommendation(tId!))
+          .thenThrow(SocketException(errorMessages));
       // act
       final result = await repository.getTvSeriesRecommendation(tId);
       // assert
       verify(dataSource.getTvSeriesRecommendation(tId));
-      expect(result, equals(Left(ConnectionFailure())));
+      expect(result, equals(Left(ConnectionFailure("connection failed"))));
     });
   });
 }
