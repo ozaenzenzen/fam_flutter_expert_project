@@ -33,12 +33,14 @@ void main() {
   blocTest('Should emit [Loading, HasData] when data is gotten succesful',
       build: () {
         when(searchTvSeries.execute(testQuery)).thenAnswer((realInvocation) async => Right(data));
-
         return bloc;
       },
       act: (TvSeriesSearchBloc bloc) => bloc.add(const OnQueryTvSeriesChanged(testQuery)),
       wait: const Duration(milliseconds: 500),
-      expect: () => [TvSeriesSearchLoading(), TvSeriesSearchHasData(expected)],
+      expect: () => [
+            TvSeriesSearchLoading(),
+            TvSeriesSearchHasData(expected),
+          ],
       verify: (TvSeriesSearchBloc bloc) {
         verify(searchTvSeries.execute(testQuery));
       });
@@ -48,18 +50,27 @@ void main() {
     build: () => bloc,
     act: (TvSeriesSearchBloc bloc) => bloc.add(const OnQueryTvSeriesChanged('')),
     wait: const Duration(milliseconds: 500),
-    expect: () => [TvSeriesSearchInitial()],
+    expect: () => [
+      TvSeriesSearchInitial(),
+    ],
   );
 
   blocTest('Should emit [Loading, Empty] when data is gotten succesful',
       build: () {
-        when(searchTvSeries.execute(testQuery)).thenAnswer((realInvocation) async => Right(TvSeriesResponseModel()));
+        when(searchTvSeries.execute(testQuery)).thenAnswer(
+          (realInvocation) async => Right(
+            TvSeriesResponseModel(results: []),
+          ),
+        );
 
         return bloc;
       },
       act: (TvSeriesSearchBloc bloc) => bloc.add(const OnQueryTvSeriesChanged(testQuery)),
       wait: const Duration(milliseconds: 500),
-      expect: () => [TvSeriesSearchLoading(), const TvSeriesSearchEmpty('No Tv Series found $testQuery')],
+      expect: () => [
+            TvSeriesSearchLoading(),
+            const TvSeriesSearchEmpty('No Tv Series found $testQuery'),
+          ],
       verify: (TvSeriesSearchBloc bloc) {
         verify(searchTvSeries.execute(testQuery));
       });
@@ -72,7 +83,13 @@ void main() {
       },
       act: (TvSeriesSearchBloc bloc) => bloc.add(const OnQueryTvSeriesChanged(testQuery)),
       wait: const Duration(milliseconds: 500),
-      expect: () => [TvSeriesSearchLoading(), TvSeriesSearchError('Server Failure', retry: () {})],
+      expect: () => [
+            TvSeriesSearchLoading(),
+            TvSeriesSearchError(
+              'Server Failure',
+              retry: () {},
+            ),
+          ],
       verify: (TvSeriesSearchBloc bloc) {
         verify(searchTvSeries.execute(testQuery));
       });
