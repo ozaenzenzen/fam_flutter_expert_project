@@ -1,28 +1,30 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/domain/entities/movie_entity.dart';
-import 'package:ditonton/domain/usecases/get_top_rated_movies.dart';
+import 'package:ditonton/domain/usecases/get_movie_recommendations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../helpers/test_helper.mocks.dart';
+import '../../../helpers/test_helper.mocks.dart';
 
 void main() {
-  late GetTopRatedMovies usecase;
+  late GetMovieRecommendations usecase;
   late MockMovieRepository mockMovieRepository;
 
   setUp(() {
     mockMovieRepository = MockMovieRepository();
-    usecase = GetTopRatedMovies(mockMovieRepository);
+    usecase = GetMovieRecommendations(mockMovieRepository);
   });
 
+  final tId = 1;
   final tMovies = <MovieEntity>[];
 
-  test('should get list of movies from repository', () async {
+  test('should get list of movie recommendations from the repository',
+      () async {
     // arrange
-    when(mockMovieRepository.getTopRatedMovies())
+    when(mockMovieRepository.getMovieRecommendations(tId))
         .thenAnswer((_) async => Right(tMovies));
     // act
-    final result = await usecase.execute();
+    final result = await usecase.execute(tId);
     // assert
     expect(result, Right(tMovies));
   });

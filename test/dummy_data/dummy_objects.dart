@@ -5,7 +5,6 @@ import 'package:ditonton/data/models/watchlist_table.dart';
 import 'package:ditonton/domain/entities/genre_entity.dart';
 import 'package:ditonton/domain/entities/movie_entity.dart';
 import 'package:ditonton/domain/entities/movie_detail_entity.dart';
-import 'package:ditonton/domain/entities/poster_5_entity.dart';
 
 final testMovie = MovieEntity(
   adult: false,
