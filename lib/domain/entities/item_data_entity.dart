@@ -14,7 +14,7 @@ class ItemDataEntity extends Equatable {
   final String overview;
   final DataType dataType;
 
-  ItemDataEntity({
+  const ItemDataEntity({
     required this.id,
     required this.title,
     required this.genres,
@@ -33,7 +33,7 @@ class ItemDataEntity extends Equatable {
         posterPath: movie.posterPath,
         voteAverage: movie.voteAverage,
         overview: movie.overview,
-        dataType: DataType.Movie,
+        dataType: DataType.movie,
       );
 
   factory ItemDataEntity.fromTvSeries(TvDetailResponseModel tvSeries) => ItemDataEntity(
@@ -44,7 +44,7 @@ class ItemDataEntity extends Equatable {
       posterPath: tvSeries.posterPath!,
       voteAverage: tvSeries.voteAverage!.toDouble(),
       overview: tvSeries.overview!,
-      dataType: DataType.TvSeries,
+      dataType: DataType.tvSeries,
     );
 
   @override

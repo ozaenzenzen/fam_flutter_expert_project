@@ -30,7 +30,7 @@ void main() {
     registerFallbackValue(WatchListStatusEventFake());
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiProvider(
         providers: [
           BlocProvider(
@@ -48,14 +48,14 @@ void main() {
         ));
   }
 
-  final MovieDetailEntity movieDetail = testMovieDetail;
+  const MovieDetailEntity movieDetail = testMovieDetail;
   final List<Poster3Entity> movieRecommendation = <Poster3Entity>[];
   final ItemDataEntity itemDataEntity = ItemDataEntity.fromMovie(movieDetail);
 
   testWidgets(
     'should display Snackbar when added to watchlist',
     (WidgetTester tester) async {
-      final message = 'Added to Watchlist';
+      const String message = 'Added to Watchlist';
 
       whenListen(
         movieDetailBloc,
@@ -74,16 +74,16 @@ void main() {
         watchlistStatusBloc,
         Stream.fromIterable([
           WatchlistStatusLoading(),
-          WatchlistStatusSuccess(message),
-          WatchlistStatusLoaded(true),
+          const WatchlistStatusSuccess(message),
+          const WatchlistStatusLoaded(true),
         ]),
-        initialState: WatchlistStatusLoaded(false),
+        initialState: const WatchlistStatusLoaded(false),
       );
 
       final watchlistButton = find.byType(ElevatedButton);
 
       await tester.pumpWidget(
-        _makeTestableWidget(
+        makeTestableWidget(
           AppDetailContent(itemDataEntity),
         ),
       );
@@ -104,7 +104,7 @@ void main() {
   testWidgets(
     'Watchlist button should display AlertDialog when add to watchlist failed',
     (WidgetTester tester) async {
-      final message = 'Failed';
+      const String message = 'Failed';
 
       whenListen(
         movieDetailBloc,
@@ -125,11 +125,11 @@ void main() {
             WatchlistStatusLoading(),
             WatchlistStatusError(message, retry: () {}),
           ]),
-          initialState: WatchlistStatusLoaded(false));
+          initialState: const WatchlistStatusLoaded(false));
 
       final watchlistButton = find.byType(ElevatedButton);
 
-      await tester.pumpWidget(_makeTestableWidget(AppDetailContent(itemDataEntity)));
+      await tester.pumpWidget(makeTestableWidget(AppDetailContent(itemDataEntity)));
 
       expect(find.byIcon(Icons.add), findsOneWidget);
 

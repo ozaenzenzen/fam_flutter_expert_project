@@ -19,7 +19,7 @@ void main() {
     build: () {
       return bloc;
     },
-    act: (HomeStateHandlerBloc bloc) => bloc.add(ActionChangeHomeState(homeState: HomeState.TvSeries)),
+    act: (HomeStateHandlerBloc bloc) => bloc.add(const ActionChangeHomeState(homeState: HomeState.tvSeries)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       HomeStateHandlerTvSeries(),
@@ -31,7 +31,7 @@ void main() {
     build: () {
       return bloc;
     },
-    act: (HomeStateHandlerBloc bloc) => bloc.add(ActionChangeHomeState(homeState: HomeState.Movies)),
+    act: (HomeStateHandlerBloc bloc) => bloc.add(const ActionChangeHomeState(homeState: HomeState.movies)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       HomeStateHandlerMovies(),

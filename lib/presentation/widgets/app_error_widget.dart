@@ -4,7 +4,7 @@ class AppErrorWidget extends StatelessWidget {
   final String message;
   final Function? retry;
 
-  AppErrorWidget(this.message, {this.retry});
+  const AppErrorWidget(this.message, {super.key, this.retry});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class AppErrorWidget extends StatelessWidget {
               onPressed: () {
                 retry?.call();
               },
-              child: Text('Retry'),
+              child: const Text('Retry'),
             )
         ],
       ),

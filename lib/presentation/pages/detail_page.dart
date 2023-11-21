@@ -8,25 +8,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailPage extends StatefulWidget {
+  // ignore: constant_identifier_names
   static const ROUTE_NAME = '/detail';
 
   final Poster2Entity poster2Entity;
 
-  DetailPage({required this.poster2Entity});
+  const DetailPage({super.key, required this.poster2Entity});
 
   @override
-  _DetailPageState createState() => _DetailPageState();
+  State<DetailPage> createState() => _DetailPageState();
 }
 
 class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
     super.initState();
-    if (widget.poster2Entity.dataType == DataType.Movie) {
+    if (widget.poster2Entity.dataType == DataType.movie) {
       context.read<MovieDetailBloc>().add(
             OnMovieDetailDataRequested(widget.poster2Entity.id),
           );
-    } else if (widget.poster2Entity.dataType == DataType.TvSeries) {
+    } else if (widget.poster2Entity.dataType == DataType.tvSeries) {
       context.read<TvDetailBloc>().add(
             OnTvDetailDataRequested(widget.poster2Entity.id),
           );
@@ -36,7 +37,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.poster2Entity.dataType == DataType.TvSeries ? tvDetailSection() : movieDetailSection(),
+      body: widget.poster2Entity.dataType == DataType.tvSeries ? tvDetailSection() : movieDetailSection(),
     );
   }
 
@@ -49,7 +50,7 @@ class _DetailPageState extends State<DetailPage> {
       },
       builder: (context, state) {
         if (state is MovieDetailLoading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is MovieDetailSuccess) {
@@ -73,7 +74,7 @@ class _DetailPageState extends State<DetailPage> {
       },
       builder: (context, state) {
         if (state is TvDetailLoading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is TvDetailSuccess) {

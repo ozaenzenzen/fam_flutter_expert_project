@@ -48,7 +48,7 @@ void main() {
   blocTest('Should emit [Loading, Error] when server failure',
       build: () {
         when(getTopRatedTvSeries.execute())
-            .thenAnswer((realInvocation) async => Left(ServerFailure("Server Failure")));
+            .thenAnswer((realInvocation) async => const Left(ServerFailure("Server Failure")));
 
         return bloc;
       },

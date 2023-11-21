@@ -14,7 +14,7 @@ class TopRatedMovieLoading extends TopRatedMovieState {}
 class TopRatedMovieSuccess extends TopRatedMovieState {
   final List<Poster5Entity> movies;
   
-  TopRatedMovieSuccess(this.movies);
+  const TopRatedMovieSuccess(this.movies);
 
   @override
   List<Object> get props => [movies];
@@ -24,7 +24,7 @@ class TopRatedMovieError extends TopRatedMovieState {
   final String message;
   final Function retry;
 
-  TopRatedMovieError(this.message, {required this.retry});
+  const TopRatedMovieError(this.message, {required this.retry});
 
   @override
   List<Object> get props => [message];

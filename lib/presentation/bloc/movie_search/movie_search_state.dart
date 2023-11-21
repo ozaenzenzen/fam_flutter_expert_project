@@ -12,7 +12,7 @@ class MovieSearchInitial extends MovieSearchState {}
 class MovieSearchEmpty extends MovieSearchState {
   final String message;
 
-  MovieSearchEmpty(this.message);
+  const MovieSearchEmpty(this.message);
 }
 
 class MovieSearchLoading extends MovieSearchState {}
@@ -21,7 +21,7 @@ class MovieSearchError extends MovieSearchState {
   final String message;
   final Function? retry;
 
-  MovieSearchError(this.message, {this.retry});
+  const MovieSearchError(this.message, {this.retry});
 
   @override
   List<Object> get props => [message, retry != null];
@@ -30,7 +30,7 @@ class MovieSearchError extends MovieSearchState {
 class MovieSearchHasData extends MovieSearchState {
   final List<MovieEntity> data;
 
-  MovieSearchHasData(this.data);
+  const MovieSearchHasData(this.data);
 
   @override
   List<Object> get props => [data];

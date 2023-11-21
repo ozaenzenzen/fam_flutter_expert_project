@@ -15,7 +15,7 @@ void main() {
     usecase = GetMovieRecommendations(mockMovieRepository);
   });
 
-  final tId = 1;
+  const int tId = 1;
   final tMovies = <MovieEntity>[];
 
   test('should get list of movie recommendations from the repository',

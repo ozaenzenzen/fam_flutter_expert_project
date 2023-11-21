@@ -16,13 +16,12 @@ void main() {
     usecase = SearchTvSeries(repository);
   });
 
-  final tQuery = 'phoenix';
+  const String tQuery = 'phoenix';
 
   test('should get list of movies from the repository', () async {
     // arrange
     final expected = testSearchTvSeriesList;
-    when(repository.searchTvSeries(tQuery))
-        .thenAnswer((_) async => Right(expected));
+    when(repository.searchTvSeries(tQuery)).thenAnswer((_) async => Right(expected));
     // act
     final result = await usecase.execute(tQuery);
     // assert

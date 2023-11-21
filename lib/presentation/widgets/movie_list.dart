@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class MovieList extends StatelessWidget {
   final List<Poster3Entity> idAndPoster;
 
-  MovieList(this.idAndPoster);
+  const MovieList(this.idAndPoster, {super.key});
 
   factory MovieList.fromPoster5Entity(List<Poster5Entity> movies) {
     final idAndPoster = movies.map((e) => Poster3Entity.fromPoster5Entity(e)).toList();
@@ -17,7 +17,7 @@ class MovieList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,

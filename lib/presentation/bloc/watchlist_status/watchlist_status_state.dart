@@ -14,7 +14,7 @@ class WatchlistStatusLoading extends WatchlistStatusState {}
 class WatchlistStatusLoaded extends WatchlistStatusState {
   final bool isAdded;
 
-  WatchlistStatusLoaded(this.isAdded);
+  const WatchlistStatusLoaded(this.isAdded);
 
   @override
   List<Object> get props => [isAdded];
@@ -24,7 +24,7 @@ class WatchlistStatusError extends WatchlistStatusState {
   final String message;
   final Function retry;
 
-  WatchlistStatusError(this.message, {required this.retry});
+  const WatchlistStatusError(this.message, {required this.retry});
 
   @override
   List<Object> get props => [message];
@@ -33,7 +33,7 @@ class WatchlistStatusError extends WatchlistStatusState {
 class WatchlistStatusSuccess extends WatchlistStatusState {
   final String message;
 
-  WatchlistStatusSuccess(this.message);
+  const WatchlistStatusSuccess(this.message);
 
   @override
   List<Object> get props => [message];

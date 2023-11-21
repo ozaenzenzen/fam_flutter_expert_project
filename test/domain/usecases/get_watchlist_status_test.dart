@@ -21,8 +21,8 @@ void main() {
     // arrange
     final data = testMovieList;
     final expected = data.map((e) => Poster5Entity.fromMovie(e)).toList();
-    final id = 1;
-    final dataType = DataType.Movie.index;
+    const id = 1;
+    final dataType = DataType.movie.index;
 
     when(repository.isAddedToWatchlist(id, dataType)).thenAnswer((_) async => true);
     when(repository.getWatchlist()).thenAnswer((_) async => Right(expected));

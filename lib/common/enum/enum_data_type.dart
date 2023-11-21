@@ -1,1 +1,1 @@
-enum DataType { Movie, TvSeries }
+enum DataType { movie, tvSeries }

@@ -9,7 +9,7 @@ class Poster3Entity extends Equatable {
   final String poster;
   final DataType dataType;
 
-  Poster3Entity({
+  const Poster3Entity({
     required this.id,
     required this.poster,
     required this.dataType,
@@ -18,13 +18,13 @@ class Poster3Entity extends Equatable {
   factory Poster3Entity.fromMovie(MovieEntity movie) => Poster3Entity(
         id: movie.id,
         poster: movie.posterPath ?? "",
-        dataType: DataType.Movie,
+        dataType: DataType.movie,
       );
 
   factory Poster3Entity.fromTvSeries(ResultTvSeries tvSeries) => Poster3Entity(
         id: tvSeries.id!,
         poster: tvSeries.posterPath ?? "",
-        dataType: DataType.TvSeries,
+        dataType: DataType.tvSeries,
       );
 
   factory Poster3Entity.fromPoster5Entity(Poster5Entity poster5Entity) => Poster3Entity(

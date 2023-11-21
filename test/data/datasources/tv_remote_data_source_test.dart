@@ -15,12 +15,14 @@ import '../../json_reader.dart';
 void main() {
   late TvRemoteDataSource dataSource;
   late MockHttpClient client;
+  // ignore: constant_identifier_names
   const API_KEY = 'api_key=2174d146bb9c0eab47529b2e77d6b526';
+  // ignore: constant_identifier_names
   const BASE_URL = 'https://api.themoviedb.org/3';
 
-  final urlPopularTvSeries = '$BASE_URL/tv/popular?$API_KEY';
-  final urlOnTheAirTvSeries = '$BASE_URL/tv/on_the_air?$API_KEY';
-  final urlTopRatedTvSeries = '$BASE_URL/tv/top_rated?$API_KEY';
+  const String urlPopularTvSeries = '$BASE_URL/tv/popular?$API_KEY';
+  const String urlOnTheAirTvSeries = '$BASE_URL/tv/on_the_air?$API_KEY';
+  const String urlTopRatedTvSeries = '$BASE_URL/tv/top_rated?$API_KEY';
 
   setUp(() {
     client = MockHttpClient();
@@ -40,19 +42,19 @@ void main() {
   }
 
   group('get popular tv action', () {
-    final dummyTvPopular = 'dummy_data/tvseries/tv_popular.json';
+    const String dummyTvPopular = 'dummy_data/tvseries/tv_popular.json';
     final decoded = json.decode(readJson(dummyTvPopular));
     final TvSeriesResponseModel tSearialTvList = TvSeriesResponseModel.fromJson(decoded);
 
     test("should return class of Tv Response Model when the response code is 200", () async {
       //arrange
-      final mockPath = dummyTvPopular;
+      const mockPath = dummyTvPopular;
       final matcher = tSearialTvList;
 
-      final url = urlPopularTvSeries;
+      const url = urlPopularTvSeries;
       final uri = Uri.parse(url);
       final response = readJson(mockPath);
-      final statusCode = 200;
+      const statusCode = 200;
 
       arrangeApiCall(uri, response, statusCode);
 
@@ -65,16 +67,17 @@ void main() {
 
     test("should throw ServerException when the response code is not 200", () async {
       //arrange
-      final mockPath = dummyTvPopular;
+      const mockPath = dummyTvPopular;
       final matcher = throwsA(isA<ServerException>());
 
-      final url = urlPopularTvSeries;
+      const url = urlPopularTvSeries;
       final uri = Uri.parse(url);
       final response = readJson(mockPath);
 
       arrangeApiCall(uri, response, 500);
 
       //act
+      // ignore: prefer_function_declarations_over_variables
       final actual500 = () => dataSource.getPopularTvSeries();
 
       //assert
@@ -84,6 +87,7 @@ void main() {
       arrangeApiCall(uri, response, 404);
 
       //act
+      // ignore: prefer_function_declarations_over_variables
       final actual404 = () => dataSource.getPopularTvSeries();
 
       //assert
@@ -92,19 +96,19 @@ void main() {
   });
 
   group('get top rated tv series action', () {
-    final dummyTvTopRated = 'dummy_data/tvseries/tv_top_rated.json';
+    const dummyTvTopRated = 'dummy_data/tvseries/tv_top_rated.json';
     final decoded = json.decode(readJson(dummyTvTopRated));
     final tSerialTvList = TvSeriesResponseModel.fromJson(decoded);
 
     test("should return Top Rated Tv Series when the response code is 200", () async {
       //arrange
-      final mockPath = dummyTvTopRated;
+      const mockPath = dummyTvTopRated;
       final matcher = tSerialTvList;
 
-      final url = urlTopRatedTvSeries;
+      const url = urlTopRatedTvSeries;
       final uri = Uri.parse(url);
       final response = readJson(mockPath);
-      final statusCode = 200;
+      const statusCode = 200;
 
       arrangeApiCall(uri, response, statusCode);
 
@@ -117,17 +121,17 @@ void main() {
 
     test("should throw ServerException when the response code is not 200", () async {
       //arrange
-      final mockPath = dummyTvTopRated;
+      const mockPath = dummyTvTopRated;
       final matcher = throwsA(isA<ServerException>());
 
-      final url = urlTopRatedTvSeries;
+      const url = urlTopRatedTvSeries;
       final uri = Uri.parse(url);
       final response = readJson(mockPath);
 
       arrangeApiCall(uri, response, 500);
 
       //act
-      final actual = () => dataSource.getTopRatedTvSeries();
+      actual() => dataSource.getTopRatedTvSeries();
 
       //assert
       expect(actual, matcher);
@@ -135,26 +139,26 @@ void main() {
       //arrange
       arrangeApiCall(uri, response, 404);
 
-      final actual404 = () => dataSource.getTopRatedTvSeries();
+      actual404() => dataSource.getTopRatedTvSeries();
 
       expect(actual404, matcher);
     });
   });
 
   group('get on the air tv series action', () {
-    final dummyTvOnTheAir = 'dummy_data/tvseries/tv_on_the_air.json';
+    const dummyTvOnTheAir = 'dummy_data/tvseries/tv_on_the_air.json';
     final decoded = json.decode(readJson(dummyTvOnTheAir));
     final tSearialTvList = TvSeriesResponseModel.fromJson(decoded);
 
     test("should return List of Tv when the response code is 200", () async {
       //arrange
-      final mockPath = dummyTvOnTheAir;
+      const mockPath = dummyTvOnTheAir;
       final matcher = tSearialTvList;
 
-      final url = urlOnTheAirTvSeries;
+      const url = urlOnTheAirTvSeries;
       final uri = Uri.parse(url);
       final response = readJson(mockPath);
-      final statusCode = 200;
+      const statusCode = 200;
 
       arrangeApiCall(uri, response, statusCode);
 
@@ -167,17 +171,17 @@ void main() {
 
     test("should throw ServerException when the response code is not 200", () async {
       //arrange
-      final mockPath = dummyTvOnTheAir;
+      const mockPath = dummyTvOnTheAir;
       final matcher = throwsA(isA<ServerException>());
 
-      final url = urlOnTheAirTvSeries;
+      const url = urlOnTheAirTvSeries;
       final uri = Uri.parse(url);
       final response = readJson(mockPath);
 
       arrangeApiCall(uri, response, 500);
 
       //act
-      final actual = () => dataSource.getOnTheAirTvSeries();
+      actual() => dataSource.getOnTheAirTvSeries();
 
       //assert
       expect(actual, matcher);
@@ -185,29 +189,29 @@ void main() {
       //arrange
       arrangeApiCall(uri, response, 404);
 
-      final actual404 = () => dataSource.getOnTheAirTvSeries();
+      actual404() => dataSource.getOnTheAirTvSeries();
 
       expect(actual404, matcher);
     });
   });
 
   group('search tv series action', () {
-    final dummySearchTvSeries = 'dummy_data/tvseries/search_phoenix_tv_series.json';
+    const dummySearchTvSeries = 'dummy_data/tvseries/search_phoenix_tv_series.json';
     final decoded = json.decode(readJson(dummySearchTvSeries));
 
     final tSerialTvList = TvSeriesResponseModel.fromJson(decoded);
-    final tQuery = 'phoenix';
+    const tQuery = 'phoenix';
 
     // final url = TvRemoteDataSourceImpl.generateUrlTvSeries(tQuery);
-    final url = '$BASE_URL/search/tv?$API_KEY&query=$tQuery';
+    const url = '$BASE_URL/search/tv?$API_KEY&query=$tQuery';
     final uri = Uri.parse(url);
 
     test('should return list of tv series when response code is 200', () async {
-      final mockPath = dummySearchTvSeries;
+      const mockPath = dummySearchTvSeries;
       final matcher = tSerialTvList;
 
       final response = readJson(mockPath);
-      final statusCode = 200;
+      const statusCode = 200;
       // arrange
 
       arrangeApiCall(uri, response, statusCode);
@@ -220,8 +224,8 @@ void main() {
 
     test('should throw ServerException when response code is other than 200', () async {
       // arrange
-      final response = 'Not found';
-      final statusCode = 404;
+      const response = 'Not found';
+      const statusCode = 404;
 
       arrangeApiCall(uri, response, statusCode);
       // act
@@ -232,15 +236,15 @@ void main() {
   });
 
   group('get tv detail action', () {
-    final tId = 93842;
-    final response = readJson('dummy_data/tvseries/tv_detail.json');
-    final tTvDetail = TvDetailResponseModel.fromJson(json.decode(response));
-    final url = '$BASE_URL/tv/$tId?$API_KEY';
-    final uri = Uri.parse(url);
+    const int tId = 93842;
+    final String response = readJson('dummy_data/tvseries/tv_detail.json');
+    final TvDetailResponseModel tTvDetail = TvDetailResponseModel.fromJson(json.decode(response));
+    const String url = '$BASE_URL/tv/$tId?$API_KEY';
+    final Uri uri = Uri.parse(url);
 
     test('should return tv detail when the response code is 200', () async {
       // arrange
-      final statusCode = 200;
+      const statusCode = 200;
 
       arrangeApiCall(uri, response, statusCode);
       // act
@@ -251,7 +255,7 @@ void main() {
 
     test('should throw Server Exception when the response code is 404 or other', () async {
       // arrange
-      final statusCode = 404;
+      const statusCode = 404;
 
       arrangeApiCall(uri, response, statusCode);
       // act
@@ -262,16 +266,16 @@ void main() {
   });
 
   group('get tv series recommendations action', () {
-    final tId = 213713;
+    const int tId = 213713;
     final data = readJson('dummy_data/tvseries/tv_recommendations.json');
     final tTvRecommendation = TvSeriesResponseModel.fromJson(json.decode(data));
-    final url = '$BASE_URL/tv/$tId/recommendations?$API_KEY';
+    const String url = '$BASE_URL/tv/$tId/recommendations?$API_KEY';
     final uri = Uri.parse(url);
 
     test('should return list of Movie Model when the response code is 200', () async {
       // arrange
       final response = data;
-      final statusCode = 200;
+      const statusCode = 200;
       arrangeApiCall(uri, response, statusCode);
       // act
       final result = await dataSource.getTvSeriesRecommendation(tId);
@@ -281,8 +285,8 @@ void main() {
 
     test('should throw Server Exception when the response code is 404 or other', () async {
       // arrange
-      final response = 'Not Found';
-      final statusCode = 404;
+      const response = 'Not Found';
+      const statusCode = 404;
       arrangeApiCall(uri, response, statusCode);
       // act
       final call = dataSource.getTvSeriesRecommendation(tId);

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class PosterItemWidget extends StatelessWidget {
   final Poster5Entity data;
 
-  PosterItemWidget(this.data);
+  const PosterItemWidget(this.data, {super.key});
 
   factory PosterItemWidget.fromMovie(MovieEntity movie) => PosterItemWidget(Poster5Entity.fromMovie(movie));
 
@@ -46,7 +46,7 @@ class PosterItemWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       data.overview,
                       maxLines: 2,
@@ -62,13 +62,13 @@ class PosterItemWidget extends StatelessWidget {
                 bottom: 16,
               ),
               child: ClipRRect(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(8),
+                ),
                 child: AppImageWidget(
                   data.poster,
                   width: 80,
                   height: 120,
-                ),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
                 ),
               ),
             ),

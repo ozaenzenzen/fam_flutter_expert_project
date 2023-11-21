@@ -2,7 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:ditonton/domain/entities/movie_entity.dart';
 import 'package:ditonton/domain/usecases/search_movies.dart';
 import 'package:equatable/equatable.dart';
+// ignore: depend_on_referenced_packages, implementation_imports
 import 'package:rxdart/src/transformers/backpressure/debounce.dart';
+// ignore: depend_on_referenced_packages, implementation_imports
 import 'package:rxdart/src/transformers/flat_map.dart';
 
 part 'movie_search_event.dart';

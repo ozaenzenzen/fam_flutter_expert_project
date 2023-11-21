@@ -10,7 +10,7 @@ abstract class MovieDetailEvent extends Equatable {
 class OnMovieDetailDataRequested extends MovieDetailEvent {
   final int id;
 
-  OnMovieDetailDataRequested(this.id);
+  const OnMovieDetailDataRequested(this.id);
 
   @override
   List<Object> get props => [id];
@@ -19,7 +19,7 @@ class OnMovieDetailDataRequested extends MovieDetailEvent {
 class OnMovieRecommendationsRequested extends MovieDetailEvent {
   final ItemDataEntity itemDataEntity;
 
-  OnMovieRecommendationsRequested(this.itemDataEntity);
+  const OnMovieRecommendationsRequested(this.itemDataEntity);
 
   @override
   List<Object> get props => [itemDataEntity];

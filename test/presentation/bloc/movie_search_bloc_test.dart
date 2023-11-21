@@ -23,7 +23,7 @@ void main() {
 
   final tMovieModel = testMovie;
   final tMovieList = <MovieEntity>[tMovieModel];
-  final tQuery = 'spiderman';
+  const tQuery = 'spiderman';
 
   test('inital state should be initial', () {
     expect(movieSearchBloc.state, MovieSearchInitial());
@@ -37,7 +37,7 @@ void main() {
 
         return movieSearchBloc;
       },
-      act: (MovieSearchBloc bloc) => bloc.add(OnQueryMovieChanged(tQuery)),
+      act: (MovieSearchBloc bloc) => bloc.add(const OnQueryMovieChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [MovieSearchLoading(), MovieSearchHasData(tMovieList)],
       verify: (MovieSearchBloc bloc) {
@@ -47,22 +47,22 @@ void main() {
   blocTest(
     'Should emit [Initial] when query is empty',
     build: () => movieSearchBloc,
-    act: (MovieSearchBloc bloc) => bloc.add(OnQueryMovieChanged('')),
+    act: (MovieSearchBloc bloc) => bloc.add(const OnQueryMovieChanged('')),
     wait: const Duration(milliseconds: 500),
     expect: () => [MovieSearchInitial()],
   );
 
   blocTest('Should emit [Loading, Empty] when data is gotten succesful',
       build: () {
-        when(searchMovies.execute(tQuery)).thenAnswer((realInvocation) async => Right([]));
+        when(searchMovies.execute(tQuery)).thenAnswer((realInvocation) async => const Right([]));
 
         return movieSearchBloc;
       },
-      act: (MovieSearchBloc bloc) => bloc.add(OnQueryMovieChanged(tQuery)),
+      act: (MovieSearchBloc bloc) => bloc.add(const OnQueryMovieChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
             MovieSearchLoading(),
-            MovieSearchEmpty('No movie found $tQuery'),
+            const MovieSearchEmpty('No movie found $tQuery'),
           ],
       verify: (MovieSearchBloc bloc) {
         verify(searchMovies.execute(tQuery));
@@ -71,12 +71,12 @@ void main() {
   blocTest('Should emit [Loading, Error] when data is unsuccesful',
       build: () {
         when(searchMovies.execute(tQuery)).thenAnswer(
-          (realInvocation) async => Left(ServerFailure("Server Failure")),
+          (realInvocation) async => const Left(ServerFailure("Server Failure")),
         );
 
         return movieSearchBloc;
       },
-      act: (MovieSearchBloc bloc) => bloc.add(OnQueryMovieChanged(tQuery)),
+      act: (MovieSearchBloc bloc) => bloc.add(const OnQueryMovieChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
             MovieSearchLoading(),

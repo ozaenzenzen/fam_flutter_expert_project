@@ -3,7 +3,7 @@ import 'package:ditonton/domain/entities/movie_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final testMovieModelData = MovieModel(
+  const testMovieModelData = MovieModel(
     adult: false,
     backdropPath: 'backdropPath',
     genreIds: [1, 2, 3, 4, 5],
@@ -22,7 +22,7 @@ void main() {
   final testMovieData = MovieEntity(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3, 4, 5],
+    genreIds: const [1, 2, 3, 4, 5],
     id: 1,
     originalTitle: 'originalTitle',
     overview: 'overview',

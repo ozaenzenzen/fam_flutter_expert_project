@@ -14,13 +14,13 @@ class TvSeriesSearchLoading extends TvSeriesSearchState {}
 class TvSeriesSearchEmpty extends TvSeriesSearchState {
   final String message;
 
-  TvSeriesSearchEmpty(this.message);
+  const TvSeriesSearchEmpty(this.message);
 }
 
 class TvSeriesSearchHasData extends TvSeriesSearchState {
   final List<Poster5Entity> data;
 
-  TvSeriesSearchHasData(this.data);
+  const TvSeriesSearchHasData(this.data);
 
   @override
   List<Object> get props => [...data];
@@ -30,7 +30,7 @@ class TvSeriesSearchError extends TvSeriesSearchState {
   final String message;
   final Function retry;
 
-  TvSeriesSearchError(this.message, {required this.retry});
+  const TvSeriesSearchError(this.message, {required this.retry});
 
   @override
   List<Object> get props => [message];

@@ -19,7 +19,7 @@ class Poster2Entity {
 
   factory Poster2Entity.fromMovie(MovieEntity movie) => Poster2Entity(
         id: movie.id,
-        dataType: DataType.Movie,
+        dataType: DataType.movie,
       );
 
   factory Poster2Entity.fromPoster3Entity(Poster3Entity poster3Entity) => Poster2Entity(

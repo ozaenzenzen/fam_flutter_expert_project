@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WatchlistPage extends StatelessWidget {
+  // ignore: constant_identifier_names
   static const ROUTE_NAME = '/watchlist-movie';
+
+  const WatchlistPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +16,14 @@ class WatchlistPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Watchlist'),
+        title: const Text('Watchlist'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<WatchlistBloc, WatchlistState>(
           builder: (context, state) {
             if (state is WatchlistLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is WatchlistHasData) {
@@ -36,7 +39,7 @@ class WatchlistPage extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
+                    const Text(
                       'No watchlist yet, you can add some from list movie or serial tv',
                       textAlign: TextAlign.center,
                     ),
@@ -45,14 +48,14 @@ class WatchlistPage extends StatelessWidget {
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
                       },
-                      child: Text('Add Now'),
+                      child: const Text('Add Now'),
                     ),
                   ],
                 ),
               );
             } else if (state is WatchlistError) {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: AppErrorWidget(
                   state.message,
                   retry: state.retry,

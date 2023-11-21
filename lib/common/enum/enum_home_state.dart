@@ -1,1 +1,1 @@
-enum HomeState { Movies, TvSeries }
+enum HomeState { movies, tvSeries }

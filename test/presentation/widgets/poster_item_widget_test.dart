@@ -9,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../dummy_data/dummy_objects.dart';
 
 void main() {
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MaterialApp(
       home: Scaffold(
         body: body,
@@ -17,14 +17,14 @@ void main() {
     );
   }
 
-  final MovieDetailEntity movie = testMovieDetail;
+  const MovieDetailEntity movie = testMovieDetail;
   final Poster5Entity poster5Entity = Poster5Entity.fromMovieDetail(movie);
-  final String imageUrl = '$BASE_IMAGE_URL${poster5Entity.poster}';
+  final String imageUrl = '$baseImageUrl${poster5Entity.poster}';
 
   testWidgets(
     'PosterItemWidget should show right data',
     (WidgetTester tester) async {
-      await tester.pumpWidget(_makeTestableWidget(PosterItemWidget(poster5Entity)));
+      await tester.pumpWidget(makeTestableWidget(PosterItemWidget(poster5Entity)));
 
       expect(find.text(poster5Entity.overview), findsOneWidget);
       expect(find.text(poster5Entity.title), findsOneWidget);

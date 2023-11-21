@@ -4,5 +4,5 @@ import 'package:flutter/material.dart';
 
 void main() {
   di.init();
-  runApp(MyApp());
+  runApp(const MyApp());
 }

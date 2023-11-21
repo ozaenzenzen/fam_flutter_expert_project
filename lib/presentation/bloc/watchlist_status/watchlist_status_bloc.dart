@@ -71,7 +71,7 @@ class WatchlistStatusBloc extends Bloc<WatchlistStatusEvent, WatchlistStatusStat
 
       emit(state);
     }, (data) {
-      final state = WatchlistStatusSuccess('Success Removed');
+      const state = WatchlistStatusSuccess('Success Removed');
       emit(state);
 
       add(OnWatchlistStatusChecked(poster2Entity));

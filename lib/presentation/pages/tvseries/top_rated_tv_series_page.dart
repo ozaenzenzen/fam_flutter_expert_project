@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TopRatedTvSeriesPage extends StatelessWidget {
+  // ignore: constant_identifier_names
   static const ROUTE_NAME = '/top-rated-tv-series';
+
+  const TopRatedTvSeriesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +16,14 @@ class TopRatedTvSeriesPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Top Rated Tv Series'),
+        title: const Text('Top Rated Tv Series'),
       ),
       body: Container(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<TopRatedTvSeriesBloc, TopRatedTvSeriesState>(
           builder: (context, state) {
             if (state is TopRatedTvSeriesLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is TopRatedTvSeriesSuccess) {

@@ -12,7 +12,7 @@ class WatchlistTable extends Equatable {
   final String? overview;
   final int dataType;
 
-  WatchlistTable({
+  const WatchlistTable({
     required this.id,
     required this.title,
     required this.posterPath,
@@ -25,7 +25,7 @@ class WatchlistTable extends Equatable {
         title: movie.title,
         posterPath: movie.posterPath,
         overview: movie.overview,
-        dataType: DataType.Movie.index,
+        dataType: DataType.movie.index,
       );
 
   factory WatchlistTable.fromMap(Map<String, dynamic> map) => WatchlistTable(
@@ -72,7 +72,7 @@ class WatchlistTable extends Equatable {
         poster: posterPath ?? "",
         title: title ?? "No Title",
         overview: overview ?? "No Overview",
-        dataType: dataType == DataType.TvSeries.index ? DataType.TvSeries : DataType.Movie,
+        dataType: dataType == DataType.tvSeries.index ? DataType.tvSeries : DataType.movie,
       );
 
   @override

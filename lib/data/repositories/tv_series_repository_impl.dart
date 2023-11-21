@@ -9,7 +9,7 @@ import 'package:ditonton/data/models/tv_series_response_model.dart';
 import 'package:ditonton/domain/repositories/tv_series_repository.dart';
 
 class TvSeriesRepositoryImpl extends TvSeriesRepository {
-  TvRemoteDataSource _dataSource;
+  final TvRemoteDataSource _dataSource;
 
   TvSeriesRepositoryImpl(this._dataSource);
   
@@ -19,11 +19,11 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.getOnTheAirTvSeries();
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server Failure"));
+      return const Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connect to the network"));
+      return const Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
-      return Left(UnknownFailure());
+      return const Left(UnknownFailure());
     }
   }
   
@@ -33,11 +33,11 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.getPopularTvSeries();
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server Failure"));
+      return const Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connect to the network"));
+      return const Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
-      return Left(UnknownFailure());
+      return const Left(UnknownFailure());
     }
   }
   
@@ -47,11 +47,11 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.getTopRatedTvSeries();
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server Failure"));
+      return const Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connect to the network"));
+      return const Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
-      return Left(UnknownFailure());
+      return const Left(UnknownFailure());
     }
   }
   
@@ -61,11 +61,11 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.getTvSeriesDetail(id);
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server Failure"));
+      return const Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connect to the network"));
+      return const Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
-      return Left(UnknownFailure());
+      return const Left(UnknownFailure());
     }
   }
   
@@ -75,11 +75,11 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.getTvSeriesRecommendation(id);
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server Failure"));
+      return const Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connect to the network"));
+      return const Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
-      return Left(UnknownFailure());
+      return const Left(UnknownFailure());
     }
   }
   
@@ -89,11 +89,11 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.searchTvSeries(keyword);
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server Failure"));
+      return const Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connect to the network"));
+      return const Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
-      return Left(UnknownFailure());
+      return const Left(UnknownFailure());
     }
   }
 }

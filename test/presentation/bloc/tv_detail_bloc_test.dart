@@ -73,7 +73,7 @@ void main() {
           (realInvocation) async => Right(detailData),
         );
         when(getTvSeriesRecommendations.execute(tId)).thenAnswer(
-          (_) async => Left(ServerFailure("Server Failure")),
+          (_) async => const Left(ServerFailure("Server Failure")),
         );
 
         return bloc;
@@ -97,12 +97,12 @@ void main() {
   blocTest('Should emit [Loading, Error] when data is gotten succesful',
       build: () {
         when(getTvSeriesDetail.execute(tId!)).thenAnswer(
-          (realInvocation) async => Left(
+          (realInvocation) async => const Left(
             ServerFailure("Server Failure"),
           ),
         );
         when(getTvSeriesRecommendations.execute(tId)).thenAnswer(
-          (_) async => Left(
+          (_) async => const Left(
             ServerFailure("Server Failure"),
           ),
         );

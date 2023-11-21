@@ -28,7 +28,7 @@ void main() {
     bloc = MovieDetailBloc(getMovieDetail, getMovieRecommendations);
   });
 
-  final movieDetail = testMovieDetail;
+  const movieDetail = testMovieDetail;
   final tId = movieDetail.id;
   final expected = ItemDataEntity.fromMovie(movieDetail);
   final recommendation = [testMovie];
@@ -41,7 +41,7 @@ void main() {
   blocTest('Should emit [Loading, Success] when data is gotten succesful',
       build: () {
         when(getMovieDetail.execute(tId)).thenAnswer(
-          (realInvocation) async => Right(movieDetail),
+          (realInvocation) async => const Right(movieDetail),
         );
         when(getMovieRecommendations.execute(tId)).thenAnswer(
           (realInvocation) async => Right(recommendation),
@@ -63,10 +63,10 @@ void main() {
   blocTest('Should emit [Loading, ErrorRecommendation, Success] when data is gotten succesful',
       build: () {
         when(getMovieDetail.execute(tId)).thenAnswer(
-          (realInvocation) async => Right(movieDetail),
+          (realInvocation) async => const  Right(movieDetail),
         );
         when(getMovieRecommendations.execute(tId)).thenAnswer(
-          (realInvocation) async => Left(ServerFailure("Server Failure")),
+          (realInvocation) async => const Left(ServerFailure("Server Failure")),
         );
 
         return bloc;

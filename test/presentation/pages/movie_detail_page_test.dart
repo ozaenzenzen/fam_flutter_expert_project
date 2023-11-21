@@ -34,7 +34,7 @@ void main() {
     registerFallbackValue(WatchListStatusEventFake());
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiProvider(
         providers: [
           BlocProvider(
@@ -49,11 +49,11 @@ void main() {
         ));
   }
 
-  final MovieDetailEntity movieDetail = testMovieDetail;
-  final Poster2Entity poster2entity = Poster2Entity(id: movieDetail.id, dataType: DataType.Movie);
+  const MovieDetailEntity movieDetail = testMovieDetail;
+  final Poster2Entity poster2entity = Poster2Entity(id: movieDetail.id, dataType: DataType.movie);
   final List<Poster3Entity> movieRecommendations = <Poster3Entity>[];
-  final bool isAddedToWatchList = false;
-  final String imageUrl = '$BASE_IMAGE_URL${movieDetail.posterPath}';
+  const bool isAddedToWatchList = false;
+  final String imageUrl = '$baseImageUrl${movieDetail.posterPath}';
   final ItemDataEntity itemDataEntity = ItemDataEntity.fromMovie(movieDetail);
 
   testWidgets('Page should display center progress bar when loading', (WidgetTester tester) async {
@@ -68,7 +68,7 @@ void main() {
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableWidget(DetailPage(poster2Entity: poster2entity)));
+    await tester.pumpWidget(makeTestableWidget(DetailPage(poster2Entity: poster2entity)));
     await tester.pump(Duration.zero);
 
     expect(centerFinder, findsOneWidget);
@@ -88,13 +88,13 @@ void main() {
       watchlistStatusBloc,
       Stream.fromIterable([
         WatchlistStatusLoading(),
-        WatchlistStatusLoaded(isAddedToWatchList),
+        const WatchlistStatusLoaded(isAddedToWatchList),
       ]),
       initialState: WatchlistStatusInitial(),
     );
 
     await tester.pumpWidget(
-      _makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
+      makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
     );
     await tester.pump(Duration.zero);
 
@@ -124,13 +124,13 @@ void main() {
       watchlistStatusBloc,
       Stream.fromIterable([
         WatchlistStatusLoading(),
-        WatchlistStatusLoaded(isAddedToWatchList),
+        const WatchlistStatusLoaded(isAddedToWatchList),
       ]),
       initialState: WatchlistStatusInitial(),
     );
 
     await tester.pumpWidget(
-      _makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
+      makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
     );
     await tester.pump(Duration.zero);
 

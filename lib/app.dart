@@ -31,6 +31,8 @@ import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -57,29 +59,29 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: kRichBlack,
           textTheme: kTextTheme,
         ),
-        home: HomePage(),
+        home: const HomePage(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case HomePage.ROUTE_NAME:
               return MaterialPageRoute(
-                builder: (_) => HomePage(),
+                builder: (_) => const HomePage(),
               );
             case PopularMoviesPage.ROUTE_NAME:
               return CupertinoPageRoute(
-                builder: (_) => PopularMoviesPage(),
+                builder: (_) => const PopularMoviesPage(),
               );
             case PopularTvSeriesPage.ROUTE_NAME:
               return MaterialPageRoute(
-                builder: (_) => PopularTvSeriesPage(),
+                builder: (_) => const PopularTvSeriesPage(),
               );
             case TopRatedTvSeriesPage.ROUTE_NAME:
               return MaterialPageRoute(
-                builder: (_) => TopRatedTvSeriesPage(),
+                builder: (_) => const TopRatedTvSeriesPage(),
               );
             case TopRatedMoviesPage.ROUTE_NAME:
               return CupertinoPageRoute(
-                builder: (_) => TopRatedMoviesPage(),
+                builder: (_) => const TopRatedMoviesPage(),
               );
             case DetailPage.ROUTE_NAME:
               final id = settings.arguments as Poster2Entity;
@@ -94,20 +96,22 @@ class MyApp extends StatelessWidget {
               );
             case WatchlistPage.ROUTE_NAME:
               return MaterialPageRoute(
-                builder: (_) => WatchlistPage(),
+                builder: (_) => const WatchlistPage(),
               );
             case AboutPage.ROUTE_NAME:
               return MaterialPageRoute(
-                builder: (_) => AboutPage(),
+                builder: (_) => const AboutPage(),
               );
             default:
-              return MaterialPageRoute(builder: (_) {
-                return Scaffold(
-                  body: Center(
-                    child: Text('Page not found :('),
-                  ),
-                );
-              });
+              return MaterialPageRoute(
+                builder: (_) {
+                  return const Scaffold(
+                    body: Center(
+                      child: Text('Page not found :('),
+                    ),
+                  );
+                },
+              );
           }
         },
       ),

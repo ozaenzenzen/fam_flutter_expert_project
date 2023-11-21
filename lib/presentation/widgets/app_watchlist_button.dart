@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AppWatchlistButton extends StatelessWidget {
   final ItemDataEntity itemDataEntity;
 
-  AppWatchlistButton(this.itemDataEntity);
+  const AppWatchlistButton(this.itemDataEntity, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +50,8 @@ class AppWatchlistButton extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (state is WatchlistStatusLoaded) state.isAdded ? Icon(Icons.check) : Icon(Icons.add),
-              Text('Watchlist'),
+              if (state is WatchlistStatusLoaded) state.isAdded ? const Icon(Icons.check) : const Icon(Icons.add),
+              const Text('Watchlist'),
             ],
           ),
         );

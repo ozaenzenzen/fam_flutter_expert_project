@@ -46,7 +46,7 @@ void main() {
     'Should emit [Loading, Empty] when data is empty and succesful',
     build: () {
       when(getWatchlist.execute())
-          .thenAnswer((realInvocation) async => Right([]));
+          .thenAnswer((realInvocation) async => const Right([]));
 
       return bloc;
     },

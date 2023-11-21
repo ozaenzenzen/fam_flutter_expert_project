@@ -14,7 +14,7 @@ class OnTheAirTvSeriesLoading extends OnTheAirTvSeriesState {}
 class OnTheAirTvSeriesSuccess extends OnTheAirTvSeriesState {
   final List<Poster3Entity> tvSeries;
 
-  OnTheAirTvSeriesSuccess(this.tvSeries);
+  const OnTheAirTvSeriesSuccess(this.tvSeries);
 
   @override
   List<Object> get props => [tvSeries];
@@ -24,7 +24,7 @@ class OnTheAirTvSeriesError extends OnTheAirTvSeriesState {
   final String message;
   final Function retry;
 
-  OnTheAirTvSeriesError(this.message, {required this.retry});
+  const OnTheAirTvSeriesError(this.message, {required this.retry});
 
   @override
   List<Object> get props => [message];

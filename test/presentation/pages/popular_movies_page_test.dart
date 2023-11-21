@@ -24,7 +24,7 @@ void main() {
     registerFallbackValue(PopularMovieEventFake());
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return BlocProvider<PopularMovieBloc>.value(
       value: popularMovieBloc,
       child: MaterialApp(
@@ -41,7 +41,7 @@ void main() {
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(makeTestableWidget(const PopularMoviesPage()));
     await tester.pump(Duration.zero);
 
     expect(centerFinder, findsOneWidget);
@@ -51,7 +51,7 @@ void main() {
   testWidgets('Page should display ListView when data is loaded',
       (WidgetTester tester) async {
     final movie = Poster5Entity.fromMovie(testMovie);
-    final imageUrl = '$BASE_IMAGE_URL${movie.poster}';
+    final imageUrl = '$baseImageUrl${movie.poster}';
 
     whenListen(
         popularMovieBloc,
@@ -63,7 +63,7 @@ void main() {
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(makeTestableWidget(const PopularMoviesPage()));
     await tester.pump(Duration.zero);
 
     expect(listViewFinder, findsOneWidget);
@@ -78,7 +78,7 @@ void main() {
 
   testWidgets('Page should display text with message when Error',
       (WidgetTester tester) async {
-    final message = 'Server Failure';
+    const String message = 'Server Failure';
 
     whenListen(
         popularMovieBloc,
@@ -86,7 +86,7 @@ void main() {
             [PopularMovieLoading(), PopularMovieError(message, retry: () {})]),
         initialState: PopularMovieInitial());
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(makeTestableWidget(const PopularMoviesPage()));
     await tester.pump(Duration.zero);
 
     expect(find.text(message), findsOneWidget);

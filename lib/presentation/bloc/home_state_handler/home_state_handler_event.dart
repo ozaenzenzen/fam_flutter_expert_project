@@ -10,5 +10,5 @@ class HomeStateHandlerEvent extends Equatable {
 class ActionChangeHomeState extends HomeStateHandlerEvent {
   final HomeState homeState;
   
-  ActionChangeHomeState({required this.homeState});
+  const ActionChangeHomeState({required this.homeState});
 }

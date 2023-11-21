@@ -14,7 +14,7 @@ class PopularMovieLoading extends PopularMovieState {}
 class PopularMovieSuccess extends PopularMovieState {
   final List<Poster5Entity> movies;
 
-  PopularMovieSuccess(this.movies);
+  const PopularMovieSuccess(this.movies);
 
   @override
   List<Object> get props => [movies];
@@ -24,7 +24,7 @@ class PopularMovieError extends PopularMovieState {
   final String message;
   final Function() retry;
 
-  PopularMovieError(this.message, {required this.retry});
+  const PopularMovieError(this.message, {required this.retry});
 
   @override
   List<Object> get props => [message];

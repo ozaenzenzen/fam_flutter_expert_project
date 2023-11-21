@@ -19,7 +19,7 @@ class HomeStateHandlerBloc extends Bloc<HomeStateHandlerEvent, HomeStateHandlerS
   Future<void> _changeHomeState(
     ActionChangeHomeState event,
   ) async {
-    if (event.homeState == HomeState.TvSeries) {
+    if (event.homeState == HomeState.tvSeries) {
       emit(HomeStateHandlerTvSeries());
     } else {
       emit(HomeStateHandlerMovies());

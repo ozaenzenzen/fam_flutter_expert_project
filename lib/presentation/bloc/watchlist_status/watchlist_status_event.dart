@@ -10,7 +10,7 @@ abstract class WatchlistStatusEvent extends Equatable {
 class OnWatchlistAdded extends WatchlistStatusEvent {
   final ItemDataEntity itemDataEntity;
 
-  OnWatchlistAdded(this.itemDataEntity);
+  const OnWatchlistAdded(this.itemDataEntity);
 
   @override
   List<Object> get props => [itemDataEntity];
@@ -19,7 +19,7 @@ class OnWatchlistAdded extends WatchlistStatusEvent {
 class OnWatchlistRemoved extends WatchlistStatusEvent {
   final Poster2Entity poster2Entity;
 
-  OnWatchlistRemoved(this.poster2Entity);
+  const OnWatchlistRemoved(this.poster2Entity);
 
   @override
   List<Object> get props => [poster2Entity];
@@ -28,7 +28,8 @@ class OnWatchlistRemoved extends WatchlistStatusEvent {
 class OnWatchlistStatusChecked extends WatchlistStatusEvent {
   final Poster2Entity poster2Entity;
 
-  OnWatchlistStatusChecked(this.poster2Entity);
+  const OnWatchlistStatusChecked(this.poster2Entity);
 
+  @override
   List<Object> get props => [poster2Entity];
 }

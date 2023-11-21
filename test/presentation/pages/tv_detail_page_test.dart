@@ -34,7 +34,7 @@ void main() {
     registerFallbackValue(WatchListStatusEventFake());
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiProvider(
         providers: [
           BlocProvider(
@@ -50,10 +50,10 @@ void main() {
   }
 
   final TvDetailResponseModel tvDetail = testTvDetail;
-  final Poster2Entity poster2entity = Poster2Entity(id: tvDetail.id!, dataType: DataType.TvSeries);
+  final Poster2Entity poster2entity = Poster2Entity(id: tvDetail.id!, dataType: DataType.tvSeries);
   final List<Poster3Entity> tvRecommendations = <Poster3Entity>[];
-  final bool isAddedToWatchList = false;
-  final String imageUrl = '$BASE_IMAGE_URL${tvDetail.posterPath}';
+  const bool isAddedToWatchList = false;
+  final String imageUrl = '$baseImageUrl${tvDetail.posterPath}';
   final ItemDataEntity itemDataEntity = ItemDataEntity.fromTvSeries(tvDetail);
 
   testWidgets('Page should display center progress bar when loading',
@@ -65,7 +65,7 @@ void main() {
     final centerFinder = find.byType(Center);
 
     await tester.pumpWidget(
-        _makeTestableWidget(DetailPage(poster2Entity: poster2entity)));
+        makeTestableWidget(DetailPage(poster2Entity: poster2entity)));
     await tester.pump(Duration.zero);
 
     expect(centerFinder, findsOneWidget);
@@ -83,12 +83,12 @@ void main() {
         watchlistStatusBloc,
         Stream.fromIterable([
           WatchlistStatusLoading(),
-          WatchlistStatusLoaded(isAddedToWatchList)
+          const WatchlistStatusLoaded(isAddedToWatchList)
         ]),
         initialState: WatchlistStatusInitial());
 
     await tester.pumpWidget(
-      _makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
+      makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
     );
     await tester.pump(Duration.zero);
 
@@ -111,12 +111,12 @@ void main() {
         watchlistStatusBloc,
         Stream.fromIterable([
           WatchlistStatusLoading(),
-          WatchlistStatusLoaded(isAddedToWatchList)
+          const WatchlistStatusLoaded(isAddedToWatchList)
         ]),
         initialState: WatchlistStatusInitial());
 
     await tester.pumpWidget(
-      _makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
+      makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
     );
     await tester.pump(Duration.zero);
 

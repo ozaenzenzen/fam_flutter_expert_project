@@ -30,7 +30,7 @@ void main() {
     registerFallbackValue(WatchListStatusEventFake());
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiProvider(
         providers: [
           BlocProvider(
@@ -54,7 +54,7 @@ void main() {
 
   testWidgets('should display Snackbar when added to watchlist',
       (WidgetTester tester) async {
-    final message = 'Added to Watchlist';
+    const String message = 'Added to Watchlist';
 
     whenListen(
         bloc,
@@ -67,14 +67,14 @@ void main() {
         watchlistStatusBloc,
         Stream.fromIterable([
           WatchlistStatusLoading(),
-          WatchlistStatusSuccess(message),
-          WatchlistStatusLoaded(true)
+          const WatchlistStatusSuccess(message),
+          const WatchlistStatusLoaded(true)
         ]),
-        initialState: WatchlistStatusLoaded(false));
+        initialState: const WatchlistStatusLoaded(false));
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(_makeTestableWidget(AppDetailContent(itemDataEntity)));
+    await tester.pumpWidget(makeTestableWidget(AppDetailContent(itemDataEntity)));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 
@@ -91,7 +91,7 @@ void main() {
   testWidgets(
       'Watchlist button should display AlertDialog when add to watchlist failed',
       (WidgetTester tester) async {
-    final message = 'Failed';
+    const String message = 'Failed';
 
     whenListen(
         bloc,
@@ -106,11 +106,11 @@ void main() {
           WatchlistStatusLoading(),
           WatchlistStatusError(message, retry: () {}),
         ]),
-        initialState: WatchlistStatusLoaded(false));
+        initialState: const WatchlistStatusLoaded(false));
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(_makeTestableWidget(AppDetailContent(itemDataEntity)));
+    await tester.pumpWidget(makeTestableWidget(AppDetailContent(itemDataEntity)));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 

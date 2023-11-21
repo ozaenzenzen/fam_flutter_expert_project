@@ -28,11 +28,11 @@ void main() {
       dataType: dataType,
     );
 
-    when(repository.removeWatchlist(id, dataType.index)).thenAnswer((_) async => Right('Removed from watchlist'));
+    when(repository.removeWatchlist(id, dataType.index)).thenAnswer((_) async => const Right('Removed from watchlist'));
     // act
     final result = await usecase.execute(idAdDataType);
     // assert
     verify(repository.removeWatchlist(id, dataType.index));
-    expect(result, Right('Removed from watchlist'));
+    expect(result, const Right('Removed from watchlist'));
   });
 }

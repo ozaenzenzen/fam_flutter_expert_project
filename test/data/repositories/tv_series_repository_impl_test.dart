@@ -42,8 +42,8 @@ void main() {
 
     test('should return ServerFailure when call remote data unsuccessful', () async {
       //arrange
-      final failure = ServerFailure("Server Failure");
-      final matcher = Left(failure);
+      const failure = ServerFailure("Server Failure");
+      const matcher = Left(failure);
 
       when(dataSource.getPopularTvSeries()).thenThrow(ServerException());
 
@@ -57,8 +57,8 @@ void main() {
 
     test('should return ConnectionFailure when call remote data unsuccessful', () async {
       //arrange
-      final failure = ConnectionFailure("Failed to connect to the network");
-      final matcher = Left(failure);
+      const failure = ConnectionFailure("Failed to connect to the network");
+      const matcher = Left(failure);
 
       when(dataSource.getPopularTvSeries()).thenThrow(SocketException(errorMessages));
 
@@ -72,8 +72,8 @@ void main() {
 
     test('should return UnknownFailure when throw Exception', () async {
       //arrange
-      final failure = UnknownFailure();
-      final matcher = Left(failure);
+      const failure = UnknownFailure();
+      const matcher = Left(failure);
 
       when(dataSource.getPopularTvSeries()).thenThrow(Exception());
 
@@ -104,8 +104,8 @@ void main() {
 
     test('should return ServerFailure when call remote data source unsuccessful', () async {
       //arrange
-      final failure = ServerFailure("Server Failure");
-      final matcher = Left(failure);
+      const failure = ServerFailure("Server Failure");
+      const matcher = Left(failure);
 
       when(dataSource.getOnTheAirTvSeries()).thenThrow((ServerException()));
 
@@ -119,8 +119,8 @@ void main() {
 
     test('should return ConnectionFailure when trow SocketException', () async {
       //arrange
-      final failure = ConnectionFailure("Failed to connect to the network");
-      final matcher = Left(failure);
+      const failure = ConnectionFailure("Failed to connect to the network");
+      const matcher = Left(failure);
 
       when(dataSource.getOnTheAirTvSeries()).thenThrow((SocketException(errorMessages)));
 
@@ -134,8 +134,8 @@ void main() {
 
     test('should return UnknownFailure when throw Exception', () async {
       //arrange
-      final failure = UnknownFailure();
-      final matcher = Left(failure);
+      const failure = UnknownFailure();
+      const matcher = Left(failure);
 
       when(dataSource.getOnTheAirTvSeries()).thenThrow(Exception());
 
@@ -166,8 +166,8 @@ void main() {
 
     test('should return ServerFailure when call remote data source unsuccessful', () async {
       //arrange
-      final failure = ServerFailure("Server Failure");
-      final matcher = Left(failure);
+      const failure = ServerFailure("Server Failure");
+      const matcher = Left(failure);
 
       when(dataSource.getTopRatedTvSeries()).thenThrow((ServerException()));
 
@@ -181,8 +181,8 @@ void main() {
 
     test('should return ConnectionFailure when trow SocketException', () async {
       //arrange
-      final failure = ConnectionFailure("Failed to connect to the network");
-      final matcher = Left(failure);
+      const failure = ConnectionFailure("Failed to connect to the network");
+      const matcher = Left(failure);
 
       when(dataSource.getTopRatedTvSeries()).thenThrow((SocketException(errorMessages)));
 
@@ -196,8 +196,8 @@ void main() {
 
     test('should return UnknownFailure when throw Exception', () async {
       //arrange
-      final failure = UnknownFailure();
-      final matcher = Left(failure);
+      const failure = UnknownFailure();
+      const matcher = Left(failure);
 
       when(dataSource.getOnTheAirTvSeries()).thenThrow(Exception());
 
@@ -211,7 +211,7 @@ void main() {
   });
 
   group('Seach TvSeries', () {
-    final tQuery = 'phoenix';
+    const String tQuery = 'phoenix';
 
     test('should return tv series list when call to data source is successful', () async {
       // arrange
@@ -232,7 +232,7 @@ void main() {
       // act
       final result = await repository.searchTvSeries(tQuery);
       // assert
-      expect(result, Left(ServerFailure("Server Failure")));
+      expect(result, const Left(ServerFailure("Server Failure")));
     });
 
     test('should return ConnectionFailure when device is not connected to the internet', () async {
@@ -241,7 +241,7 @@ void main() {
       // act
       final result = await repository.searchTvSeries(tQuery);
       // assert
-      expect(result, Left(ConnectionFailure("Failed to connect to the network")));
+      expect(result, const Left(ConnectionFailure("Failed to connect to the network")));
     });
   });
 
@@ -266,7 +266,7 @@ void main() {
       final result = await repository.getTvSeriesDetail(tId);
       // assert
       verify(dataSource.getTvSeriesDetail(tId));
-      expect(result, equals(Left(ServerFailure("Server Failure"))));
+      expect(result, equals(const Left(ServerFailure("Server Failure"))));
     });
 
     test('should return connection failure when the device is not connected to internet', () async {
@@ -276,7 +276,7 @@ void main() {
       final result = await repository.getTvSeriesDetail(tId);
       // assert
       verify(dataSource.getTvSeriesDetail(tId));
-      expect(result, equals(Left(ConnectionFailure("Failed to connect to the network"))));
+      expect(result, equals(const Left(ConnectionFailure("Failed to connect to the network"))));
     });
   });
 
@@ -303,7 +303,7 @@ void main() {
       final result = await repository.getTvSeriesRecommendation(tId);
       // assertbuild runner
       verify(dataSource.getTvSeriesRecommendation(tId));
-      expect(result, equals(Left(ServerFailure("Server Failure"))));
+      expect(result, equals(const Left(ServerFailure("Server Failure"))));
     });
 
     test('should return connection failure when the device is not connected to the internet', () async {
@@ -313,7 +313,7 @@ void main() {
       final result = await repository.getTvSeriesRecommendation(tId);
       // assert
       verify(dataSource.getTvSeriesRecommendation(tId));
-      expect(result, equals(Left(ConnectionFailure("Failed to connect to the network"))));
+      expect(result, equals(const Left(ConnectionFailure("Failed to connect to the network"))));
     });
   });
 }

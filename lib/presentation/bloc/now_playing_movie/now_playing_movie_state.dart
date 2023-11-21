@@ -14,7 +14,7 @@ class NowPlayingMovieLoading extends NowPlayingMovieState {}
 class NowPlayingMovieSuccess extends NowPlayingMovieState {
   final List<Poster3Entity> movies;
 
-  NowPlayingMovieSuccess(this.movies);
+  const NowPlayingMovieSuccess(this.movies);
 
   @override
   List<Object> get props => [movies];
@@ -24,7 +24,7 @@ class NowPlayingMovieError extends NowPlayingMovieState {
   final String message;
   final Function retry;
 
-  NowPlayingMovieError(this.message, {required this.retry});
+  const NowPlayingMovieError(this.message, {required this.retry});
 
   @override
   List<Object> get props => [message];

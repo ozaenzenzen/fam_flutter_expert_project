@@ -11,7 +11,7 @@ class Poster5Entity extends Equatable {
   final String overview;
   final DataType dataType;
 
-  Poster5Entity({
+  const Poster5Entity({
     required this.id,
     required this.poster,
     required this.title,
@@ -24,7 +24,7 @@ class Poster5Entity extends Equatable {
         poster: movie.posterPath ?? "",
         title: movie.title ?? "No Title",
         overview: movie.overview ?? "No Overview",
-        dataType: DataType.Movie,
+        dataType: DataType.movie,
       );
 
   factory Poster5Entity.fromMovieDetail(MovieDetailEntity movieDetail) => Poster5Entity(
@@ -32,7 +32,7 @@ class Poster5Entity extends Equatable {
         poster: movieDetail.posterPath,
         title: movieDetail.title,
         overview: movieDetail.overview,
-        dataType: DataType.Movie,
+        dataType: DataType.movie,
       );
 
   factory Poster5Entity.fromTvSeries(ResultTvSeries tvSeries) => Poster5Entity(
@@ -40,7 +40,7 @@ class Poster5Entity extends Equatable {
         poster: tvSeries.posterPath ?? "",
         title: tvSeries.name!,
         overview: tvSeries.overview!,
-        dataType: DataType.TvSeries,
+        dataType: DataType.tvSeries,
       );
 
   @override

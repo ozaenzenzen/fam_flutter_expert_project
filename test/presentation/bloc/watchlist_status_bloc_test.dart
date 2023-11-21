@@ -39,7 +39,7 @@ void main() {
 
   final data = [testWatchlistMovie];
   final expected = data.map((e) => Poster5Entity.fromMovie(e)).toList();
-  final movie = testMovieDetail;
+  const movie = testMovieDetail;
   final params = ItemDataEntity.fromMovie(movie);
   final idAndDataType = Poster2Entity(id: params.id, dataType: params.dataType);
 
@@ -50,7 +50,7 @@ void main() {
   blocTest('Should emit [Loading, HasData] when data added succesful',
       build: () {
         when(saveWatchlist.execute(params))
-            .thenAnswer((_) async => Right('Success'));
+            .thenAnswer((_) async => const Right('Success'));
         when(getWatchListStatus.execute(params.id, params.dataType.index))
             .thenAnswer((_) async => true);
         when(getWatchlist.execute()).thenAnswer((_) async => Right(expected));
@@ -61,8 +61,8 @@ void main() {
       wait: const Duration(milliseconds: 500),
       expect: () => [
             WatchlistStatusLoading(),
-            WatchlistStatusSuccess('Success Added title to watchlist'),
-            WatchlistStatusLoaded(true)
+            const WatchlistStatusSuccess('Success Added title to watchlist'),
+            const WatchlistStatusLoaded(true)
           ],
       verify: (WatchlistStatusBloc bloc) {
         verify(saveWatchlist.execute(params));
@@ -72,10 +72,10 @@ void main() {
   blocTest('Should emit [Loading, HasData] when data removed succesful',
       build: () {
         when(removeWatchlist.execute(idAndDataType))
-            .thenAnswer((_) async => Right('Removed'));
+            .thenAnswer((_) async => const Right('Removed'));
         when(getWatchListStatus.execute(params.id, params.dataType.index))
             .thenAnswer((_) async => false);
-        when(getWatchlist.execute()).thenAnswer((_) async => Right([]));
+        when(getWatchlist.execute()).thenAnswer((_) async => const Right([]));
 
         return bloc;
       },
@@ -84,8 +84,8 @@ void main() {
       wait: const Duration(milliseconds: 500),
       expect: () => [
             WatchlistStatusLoading(),
-            WatchlistStatusSuccess('Success Removed'),
-            WatchlistStatusLoaded(false)
+            const WatchlistStatusSuccess('Success Removed'),
+            const WatchlistStatusLoaded(false)
           ],
       verify: (WatchlistStatusBloc bloc) {
         verify(removeWatchlist.execute(idAndDataType));

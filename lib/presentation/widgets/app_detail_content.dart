@@ -16,7 +16,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class AppDetailContent extends StatelessWidget {
   final ItemDataEntity itemDataEntity;
 
-  AppDetailContent(this.itemDataEntity);
+  const AppDetailContent(this.itemDataEntity, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class AppDetailContent extends StatelessWidget {
           child: DraggableScrollableSheet(
             builder: (context, scrollController) {
               return Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: kRichBlack,
                   borderRadius: BorderRadius.vertical(
                     top: Radius.circular(16),
@@ -61,7 +61,7 @@ class AppDetailContent extends StatelessWidget {
                             Text(
                               _showGenres(itemDataEntity.genres),
                             ),
-                            itemDataEntity.dataType == DataType.Movie
+                            itemDataEntity.dataType == DataType.movie
                                 ? Text(
                                     _showDuration(
                                       int.parse(itemDataEntity.runtime),
@@ -76,7 +76,7 @@ class AppDetailContent extends StatelessWidget {
                                   rating: itemDataEntity.voteAverage / 2,
                                   itemCount: 5,
                                   itemBuilder: (context, index) {
-                                    return Icon(
+                                    return const Icon(
                                       Icons.star,
                                       color: kMikadoYellow,
                                     );
@@ -86,7 +86,7 @@ class AppDetailContent extends StatelessWidget {
                                 Text('${itemDataEntity.voteAverage}')
                               ],
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text(
                               'Overview',
                               style: kHeading6,
@@ -94,12 +94,12 @@ class AppDetailContent extends StatelessWidget {
                             Text(
                               itemDataEntity.overview,
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text(
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            if (itemDataEntity.dataType == DataType.TvSeries) tvDetailSection() else movieDetailSection()
+                            if (itemDataEntity.dataType == DataType.tvSeries) tvDetailSection() else movieDetailSection()
                           ],
                         ),
                       ),
@@ -125,7 +125,7 @@ class AppDetailContent extends StatelessWidget {
             backgroundColor: kRichBlack,
             foregroundColor: Colors.white,
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back,
               ),
               onPressed: () {
@@ -147,11 +147,11 @@ class AppDetailContent extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is MovieDetailLoading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is MovieDetailSuccess) {
-          return Container(
+          return SizedBox(
             height: 150,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -168,7 +168,7 @@ class AppDetailContent extends StatelessWidget {
                       );
                     },
                     child: ClipRRect(
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(8),
                       ),
                       child: AppImageWidget(movies.poster),
@@ -195,11 +195,11 @@ class AppDetailContent extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is TvDetailLoading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is TvDetailSuccess) {
-          return Container(
+          return SizedBox(
             height: 170,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -219,7 +219,7 @@ class AppDetailContent extends StatelessWidget {
                       );
                     },
                     child: ClipRRect(
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(8),
                       ),
                       child: AppImageWidget(poster3Entity.poster),
@@ -240,7 +240,7 @@ class AppDetailContent extends StatelessWidget {
   String _showGenres(List<GenreEntity> genres) {
     String result = '';
     for (var genre in genres) {
-      result += genre.name + ', ';
+      result += '${genre.name}, ';
     }
 
     if (result.isEmpty) {

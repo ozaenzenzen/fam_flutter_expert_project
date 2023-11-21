@@ -15,7 +15,7 @@ class TvDetailSuccess extends TvDetailState {
   final ItemDataEntity itemDataEntity;
   final List<Poster3Entity> recommendations;
 
-  TvDetailSuccess(this.itemDataEntity, {this.recommendations = const []});
+  const TvDetailSuccess(this.itemDataEntity, {this.recommendations = const []});
 
   @override
   List<Object> get props => [itemDataEntity, recommendations];
@@ -25,7 +25,7 @@ class TvDetailError extends TvDetailState {
   final String message;
   final Function retry;
 
-  TvDetailError(this.message, {required this.retry});
+  const TvDetailError(this.message, {required this.retry});
 
   @override
   List<Object> get props => [message];

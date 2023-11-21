@@ -2,8 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/datasources/watchlist_local_data_source.dart';
+import 'package:ditonton/data/models/watchlist_table.dart';
 import 'package:ditonton/data/repositories/watchlist_repository_impl.dart';
 import 'package:ditonton/domain/entities/item_data_entity.dart';
+import 'package:ditonton/domain/entities/movie_detail_entity.dart';
 import 'package:ditonton/domain/entities/poster_5_entity.dart';
 import 'package:ditonton/domain/repositories/watch_list_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,9 +23,9 @@ void main() {
     repository = WatchlistRepositoryImpl(localDataSource);
   });
 
-  final source = testMovieDetail;
-  final data = ItemDataEntity.fromMovie(source);
-  final table = testMovieTable;
+  const MovieDetailEntity source = testMovieDetail;
+  final ItemDataEntity data = ItemDataEntity.fromMovie(source);
+  final WatchlistTable table = testMovieTable;
 
   group('save watchlist', () {
     test('should return success message when saving successful', () async {
@@ -32,7 +34,7 @@ void main() {
       // act
       final result = await repository.saveWatchlist(data);
       // assert
-      expect(result, Right('Added to Watchlist'));
+      expect(result, const Right('Added to Watchlist'));
     });
 
     test('should return DatabaseFailure when saving unsuccessful', () async {
@@ -41,7 +43,7 @@ void main() {
       // act
       final result = await repository.saveWatchlist(data);
       // assert
-      expect(result, Left(DatabaseFailure('Failed to add watchlist')));
+      expect(result, const Left(DatabaseFailure('Failed to add watchlist')));
     });
   });
 
@@ -52,7 +54,7 @@ void main() {
       // act
       final result = await repository.removeWatchlist(data.id, data.dataType.index);
       // assert
-      expect(result, Right('Removed from watchlist'));
+      expect(result, const Right('Removed from watchlist'));
     });
 
     test('should return DatabaseFailure when remove unsuccessful', () async {
@@ -61,7 +63,7 @@ void main() {
       // act
       final result = await repository.removeWatchlist(data.id, data.dataType.index);
       // assert
-      expect(result, Left(DatabaseFailure('Failed to remove watchlist')));
+      expect(result, const  Left(DatabaseFailure('Failed to remove watchlist')));
     });
   });
 

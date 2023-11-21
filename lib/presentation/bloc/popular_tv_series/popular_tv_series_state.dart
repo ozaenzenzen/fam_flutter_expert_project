@@ -14,7 +14,7 @@ class PopularTvSeriesLoading extends PopularTvSeriesState {}
 class PopularTvSeriesSuccess extends PopularTvSeriesState {
   final List<Poster5Entity> tvSeries;
 
-  PopularTvSeriesSuccess(this.tvSeries);
+  const PopularTvSeriesSuccess(this.tvSeries);
 
   @override
   List<Object> get props => [tvSeries];
@@ -24,7 +24,7 @@ class PopularTvSeriesError extends PopularTvSeriesState {
   final String message;
   final Function() retry;
 
-  PopularTvSeriesError(this.message, {required this.retry});
+  const PopularTvSeriesError(this.message, {required this.retry});
 
   @override
   List<Object> get props => [message];

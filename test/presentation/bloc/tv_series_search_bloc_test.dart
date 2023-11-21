@@ -22,11 +22,9 @@ void main() {
     bloc = TvSeriesSearchBloc(searchTvSeries);
   });
 
-  final tQuery = 'spiderman';
+  const String testQuery = 'spiderman';
   final data = testSearchTvSeriesList;
-  final expected = testSearchTvSeriesList.results!
-      .map((e) => Poster5Entity.fromTvSeries(e))
-      .toList();
+  final expected = testSearchTvSeriesList.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
 
   test('inital state should be empty', () {
     expect(bloc.state, TvSeriesSearchInitial());
@@ -34,60 +32,48 @@ void main() {
 
   blocTest('Should emit [Loading, HasData] when data is gotten succesful',
       build: () {
-        when(searchTvSeries.execute(tQuery))
-            .thenAnswer((realInvocation) async => Right(data));
+        when(searchTvSeries.execute(testQuery)).thenAnswer((realInvocation) async => Right(data));
 
         return bloc;
       },
-      act: (TvSeriesSearchBloc bloc) =>
-          bloc.add(OnQueryTvSeriesChanged(tQuery)),
+      act: (TvSeriesSearchBloc bloc) => bloc.add(const OnQueryTvSeriesChanged(testQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [TvSeriesSearchLoading(), TvSeriesSearchHasData(expected)],
       verify: (TvSeriesSearchBloc bloc) {
-        verify(searchTvSeries.execute(tQuery));
+        verify(searchTvSeries.execute(testQuery));
       });
 
   blocTest(
     'Should emit [Initial] when query is empty',
     build: () => bloc,
-    act: (TvSeriesSearchBloc bloc) => bloc.add(OnQueryTvSeriesChanged('')),
+    act: (TvSeriesSearchBloc bloc) => bloc.add(const OnQueryTvSeriesChanged('')),
     wait: const Duration(milliseconds: 500),
     expect: () => [TvSeriesSearchInitial()],
   );
 
   blocTest('Should emit [Loading, Empty] when data is gotten succesful',
       build: () {
-        when(searchTvSeries.execute(tQuery))
-            .thenAnswer((realInvocation) async => Right(TvSeriesResponseModel()));
+        when(searchTvSeries.execute(testQuery)).thenAnswer((realInvocation) async => Right(TvSeriesResponseModel()));
 
         return bloc;
       },
-      act: (TvSeriesSearchBloc bloc) =>
-          bloc.add(OnQueryTvSeriesChanged(tQuery)),
+      act: (TvSeriesSearchBloc bloc) => bloc.add(const OnQueryTvSeriesChanged(testQuery)),
       wait: const Duration(milliseconds: 500),
-      expect: () => [
-            TvSeriesSearchLoading(),
-            TvSeriesSearchEmpty('No Tv Series found $tQuery')
-          ],
+      expect: () => [TvSeriesSearchLoading(), const TvSeriesSearchEmpty('No Tv Series found $testQuery')],
       verify: (TvSeriesSearchBloc bloc) {
-        verify(searchTvSeries.execute(tQuery));
+        verify(searchTvSeries.execute(testQuery));
       });
 
   blocTest('Should emit [Loading, Error] when data is unsuccesful',
       build: () {
-        when(searchTvSeries.execute(tQuery))
-            .thenAnswer((realInvocation) async => Left(ServerFailure("Server Failure")));
+        when(searchTvSeries.execute(testQuery)).thenAnswer((realInvocation) async => const Left(ServerFailure("Server Failure")));
 
         return bloc;
       },
-      act: (TvSeriesSearchBloc bloc) =>
-          bloc.add(OnQueryTvSeriesChanged(tQuery)),
+      act: (TvSeriesSearchBloc bloc) => bloc.add(const OnQueryTvSeriesChanged(testQuery)),
       wait: const Duration(milliseconds: 500),
-      expect: () => [
-            TvSeriesSearchLoading(),
-            TvSeriesSearchError('Server Failure', retry: () {})
-          ],
+      expect: () => [TvSeriesSearchLoading(), TvSeriesSearchError('Server Failure', retry: () {})],
       verify: (TvSeriesSearchBloc bloc) {
-        verify(searchTvSeries.execute(tQuery));
+        verify(searchTvSeries.execute(testQuery));
       });
 }

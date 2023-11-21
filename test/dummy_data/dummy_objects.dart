@@ -9,7 +9,7 @@ import 'package:ditonton/domain/entities/movie_detail_entity.dart';
 final testMovie = MovieEntity(
   adult: false,
   backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-  genreIds: [14, 28],
+  genreIds: const [14, 28],
   id: 557,
   originalTitle: 'Spider-Man',
   overview: 'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
@@ -24,7 +24,7 @@ final testMovie = MovieEntity(
 
 final testMovieList = [testMovie];
 
-final testMovieDetail = MovieDetailEntity(
+const testMovieDetail = MovieDetailEntity(
   adult: false,
   backdropPath: 'backdropPath',
   genres: [GenreEntity(id: 1, name: 'Action')],
@@ -51,7 +51,7 @@ final testMovieTable = WatchlistTable(
   title: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
-  dataType: DataType.Movie.index,
+  dataType: DataType.movie.index,
 );
 
 final testMovieMap = {
@@ -59,7 +59,7 @@ final testMovieMap = {
   'overview': 'overview',
   'posterPath': 'posterPath',
   'title': 'title',
-  'dataType': DataType.Movie.index,
+  'dataType': DataType.movie.index,
 };
 
 final testPopularTvSeries = ResultTvSeries(

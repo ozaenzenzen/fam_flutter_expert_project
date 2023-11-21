@@ -23,7 +23,7 @@ void main() {
     registerFallbackValue(WatchListStatusEventFake());
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return BlocProvider.value(
       value: bloc,
       child: MaterialApp(
@@ -32,20 +32,20 @@ void main() {
     );
   }
 
-  final MovieDetailEntity data = testMovieDetail;
+  const MovieDetailEntity data = testMovieDetail;
   final ItemDataEntity itemDataEntity = ItemDataEntity.fromMovie(data);
 
   testWidgets(
     'App Watchlist button should display add icon when movie not added to watchlist',
     (WidgetTester tester) async {
-      final isAddedToWatchList = false;
+      const bool isAddedToWatchList = false;
 
       whenListen(
         bloc,
         Stream.fromIterable(
           [
             WatchlistStatusLoading(),
-            WatchlistStatusLoaded(isAddedToWatchList),
+            const WatchlistStatusLoaded(isAddedToWatchList),
           ],
         ),
         initialState: WatchlistStatusInitial(),
@@ -53,7 +53,7 @@ void main() {
 
       final watchlistButtonIcon = find.byIcon(Icons.add);
 
-      await tester.pumpWidget(_makeTestableWidget(AppWatchlistButton(itemDataEntity)));
+      await tester.pumpWidget(makeTestableWidget(AppWatchlistButton(itemDataEntity)));
       await tester.pump(Duration.zero);
 
       expect(watchlistButtonIcon, findsOneWidget);
@@ -63,14 +63,14 @@ void main() {
   testWidgets(
     'App Watchlist button should dispay check icon when movie is added to wathclist',
     (WidgetTester tester) async {
-      final isAddedToWatchList = true;
+      const bool isAddedToWatchList = true;
 
       whenListen(
         bloc,
         Stream.fromIterable(
           [
             WatchlistStatusLoading(),
-            WatchlistStatusLoaded(isAddedToWatchList),
+            const WatchlistStatusLoaded(isAddedToWatchList),
           ],
         ),
         initialState: WatchlistStatusInitial(),
@@ -78,7 +78,7 @@ void main() {
 
       final watchlistButtonIcon = find.byIcon(Icons.check);
 
-      await tester.pumpWidget(_makeTestableWidget(AppWatchlistButton(itemDataEntity)));
+      await tester.pumpWidget(makeTestableWidget(AppWatchlistButton(itemDataEntity)));
       await tester.pump(Duration.zero);
 
       expect(watchlistButtonIcon, findsOneWidget);

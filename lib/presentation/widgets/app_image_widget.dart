@@ -7,8 +7,9 @@ class AppImageWidget extends StatelessWidget {
   final double? width;
   final double? height;
 
-  AppImageWidget(
+  const AppImageWidget(
     this.posterPath, {
+    super.key,
     this.width,
     this.height,
   });
@@ -16,21 +17,21 @@ class AppImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(
+      borderRadius: const BorderRadius.all(
         Radius.circular(16),
       ),
       child: CachedNetworkImage(
         width: width,
         height: height,
-        imageUrl: '$BASE_IMAGE_URL$posterPath',
-        placeholder: (context, url) => Container(
+        imageUrl: '$baseImageUrl$posterPath',
+        placeholder: (context, url) => SizedBox(
           width: width,
           height: height,
-          child: Center(
+          child: const Center(
             child: CircularProgressIndicator(),
           ),
         ),
-        errorWidget: (context, url, error) => Icon(
+        errorWidget: (context, url, error) => const Icon(
           Icons.error,
         ),
       ),

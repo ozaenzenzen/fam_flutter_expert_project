@@ -24,7 +24,7 @@ void main() {
     registerFallbackValue(TopRatedTvSeriesEventFake());
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return BlocProvider<TopRatedTvSeriesBloc>.value(
       value: bloc,
       child: MaterialApp(
@@ -41,7 +41,7 @@ void main() {
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableWidget(TopRatedTvSeriesPage()));
+    await tester.pumpWidget(makeTestableWidget(const TopRatedTvSeriesPage()));
     await tester.pump(Duration.zero);
 
     expect(centerFinder, findsOneWidget);
@@ -51,7 +51,7 @@ void main() {
   testWidgets('Page should display ListView when data is loaded',
       (WidgetTester tester) async {
     final movie = Poster5Entity.fromTvSeries(testPopularTvSeries);
-    final imageUrl = '$BASE_IMAGE_URL${movie.poster}';
+    final imageUrl = '$baseImageUrl${movie.poster}';
 
     whenListen(
         bloc,
@@ -63,7 +63,7 @@ void main() {
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(_makeTestableWidget(TopRatedTvSeriesPage()));
+    await tester.pumpWidget(makeTestableWidget(const TopRatedTvSeriesPage()));
     await tester.pump(Duration.zero);
 
     expect(listViewFinder, findsOneWidget);
@@ -78,7 +78,7 @@ void main() {
 
   testWidgets('Page should display text with message when Error',
       (WidgetTester tester) async {
-    final message = 'Server Failure';
+    const String message = 'Server Failure';
 
     whenListen(
         bloc,
@@ -88,7 +88,7 @@ void main() {
         ]),
         initialState: TopRatedTvSeriesInitial());
 
-    await tester.pumpWidget(_makeTestableWidget(TopRatedTvSeriesPage()));
+    await tester.pumpWidget(makeTestableWidget(const TopRatedTvSeriesPage()));
     await tester.pump(Duration.zero);
 
     expect(find.text(message), findsOneWidget);

@@ -21,14 +21,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
+  // ignore: constant_identifier_names
   static const ROUTE_NAME = '/home';
 
+  const HomePage({super.key});
+
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  HomeState stateHome = HomeState.Movies;
+  HomeState stateHome = HomeState.movies;
   void _getTvSeriesData(BuildContext context) {
     context
       ..read<OnTheAirTvSeriesBloc>().add(OnTheAirTvSeriesDataRequested())
@@ -46,7 +49,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    context.read<HomeStateHandlerBloc>()..add(ActionChangeHomeState(homeState: HomeState.Movies));
+    context.read<HomeStateHandlerBloc>().add(const ActionChangeHomeState(homeState: HomeState.movies));
   }
 
   @override
@@ -61,16 +64,16 @@ class _HomePageState extends State<HomePage> {
       },
       builder: (context, state) {
         if (state is HomeStateHandlerMovies) {
-          stateHome = HomeState.Movies;
+          stateHome = HomeState.movies;
         } else {
-          stateHome = HomeState.TvSeries;
+          stateHome = HomeState.tvSeries;
         }
 
         return Scaffold(
           drawer: Drawer(
             child: Column(
               children: [
-                UserAccountsDrawerHeader(
+                const UserAccountsDrawerHeader(
                   currentAccountPicture: CircleAvatar(
                     backgroundImage: AssetImage('assets/circle-g.png'),
                   ),
@@ -78,24 +81,24 @@ class _HomePageState extends State<HomePage> {
                   accountEmail: Text('ditonton@dicoding.com'),
                 ),
                 ListTile(
-                  leading: Icon(Icons.movie),
-                  title: Text('Movies'),
+                  leading: const Icon(Icons.movie),
+                  title: const Text('Movies'),
                   onTap: () {
                     Navigator.pop(context);
-                    context.read<HomeStateHandlerBloc>()..add(ActionChangeHomeState(homeState: HomeState.Movies));
+                    context.read<HomeStateHandlerBloc>().add(const ActionChangeHomeState(homeState: HomeState.movies));
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.movie),
-                  title: Text('Tv Series'),
+                  leading: const Icon(Icons.movie),
+                  title: const Text('Tv Series'),
                   onTap: () {
                     Navigator.pop(context);
-                    context.read<HomeStateHandlerBloc>()..add(ActionChangeHomeState(homeState: HomeState.TvSeries));
+                    context.read<HomeStateHandlerBloc>().add(const ActionChangeHomeState(homeState: HomeState.tvSeries));
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.save_alt),
-                  title: Text('Watchlist'),
+                  leading: const Icon(Icons.save_alt),
+                  title: const Text('Watchlist'),
                   onTap: () {
                     Navigator.pushNamed(context, WatchlistPage.ROUTE_NAME);
                   },
@@ -104,14 +107,14 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
                   },
-                  leading: Icon(Icons.info_outline),
-                  title: Text('About'),
+                  leading: const Icon(Icons.info_outline),
+                  title: const Text('About'),
                 ),
               ],
             ),
           ),
           appBar: AppBar(
-            title: Text('Ditonton ${stateHome == HomeState.Movies ? 'Movie' : 'Tv Series'}'),
+            title: Text('Ditonton ${stateHome == HomeState.movies ? 'Movie' : 'Tv Series'}'),
             actions: [
               IconButton(
                 onPressed: () {
@@ -121,13 +124,13 @@ class _HomePageState extends State<HomePage> {
                     arguments: stateHome,
                   );
                 },
-                icon: Icon(Icons.search),
+                icon: const Icon(Icons.search),
               )
             ],
           ),
           body: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: stateHome == HomeState.TvSeries ? tvSeriesSection() : moviesSection(),
+            child: stateHome == HomeState.tvSeries ? tvSeriesSection() : moviesSection(),
           ),
         );
       },
@@ -145,7 +148,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState>(builder: (context, state) {
             if (state is NowPlayingMovieLoading) {
-              return AppRowLoadingWidget();
+              return const AppRowLoadingWidget();
             } else if (state is NowPlayingMovieSuccess) {
               return MovieList(state.movies);
             } else if (state is NowPlayingMovieError) {
@@ -160,7 +163,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BlocBuilder<PopularMovieBloc, PopularMovieState>(builder: (context, state) {
             if (state is PopularMovieLoading) {
-              return AppRowLoadingWidget();
+              return const AppRowLoadingWidget();
             } else if (state is PopularMovieSuccess) {
               return MovieList.fromPoster5Entity(state.movies);
             } else if (state is PopularMovieError) {
@@ -175,7 +178,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BlocBuilder<TopRatedMovieBloc, TopRatedMovieState>(builder: (context, state) {
             if (state is TopRatedMovieLoading) {
-              return AppRowLoadingWidget();
+              return const AppRowLoadingWidget();
             } else if (state is TopRatedMovieSuccess) {
               return MovieList.fromPoster5Entity(state.movies);
             } else if (state is TopRatedMovieError) {
@@ -203,7 +206,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BlocBuilder<OnTheAirTvSeriesBloc, OnTheAirTvSeriesState>(builder: (context, state) {
             if (state is OnTheAirTvSeriesLoading) {
-              return AppRowLoadingWidget();
+              return const AppRowLoadingWidget();
             } else if (state is OnTheAirTvSeriesSuccess) {
               return MovieList(state.tvSeries);
             } else if (state is OnTheAirTvSeriesError) {
@@ -218,7 +221,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BlocBuilder<PopularTvSeriesBloc, PopularTvSeriesState>(builder: (context, state) {
             if (state is PopularTvSeriesLoading) {
-              return AppRowLoadingWidget();
+              return const AppRowLoadingWidget();
             } else if (state is PopularTvSeriesSuccess) {
               return MovieList.fromPoster5Entity(state.tvSeries);
             } else if (state is PopularTvSeriesError) {
@@ -233,7 +236,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BlocBuilder<TopRatedTvSeriesBloc, TopRatedTvSeriesState>(builder: (context, state) {
             if (state is TopRatedTvSeriesLoading) {
-              return AppRowLoadingWidget();
+              return const AppRowLoadingWidget();
             } else if (state is TopRatedTvSeriesSuccess) {
               return MovieList.fromPoster5Entity(state.tvSeries);
             } else if (state is TopRatedTvSeriesError) {
@@ -257,8 +260,8 @@ class _HomePageState extends State<HomePage> {
         ),
         InkWell(
           onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Row(
               children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
             ),
