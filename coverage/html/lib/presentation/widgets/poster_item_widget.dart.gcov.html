@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">22</td>
-            <td class="headerCovTableEntry">26</td>
-            <td class="headerCovTableEntryMed">84.6 %</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntry">23</td>
+            <td class="headerCovTableEntryMed">82.6 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Tue Nov 21 19:08:07 2023</td>
+            <td class="headerValue">Tue Nov 21 19:55:45 2023</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -71,7 +71,7 @@
 <a name="9"><span class="lineNum">       9 </span>            : class PosterItemWidget extends StatelessWidget {</a>
 <a name="10"><span class="lineNum">      10 </span>            :   final Poster5Entity data;</a>
 <a name="11"><span class="lineNum">      11 </span>            : </a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineCov">          5 :   PosterItemWidget(this.data);</span></a>
+<a name="12"><span class="lineNum">      12 </span><span class="lineCov">          5 :   const PosterItemWidget(this.data, {super.key});</span></a>
 <a name="13"><span class="lineNum">      13 </span>            : </a>
 <a name="14"><span class="lineNum">      14 </span><span class="lineNoCov">          0 :   factory PosterItemWidget.fromMovie(MovieEntity movie) =&gt; PosterItemWidget(Poster5Entity.fromMovie(movie));</span></a>
 <a name="15"><span class="lineNum">      15 </span>            : </a>
@@ -108,7 +108,7 @@
 <a name="46"><span class="lineNum">      46 </span>            :                       overflow: TextOverflow.ellipsis,</a>
 <a name="47"><span class="lineNum">      47 </span><span class="lineCov">          5 :                       style: kHeading6,</span></a>
 <a name="48"><span class="lineNum">      48 </span>            :                     ),</a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineCov">          5 :                     SizedBox(height: 16),</span></a>
+<a name="49"><span class="lineNum">      49 </span>            :                     const SizedBox(height: 16),</a>
 <a name="50"><span class="lineNum">      50 </span><span class="lineCov">          5 :                     Text(</span></a>
 <a name="51"><span class="lineNum">      51 </span><span class="lineCov">         10 :                       data.overview,</span></a>
 <a name="52"><span class="lineNum">      52 </span>            :                       maxLines: 2,</a>
@@ -124,13 +124,13 @@
 <a name="62"><span class="lineNum">      62 </span>            :                 bottom: 16,</a>
 <a name="63"><span class="lineNum">      63 </span>            :               ),</a>
 <a name="64"><span class="lineNum">      64 </span><span class="lineCov">          5 :               child: ClipRRect(</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">          5 :                 child: AppImageWidget(</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">         10 :                   data.poster,</span></a>
-<a name="67"><span class="lineNum">      67 </span>            :                   width: 80,</a>
-<a name="68"><span class="lineNum">      68 </span>            :                   height: 120,</a>
-<a name="69"><span class="lineNum">      69 </span>            :                 ),</a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineCov">          5 :                 borderRadius: BorderRadius.all(</span></a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">          5 :                   Radius.circular(8),</span></a>
+<a name="65"><span class="lineNum">      65 </span>            :                 borderRadius: const BorderRadius.all(</a>
+<a name="66"><span class="lineNum">      66 </span>            :                   Radius.circular(8),</a>
+<a name="67"><span class="lineNum">      67 </span>            :                 ),</a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">          5 :                 child: AppImageWidget(</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">         10 :                   data.poster,</span></a>
+<a name="70"><span class="lineNum">      70 </span>            :                   width: 80,</a>
+<a name="71"><span class="lineNum">      71 </span>            :                   height: 120,</a>
 <a name="72"><span class="lineNum">      72 </span>            :                 ),</a>
 <a name="73"><span class="lineNum">      73 </span>            :               ),</a>
 <a name="74"><span class="lineNum">      74 </span>            :             ),</a>

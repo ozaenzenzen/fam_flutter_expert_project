@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Tue Nov 21 19:08:07 2023</td>
+            <td class="headerValue">Tue Nov 21 19:55:45 2023</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -69,7 +69,7 @@
 <a name="7"><span class="lineNum">       7 </span>            : class AppWatchlistButton extends StatelessWidget {</a>
 <a name="8"><span class="lineNum">       8 </span>            :   final ItemDataEntity itemDataEntity;</a>
 <a name="9"><span class="lineNum">       9 </span>            : </a>
-<a name="10"><span class="lineNum">      10 </span><span class="lineCov">          5 :   AppWatchlistButton(this.itemDataEntity);</span></a>
+<a name="10"><span class="lineNum">      10 </span><span class="lineCov">          5 :   const AppWatchlistButton(this.itemDataEntity, {super.key});</span></a>
 <a name="11"><span class="lineNum">      11 </span>            : </a>
 <a name="12"><span class="lineNum">      12 </span><span class="lineCov">          5 :   @override</span></a>
 <a name="13"><span class="lineNum">      13 </span>            :   Widget build(BuildContext context) {</a>
@@ -112,8 +112,8 @@
 <a name="50"><span class="lineNum">      50 </span><span class="lineCov">          5 :           child: Row(</span></a>
 <a name="51"><span class="lineNum">      51 </span>            :             mainAxisSize: MainAxisSize.min,</a>
 <a name="52"><span class="lineNum">      52 </span><span class="lineCov">          5 :             children: [</span></a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">         17 :               if (state is WatchlistStatusLoaded) state.isAdded ? Icon(Icons.check) : Icon(Icons.add),</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">          5 :               Text('Watchlist'),</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">         11 :               if (state is WatchlistStatusLoaded) state.isAdded ? const Icon(Icons.check) : const Icon(Icons.add),</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">          5 :               const Text('Watchlist'),</span></a>
 <a name="55"><span class="lineNum">      55 </span>            :             ],</a>
 <a name="56"><span class="lineNum">      56 </span>            :           ),</a>
 <a name="57"><span class="lineNum">      57 </span>            :         );</a>
