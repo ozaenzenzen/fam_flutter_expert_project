@@ -28,30 +28,36 @@ void main() {
     expect(bloc.state, WatchlistInitial());
   });
 
-  blocTest('Should emit [Loading, HasData] when data is gotten succesful',
-      build: () {
-        when(getWatchlist.execute())
-            .thenAnswer((realInvocation) async => Right(expected));
-
-        return bloc;
-      },
-      act: (WatchlistBloc bloc) => bloc.add(OnWatchlistDataRequested()),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [WatchlistLoading(), WatchlistHasData(expected)],
-      verify: (WatchlistBloc bloc) {
-        verify(getWatchlist.execute());
-      });
-
   blocTest(
-    'Should emit [Loading, Empty] when data is empty and succesful',
+    'Should emit [Loading, HasData] when data is gotten succesful',
     build: () {
-      when(getWatchlist.execute())
-          .thenAnswer((realInvocation) async => const Right([]));
+      when(getWatchlist.execute()).thenAnswer((realInvocation) async => Right(expected));
 
       return bloc;
     },
     act: (WatchlistBloc bloc) => bloc.add(OnWatchlistDataRequested()),
     wait: const Duration(milliseconds: 500),
-    expect: () => [WatchlistLoading(), WatchlistEmpty()],
+    expect: () => [
+      WatchlistLoading(),
+      WatchlistHasData(expected),
+    ],
+    verify: (WatchlistBloc bloc) {
+      verify(getWatchlist.execute());
+    },
+  );
+
+  blocTest(
+    'Should emit [Loading, Empty] when data is empty and succesful',
+    build: () {
+      when(getWatchlist.execute()).thenAnswer((realInvocation) async => const Right([]));
+
+      return bloc;
+    },
+    act: (WatchlistBloc bloc) => bloc.add(OnWatchlistDataRequested()),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      WatchlistLoading(),
+      WatchlistEmpty(),
+    ],
   );
 }

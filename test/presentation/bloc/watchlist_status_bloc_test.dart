@@ -34,7 +34,11 @@ void main() {
 
     watchlistBloc = WatchlistBloc(getWatchlist);
     bloc = WatchlistStatusBloc(
-        watchlistBloc, getWatchListStatus, saveWatchlist, removeWatchlist);
+      watchlistBloc,
+      getWatchListStatus,
+      saveWatchlist,
+      removeWatchlist,
+    );
   });
 
   final data = [testWatchlistMovie];
@@ -47,49 +51,54 @@ void main() {
     expect(bloc.state, WatchlistStatusInitial());
   });
 
-  blocTest('Should emit [Loading, HasData] when data added succesful',
-      build: () {
-        when(saveWatchlist.execute(params))
-            .thenAnswer((_) async => const Right('Success'));
-        when(getWatchListStatus.execute(params.id, params.dataType.index))
-            .thenAnswer((_) async => true);
-        when(getWatchlist.execute()).thenAnswer((_) async => Right(expected));
+  blocTest(
+    'Should emit [Loading, HasData] when data added succesful',
+    build: () {
+      when(saveWatchlist.execute(params)).thenAnswer((_) async => const Right('Success'));
+      when(getWatchListStatus.execute(params.id, params.dataType.index)).thenAnswer((_) async => true);
+      when(getWatchlist.execute()).thenAnswer((_) async => Right(expected));
 
-        return bloc;
-      },
-      act: (WatchlistStatusBloc bloc) => bloc.add(OnWatchlistAdded(params)),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [
-            WatchlistStatusLoading(),
-            const WatchlistStatusSuccess('Success Added title to watchlist'),
-            const WatchlistStatusLoaded(true)
-          ],
-      verify: (WatchlistStatusBloc bloc) {
-        verify(saveWatchlist.execute(params));
-        verify(getWatchListStatus.execute(params.id, params.dataType.index));
-      });
+      return bloc;
+    },
+    act: (WatchlistStatusBloc bloc) => bloc.add(OnWatchlistAdded(params)),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      WatchlistStatusLoading(),
+      const WatchlistStatusSuccess('Success Added title to watchlist'),
+      const WatchlistStatusLoaded(true),
+    ],
+    verify: (WatchlistStatusBloc bloc) {
+      verify(saveWatchlist.execute(params));
+      verify(getWatchListStatus.execute(
+        params.id,
+        params.dataType.index,
+      ));
+    },
+  );
 
-  blocTest('Should emit [Loading, HasData] when data removed succesful',
-      build: () {
-        when(removeWatchlist.execute(idAndDataType))
-            .thenAnswer((_) async => const Right('Removed'));
-        when(getWatchListStatus.execute(params.id, params.dataType.index))
-            .thenAnswer((_) async => false);
-        when(getWatchlist.execute()).thenAnswer((_) async => const Right([]));
+  blocTest(
+    'Should emit [Loading, HasData] when data removed succesful',
+    build: () {
+      when(removeWatchlist.execute(idAndDataType)).thenAnswer((_) async => const Right('Removed'));
+      when(getWatchListStatus.execute(params.id, params.dataType.index)).thenAnswer((_) async => false);
+      when(getWatchlist.execute()).thenAnswer((_) async => const Right([]));
 
-        return bloc;
-      },
-      act: (WatchlistStatusBloc bloc) =>
-          bloc.add(OnWatchlistRemoved(idAndDataType)),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [
-            WatchlistStatusLoading(),
-            const WatchlistStatusSuccess('Success Removed'),
-            const WatchlistStatusLoaded(false)
-          ],
-      verify: (WatchlistStatusBloc bloc) {
-        verify(removeWatchlist.execute(idAndDataType));
-        verify(getWatchListStatus.execute(params.id, params.dataType.index));
-        verify(getWatchlist.execute());
-      });
+      return bloc;
+    },
+    act: (WatchlistStatusBloc bloc) => bloc.add(OnWatchlistRemoved(idAndDataType)),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      WatchlistStatusLoading(),
+      const WatchlistStatusSuccess('Success Removed'),
+      const WatchlistStatusLoaded(false),
+    ],
+    verify: (WatchlistStatusBloc bloc) {
+      verify(removeWatchlist.execute(idAndDataType));
+      verify(getWatchListStatus.execute(
+        params.id,
+        params.dataType.index,
+      ));
+      verify(getWatchlist.execute());
+    },
+  );
 }
