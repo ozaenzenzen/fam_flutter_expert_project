@@ -246,51 +246,51 @@ void main() {
   });
 
   group('Get Tv Series Detail', () {
-    final tId = testTvDetail.id;
+    final testId = testTvDetail.id;
     final response = testTvDetail;
 
     test('should return tv detail data when the call to remote data source is successful', () async {
       // arrange
-      when(dataSource.getTvSeriesDetail(tId!)).thenAnswer((_) async => response);
+      when(dataSource.getTvSeriesDetail(testId!)).thenAnswer((_) async => response);
       // act
-      final result = await repository.getTvSeriesDetail(tId);
+      final result = await repository.getTvSeriesDetail(testId);
       // assert
-      verify(dataSource.getTvSeriesDetail(tId));
+      verify(dataSource.getTvSeriesDetail(testId));
       expect(result, equals(Right(response)));
     });
 
     test('should return Server Failure when the call to remote data source is unsuccessful', () async {
       // arrange
-      when(dataSource.getTvSeriesDetail(tId!)).thenThrow(ServerException());
+      when(dataSource.getTvSeriesDetail(testId!)).thenThrow(ServerException());
       // act
-      final result = await repository.getTvSeriesDetail(tId);
+      final result = await repository.getTvSeriesDetail(testId);
       // assert
-      verify(dataSource.getTvSeriesDetail(tId));
+      verify(dataSource.getTvSeriesDetail(testId));
       expect(result, equals(const Left(ServerFailure("Server Failure"))));
     });
 
     test('should return connection failure when the device is not connected to internet', () async {
       // arrange
-      when(dataSource.getTvSeriesDetail(tId!)).thenThrow(SocketException(errorMessages));
+      when(dataSource.getTvSeriesDetail(testId!)).thenThrow(SocketException(errorMessages));
       // act
-      final result = await repository.getTvSeriesDetail(tId);
+      final result = await repository.getTvSeriesDetail(testId);
       // assert
-      verify(dataSource.getTvSeriesDetail(tId));
+      verify(dataSource.getTvSeriesDetail(testId));
       expect(result, equals(const Left(ConnectionFailure("Failed to connect to the network"))));
     });
   });
 
   group('Get Movie Recommendations', () {
-    final tId = testTvDetail.id;
+    final testId = testTvDetail.id;
 
     test('should return data (tv series list) when the call is successful', () async {
       // arrange
       final response = testTvRecommendationList;
-      when(dataSource.getTvSeriesRecommendation(tId!)).thenAnswer((_) async => response);
+      when(dataSource.getTvSeriesRecommendation(testId!)).thenAnswer((_) async => response);
       // act
-      final result = await repository.getTvSeriesRecommendation(tId);
+      final result = await repository.getTvSeriesRecommendation(testId);
       // assert
-      verify(dataSource.getTvSeriesRecommendation(tId));
+      verify(dataSource.getTvSeriesRecommendation(testId));
       /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => TvSeriesResponseModel());
       expect(resultList, equals(response));
@@ -298,21 +298,21 @@ void main() {
 
     test('should return server failure when call to remote data source is unsuccessful', () async {
       // arrange
-      when(dataSource.getTvSeriesRecommendation(tId!)).thenThrow(ServerException());
+      when(dataSource.getTvSeriesRecommendation(testId!)).thenThrow(ServerException());
       // act
-      final result = await repository.getTvSeriesRecommendation(tId);
+      final result = await repository.getTvSeriesRecommendation(testId);
       // assertbuild runner
-      verify(dataSource.getTvSeriesRecommendation(tId));
+      verify(dataSource.getTvSeriesRecommendation(testId));
       expect(result, equals(const Left(ServerFailure("Server Failure"))));
     });
 
     test('should return connection failure when the device is not connected to the internet', () async {
       // arrange
-      when(dataSource.getTvSeriesRecommendation(tId!)).thenThrow(SocketException(errorMessages));
+      when(dataSource.getTvSeriesRecommendation(testId!)).thenThrow(SocketException(errorMessages));
       // act
-      final result = await repository.getTvSeriesRecommendation(tId);
+      final result = await repository.getTvSeriesRecommendation(testId);
       // assert
-      verify(dataSource.getTvSeriesRecommendation(tId));
+      verify(dataSource.getTvSeriesRecommendation(testId));
       expect(result, equals(const Left(ConnectionFailure("Failed to connect to the network"))));
     });
   });

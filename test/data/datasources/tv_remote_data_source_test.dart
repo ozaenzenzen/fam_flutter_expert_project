@@ -236,10 +236,10 @@ void main() {
   });
 
   group('get tv detail action', () {
-    const int tId = 93842;
+    const int testId = 93842;
     final String response = readJson('dummy_data/tvseries/tv_detail.json');
     final TvDetailResponseModel tTvDetail = TvDetailResponseModel.fromJson(json.decode(response));
-    const String url = '$BASE_URL/tv/$tId?$API_KEY';
+    const String url = '$BASE_URL/tv/$testId?$API_KEY';
     final Uri uri = Uri.parse(url);
 
     test('should return tv detail when the response code is 200', () async {
@@ -248,7 +248,7 @@ void main() {
 
       arrangeApiCall(uri, response, statusCode);
       // act
-      final result = await dataSource.getTvSeriesDetail(tId);
+      final result = await dataSource.getTvSeriesDetail(testId);
       // assert
       expect(result.toJson(), tTvDetail.toJson());
     });
@@ -259,17 +259,17 @@ void main() {
 
       arrangeApiCall(uri, response, statusCode);
       // act
-      final call = dataSource.getTvSeriesDetail(tId);
+      final call = dataSource.getTvSeriesDetail(testId);
       // assert
       expect(() => call, throwsA(isA<ServerException>()));
     });
   });
 
   group('get tv series recommendations action', () {
-    const int tId = 213713;
+    const int testId = 213713;
     final data = readJson('dummy_data/tvseries/tv_recommendations.json');
     final tTvRecommendation = TvSeriesResponseModel.fromJson(json.decode(data));
-    const String url = '$BASE_URL/tv/$tId/recommendations?$API_KEY';
+    const String url = '$BASE_URL/tv/$testId/recommendations?$API_KEY';
     final uri = Uri.parse(url);
 
     test('should return list of Movie Model when the response code is 200', () async {
@@ -278,7 +278,7 @@ void main() {
       const statusCode = 200;
       arrangeApiCall(uri, response, statusCode);
       // act
-      final result = await dataSource.getTvSeriesRecommendation(tId);
+      final result = await dataSource.getTvSeriesRecommendation(testId);
       // assert
       expect(result.toJson(), tTvRecommendation.toJson());
     });
@@ -289,7 +289,7 @@ void main() {
       const statusCode = 404;
       arrangeApiCall(uri, response, statusCode);
       // act
-      final call = dataSource.getTvSeriesRecommendation(tId);
+      final call = dataSource.getTvSeriesRecommendation(testId);
       // assert
       expect(() => call, throwsA(isA<ServerException>()));
     });

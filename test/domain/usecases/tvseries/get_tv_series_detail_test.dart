@@ -16,15 +16,15 @@ void main() {
     usecase = GetTvSeriesDetail(repository);
   });
 
-  final tId = testTvDetail.id;
+  final testId = testTvDetail.id;
 
   test('should get tv series detail from the repository', () async {
     // arrange
     final response = testTvDetail;
 
-    when(repository.getTvSeriesDetail(tId!)).thenAnswer((_) async => Right(response));
+    when(repository.getTvSeriesDetail(testId!)).thenAnswer((_) async => Right(response));
     // act
-    final result = await usecase.execute(tId);
+    final result = await usecase.execute(testId);
     // assert
     expect(result, Right(response));
   });

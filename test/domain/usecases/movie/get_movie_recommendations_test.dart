@@ -15,16 +15,16 @@ void main() {
     usecase = GetMovieRecommendations(mockMovieRepository);
   });
 
-  const int tId = 1;
+  const int testId = 1;
   final tMovies = <MovieEntity>[];
 
   test('should get list of movie recommendations from the repository',
       () async {
     // arrange
-    when(mockMovieRepository.getMovieRecommendations(tId))
+    when(mockMovieRepository.getMovieRecommendations(testId))
         .thenAnswer((_) async => Right(tMovies));
     // act
-    final result = await usecase.execute(tId);
+    final result = await usecase.execute(testId);
     // assert
     expect(result, Right(tMovies));
   });

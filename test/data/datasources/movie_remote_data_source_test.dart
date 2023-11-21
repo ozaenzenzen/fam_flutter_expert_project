@@ -108,33 +108,33 @@ void main() {
   });
 
   group('get movie detail', () {
-    const int tId = 1;
+    const int testId = 1;
     final tMovieDetail = MovieDetailResponse.fromJson(json.decode(readJson('dummy_data/movie/movie_detail.json')));
 
     test('should return movie detail when the response code is 200', () async {
       // arrange
-      when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/$tId?$API_KEY'))).thenAnswer(
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/$testId?$API_KEY'))).thenAnswer(
         (_) async => http.Response(
           readJson('dummy_data/movie/movie_detail.json'),
           200,
         ),
       );
       // act
-      final result = await dataSource.getMovieDetail(tId);
+      final result = await dataSource.getMovieDetail(testId);
       // assert
       expect(result, equals(tMovieDetail));
     });
 
     test('should throw Server Exception when the response code is 404 or other', () async {
       // arrange
-      when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/$tId?$API_KEY'))).thenAnswer(
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/$testId?$API_KEY'))).thenAnswer(
         (_) async => http.Response(
           'Not Found',
           404,
         ),
       );
       // act
-      final call = dataSource.getMovieDetail(tId);
+      final call = dataSource.getMovieDetail(testId);
       // assert
       expect(() => call, throwsA(isA<ServerException>()));
     });
@@ -146,32 +146,32 @@ void main() {
         readJson('dummy_data/movie/movie_recommendations.json'),
       ),
     ).movieList;
-    const int tId = 1;
+    const int testId = 1;
 
     test('should return list of Movie Model when the response code is 200', () async {
       // arrange
-      when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/$tId/recommendations?$API_KEY'))).thenAnswer(
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/$testId/recommendations?$API_KEY'))).thenAnswer(
         (_) async => http.Response(
           readJson('dummy_data/movie/movie_recommendations.json'),
           200,
         ),
       );
       // act
-      final result = await dataSource.getMovieRecommendations(tId);
+      final result = await dataSource.getMovieRecommendations(testId);
       // assert
       expect(result, equals(tMovieList));
     });
 
     test('should throw Server Exception when the response code is 404 or other', () async {
       // arrange
-      when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/$tId/recommendations?$API_KEY'))).thenAnswer(
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/$testId/recommendations?$API_KEY'))).thenAnswer(
         (_) async => http.Response(
           'Not Found',
           404,
         ),
       );
       // act
-      final call = dataSource.getMovieRecommendations(tId);
+      final call = dataSource.getMovieRecommendations(testId);
       // assert
       expect(() => call, throwsA(isA<ServerException>()));
     });

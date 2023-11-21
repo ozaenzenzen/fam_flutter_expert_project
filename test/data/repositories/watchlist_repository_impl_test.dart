@@ -27,7 +27,7 @@ void main() {
   final ItemDataEntity data = ItemDataEntity.fromMovie(source);
   final WatchlistTable table = testMovieTable;
 
-  group('save watchlist', () {
+  group('save watchlist action', () {
     test('should return success message when saving successful', () async {
       // arrange
       when(localDataSource.insertWatchlist(table)).thenAnswer((_) async => 'Added to Watchlist');
@@ -47,7 +47,7 @@ void main() {
     });
   });
 
-  group('remove watchlist', () {
+  group('remove watchlist action', () {
     test('should return success message when remove successful', () async {
       // arrange
       when(localDataSource.removeWatchlist(data.id, data.dataType.index)).thenAnswer((_) async => 'Removed from watchlist');
@@ -67,7 +67,7 @@ void main() {
     });
   });
 
-  group('get watchlist status', () {
+  group('get watchlist status action', () {
     test('should return watch status whether data is found', () async {
       // arrange
       when(localDataSource.getMovieById(data.id, data.dataType.index)).thenAnswer((_) async => null);
@@ -78,7 +78,7 @@ void main() {
     });
   });
 
-  group('get watchlist movies', () {
+  group('get watchlist movies action', () {
     test('should return list of Movies', () async {
       // arrange
       final expected = [Poster5Entity.fromMovie(testWatchlistMovie)];

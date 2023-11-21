@@ -32,20 +32,22 @@ void main() {
 
   Widget makeTestableWidget(Widget body) {
     return MultiProvider(
-        providers: [
-          BlocProvider(
-            create: (_) => movieDetailBloc,
-          ),
-          BlocProvider(
-            create: (context) => watchlistStatusBloc,
-          )
-        ],
-        child: Builder(
-          builder: (_) => MaterialApp(
-              home: Scaffold(
+      providers: [
+        BlocProvider(
+          create: (_) => movieDetailBloc,
+        ),
+        BlocProvider(
+          create: (context) => watchlistStatusBloc,
+        )
+      ],
+      child: Builder(
+        builder: (_) => MaterialApp(
+          home: Scaffold(
             body: body,
-          )),
-        ));
+          ),
+        ),
+      ),
+    );
   }
 
   const MovieDetailEntity movieDetail = testMovieDetail;
@@ -123,7 +125,10 @@ void main() {
           watchlistStatusBloc,
           Stream.fromIterable([
             WatchlistStatusLoading(),
-            WatchlistStatusError(message, retry: () {}),
+            WatchlistStatusError(
+              message,
+              retry: () {},
+            ),
           ]),
           initialState: const WatchlistStatusLoaded(false));
 
@@ -133,8 +138,9 @@ void main() {
 
       expect(find.byIcon(Icons.add), findsOneWidget);
 
-      await tester.tap(watchlistButton);
+      await tester.ensureVisible(watchlistButton);
       await tester.pump();
+      await tester.tap(watchlistButton, warnIfMissed: false);
 
       expect(find.byType(AlertDialog), findsOneWidget);
       expect(find.text(message), findsOneWidget);

@@ -36,17 +36,18 @@ void main() {
 
   Widget makeTestableWidget(Widget body) {
     return MultiProvider(
-        providers: [
-          BlocProvider(
-            create: (_) => movieDetailBloc,
-          ),
-          BlocProvider(
-            create: (context) => watchlistStatusBloc,
-          )
-        ],
-        child: Builder(
-          builder: (_) => MaterialApp(home: body),
-        ));
+      providers: [
+        BlocProvider(
+          create: (_) => movieDetailBloc,
+        ),
+        BlocProvider(
+          create: (context) => watchlistStatusBloc,
+        )
+      ],
+      child: Builder(
+        builder: (_) => MaterialApp(home: body),
+      ),
+    );
   }
 
   const MovieDetailEntity movieDetail = testMovieDetail;
@@ -74,66 +75,80 @@ void main() {
     expect(centerFinder, findsOneWidget);
     expect(progressBarFinder, findsOneWidget);
   });
-  
-  testWidgets('Should has same data', (WidgetTester tester) async {
-    whenListen(
-      movieDetailBloc,
-      Stream.fromIterable([
-        MovieDetailLoading(),
-        MovieDetailSuccess(itemDataEntity, recommendations: movieRecommendations),
-      ]),
-      initialState: MovieDetailInitial(),
-    );
-    whenListen(
-      watchlistStatusBloc,
-      Stream.fromIterable([
-        WatchlistStatusLoading(),
-        const WatchlistStatusLoaded(isAddedToWatchList),
-      ]),
-      initialState: WatchlistStatusInitial(),
-    );
 
-    await tester.pumpWidget(
-      makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
-    );
-    await tester.pump(Duration.zero);
+  testWidgets(
+    'Should has same data',
+    (WidgetTester tester) async {
+      whenListen(
+        movieDetailBloc,
+        Stream.fromIterable([
+          MovieDetailLoading(),
+          MovieDetailSuccess(
+            itemDataEntity,
+            recommendations: movieRecommendations,
+          ),
+        ]),
+        initialState: MovieDetailInitial(),
+      );
+      whenListen(
+        watchlistStatusBloc,
+        Stream.fromIterable([
+          WatchlistStatusLoading(),
+          const WatchlistStatusLoaded(isAddedToWatchList),
+        ]),
+        initialState: WatchlistStatusInitial(),
+      );
 
-    expect(
-      find.text(movieDetail.overview),
-      findsOneWidget,
-    );
-    expect(
-      find.text(movieDetail.title),
-      findsOneWidget,
-    );
-    final image = find.byType(CachedNetworkImage).evaluate().single.widget as CachedNetworkImage;
+      await tester.pumpWidget(
+        makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
+      );
+      await tester.pump(Duration.zero);
 
-    expect(image.imageUrl, imageUrl);
-  });
+      expect(
+        find.text(movieDetail.overview),
+        findsOneWidget,
+      );
+      expect(
+        find.text(movieDetail.title),
+        findsOneWidget,
+      );
+      final image = find.byType(CachedNetworkImage).evaluate().single.widget as CachedNetworkImage;
 
-  testWidgets('should show ditonton error widget when failure', (WidgetTester tester) async {
-    whenListen(
-      movieDetailBloc,
-      Stream.fromIterable([
-        MovieDetailLoading(),
-        MovieDetailError('Server Failure', retry: () {}),
-      ]),
-      initialState: MovieDetailInitial(),
-    );
-    whenListen(
-      watchlistStatusBloc,
-      Stream.fromIterable([
-        WatchlistStatusLoading(),
-        const WatchlistStatusLoaded(isAddedToWatchList),
-      ]),
-      initialState: WatchlistStatusInitial(),
-    );
+      expect(image.imageUrl, imageUrl);
+    },
+  );
 
-    await tester.pumpWidget(
-      makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
-    );
-    await tester.pump(Duration.zero);
+  testWidgets(
+    'should show ditonton error widget when failure',
+    (WidgetTester tester) async {
+      whenListen(
+        movieDetailBloc,
+        Stream.fromIterable(
+          [
+            MovieDetailLoading(),
+            MovieDetailError(
+              'Server Failure',
+              retry: () {},
+            ),
+          ],
+        ),
+        initialState: MovieDetailInitial(),
+      );
+      whenListen(
+        watchlistStatusBloc,
+        Stream.fromIterable([
+          WatchlistStatusLoading(),
+          const WatchlistStatusLoaded(isAddedToWatchList),
+        ]),
+        initialState: WatchlistStatusInitial(),
+      );
 
-    expect(find.text('Retry'), findsOneWidget);
-  });
+      await tester.pumpWidget(
+        makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
+      );
+      await tester.pump(Duration.zero);
+
+      expect(find.text('Retry'), findsOneWidget);
+    },
+  );
 }

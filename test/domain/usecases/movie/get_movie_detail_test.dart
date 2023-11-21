@@ -15,13 +15,13 @@ void main() {
     usecase = GetMovieDetail(mockMovieRepository);
   });
 
-  const int tId = 1;
+  const int testId = 1;
 
   test('should get movie detail from the repository', () async {
     // arrange
-    when(mockMovieRepository.getMovieDetail(tId)).thenAnswer((_) async => const Right(testMovieDetail));
+    when(mockMovieRepository.getMovieDetail(testId)).thenAnswer((_) async => const Right(testMovieDetail));
     // act
-    final result = await usecase.execute(tId);
+    final result = await usecase.execute(testId);
     // assert
     expect(result, const Right(testMovieDetail));
   });

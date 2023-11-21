@@ -32,44 +32,53 @@ void main() {
 
   Widget makeTestableWidget(Widget body) {
     return MultiProvider(
-        providers: [
-          BlocProvider(
-            create: (_) => bloc,
-          ),
-          BlocProvider(
-            create: (context) => watchlistStatusBloc,
-          )
-        ],
-        child: Builder(
-          builder: (_) => MaterialApp(
-              home: Scaffold(
+      providers: [
+        BlocProvider(
+          create: (_) => bloc,
+        ),
+        BlocProvider(
+          create: (context) => watchlistStatusBloc,
+        )
+      ],
+      child: Builder(
+        builder: (_) => MaterialApp(
+          home: Scaffold(
             body: body,
-          )),
-        ));
+          ),
+        ),
+      ),
+    );
   }
 
   final TvDetailResponseModel tvDetail = testTvDetail;
   final List<Poster3Entity> tvRecommendation = <Poster3Entity>[];
   final ItemDataEntity itemDataEntity = ItemDataEntity.fromTvSeries(tvDetail);
 
-  testWidgets('should display Snackbar when added to watchlist',
-      (WidgetTester tester) async {
+  testWidgets('should display Snackbar when added to watchlist', (WidgetTester tester) async {
     const String message = 'Added to Watchlist';
 
     whenListen(
-        bloc,
-        Stream.fromIterable([
+      bloc,
+      Stream.fromIterable(
+        [
           TvDetailLoading(),
-          TvDetailSuccess(itemDataEntity, recommendations: tvRecommendation)
-        ]),
-        initialState: TvDetailInitial());
+          TvDetailSuccess(
+            itemDataEntity,
+            recommendations: tvRecommendation,
+          ),
+        ],
+      ),
+      initialState: TvDetailInitial(),
+    );
     whenListen(
         watchlistStatusBloc,
-        Stream.fromIterable([
-          WatchlistStatusLoading(),
-          const WatchlistStatusSuccess(message),
-          const WatchlistStatusLoaded(true)
-        ]),
+        Stream.fromIterable(
+          [
+            WatchlistStatusLoading(),
+            const WatchlistStatusSuccess(message),
+            const WatchlistStatusLoaded(true),
+          ],
+        ),
         initialState: const WatchlistStatusLoaded(false));
 
     final watchlistButton = find.byType(ElevatedButton);
@@ -88,23 +97,30 @@ void main() {
     await expectLater(find.byIcon(Icons.check), findsOneWidget);
   });
 
-  testWidgets(
-      'Watchlist button should display AlertDialog when add to watchlist failed',
-      (WidgetTester tester) async {
+  testWidgets('Watchlist button should display AlertDialog when add to watchlist failed', (WidgetTester tester) async {
     const String message = 'Failed';
 
     whenListen(
-        bloc,
-        Stream.fromIterable([
+      bloc,
+      Stream.fromIterable(
+        [
           TvDetailLoading(),
-          TvDetailSuccess(itemDataEntity, recommendations: tvRecommendation)
-        ]),
-        initialState: TvDetailInitial());
+          TvDetailSuccess(
+            itemDataEntity,
+            recommendations: tvRecommendation,
+          ),
+        ],
+      ),
+      initialState: TvDetailInitial(),
+    );
     whenListen(
         watchlistStatusBloc,
         Stream.fromIterable([
           WatchlistStatusLoading(),
-          WatchlistStatusError(message, retry: () {}),
+          WatchlistStatusError(
+            message,
+            retry: () {},
+          ),
         ]),
         initialState: const WatchlistStatusLoaded(false));
 
@@ -114,7 +130,7 @@ void main() {
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 
-    await tester.tap(watchlistButton);
+    await tester.tap(watchlistButton, warnIfMissed: false);
     await tester.pump();
 
     expect(find.byType(AlertDialog), findsOneWidget);
