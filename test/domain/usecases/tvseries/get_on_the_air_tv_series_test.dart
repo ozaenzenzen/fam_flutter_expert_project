@@ -18,7 +18,7 @@ void main() {
   group('get on the air tv series', () {
     test('should return On The Air List TvSeries', () async {
       //arrange
-      final expected = tOnTheAirTvSeriesList;
+      final expected = testOnTheAirTvSeriesList;
 
       when(repository.getOnTheAirTvSeries()).thenAnswer((_) async => Right(expected));
 

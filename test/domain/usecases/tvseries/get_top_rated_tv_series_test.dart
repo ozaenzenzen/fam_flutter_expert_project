@@ -18,7 +18,7 @@ void main() {
   group('get top rated tv series', () {
     test('should return Top Rated List TvSeries', () async {
       //arrange
-      final expected = tTopRatedSeriesList;
+      final expected = testTopRatedSeriesList;
 
       when(repository.getTopRatedTvSeries())
           .thenAnswer((_) async => Right(expected));

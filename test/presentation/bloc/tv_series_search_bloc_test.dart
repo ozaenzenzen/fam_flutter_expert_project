@@ -23,8 +23,8 @@ void main() {
   });
 
   final tQuery = 'spiderman';
-  final data = tSearchTvSeriesList;
-  final expected = tSearchTvSeriesList.results!
+  final data = testSearchTvSeriesList;
+  final expected = testSearchTvSeriesList.results!
       .map((e) => Poster5Entity.fromTvSeries(e))
       .toList();
 
@@ -76,7 +76,7 @@ void main() {
   blocTest('Should emit [Loading, Error] when data is unsuccesful',
       build: () {
         when(searchTvSeries.execute(tQuery))
-            .thenAnswer((realInvocation) async => Left(ServerFailure("server failed")));
+            .thenAnswer((realInvocation) async => Left(ServerFailure("Server Failure")));
 
         return bloc;
       },

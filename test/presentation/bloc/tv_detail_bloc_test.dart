@@ -19,10 +19,10 @@ void main() {
   late GetTvSeriesRecommendations getTvSeriesRecommendations;
   late TvDetailBloc bloc;
 
-  final detailData = tTvDetail;
+  final detailData = testTvDetail;
   final tId = detailData.id;
   final detailExpected = ItemDataEntity.fromTvSeries(detailData);
-  final recommendationData = tTvRecommendationList;
+  final recommendationData = testTvRecommendationList;
   final recommendationExpected = recommendationData.results!.map((e) => Poster3Entity.fromTvSeries(e)).toList();
 
   setUp(() {
@@ -73,7 +73,7 @@ void main() {
           (realInvocation) async => Right(detailData),
         );
         when(getTvSeriesRecommendations.execute(tId)).thenAnswer(
-          (_) async => Left(ServerFailure("server failed")),
+          (_) async => Left(ServerFailure("Server Failure")),
         );
 
         return bloc;
@@ -98,12 +98,12 @@ void main() {
       build: () {
         when(getTvSeriesDetail.execute(tId!)).thenAnswer(
           (realInvocation) async => Left(
-            ServerFailure("server failed"),
+            ServerFailure("Server Failure"),
           ),
         );
         when(getTvSeriesRecommendations.execute(tId)).thenAnswer(
           (_) async => Left(
-            ServerFailure("server failed"),
+            ServerFailure("Server Failure"),
           ),
         );
 

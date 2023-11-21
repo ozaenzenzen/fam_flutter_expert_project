@@ -1,124 +1,155 @@
 {
-    "backdrop_path": "/brqTkMU88sOuEckWhhI7aMnYNma.jpg",
+    "adult": false,
+    "backdrop_path": "/7cBRwe7eK812mhhWso4QBgnSg5y.jpg",
     "created_by": [
         {
-        "id": 7318,
-        "credit_id": "5257315e760ee3776a34fd4c",
-        "name": "Peter Kay",
-        "gender": 2,
-        "profile_path": "/1WWc41N02Efxk2zRJM0KKUGjhuS.jpg"
-        },
-        {
-        "id": 156142,
-        "credit_id": "5257315f760ee3776a34fd54",
-        "name": "Dave Spikey",
-        "gender": 2,
-        "profile_path": "/9cs11VZKTzRlMYmgdfHRuwvytFk.jpg"
+            "id": 102355,
+            "credit_id": "5ea49c17a1074b001d4621a8",
+            "name": "Diederik Van Rooijen",
+            "gender": 0,
+            "profile_path": null
         }
     ],
     "episode_run_time": [
         25
     ],
-    "first_air_date": "2001-01-14",
+    "first_air_date": "2019-10-25",
     "genres": [
         {
-        "id": 35,
-        "name": "Comedy"
+            "id": 10765,
+            "name": "Sci-Fi & Fantasy"
+        },
+        {
+            "id": 9648,
+            "name": "Mystery"
         }
     ],
-    "homepage": "http://www.channel4.com/programmes/peter-kays-phoenix-nights",
-    "id": 2331,
-    "in_production": false,
+    "homepage": "https://tv.nrk.no/serie/nattens-arvinger/",
+    "id": 93842,
+    "in_production": true,
     "languages": [
-        "en"
+        "de",
+        "en",
+        "it",
+        "no"
     ],
-    "last_air_date": "2002-09-12",
+    "last_air_date": "2020-11-19",
     "last_episode_to_air": {
-        "air_date": "2002-09-12",
-        "episode_number": 6,
-        "id": 170849,
-        "name": "Stars in Their Eyes",
-        "overview": "The Phoenix has risen and the punters are back. Brian isn't surprised when the brewery decides to come and celebrate his victory and throws a gala Stars in Their Eyes show.",
-        "production_code": "",
-        "season_number": 2,
-        "still_path": null,
+        "id": 2491539,
+        "name": "Episode 13",
+        "overview": "",
         "vote_average": 0.0,
-        "vote_count": 0
+        "vote_count": 0,
+        "air_date": "2020-11-19",
+        "episode_number": 13,
+        "episode_type": "finale",
+        "production_code": "",
+        "runtime": 25,
+        "season_number": 2,
+        "show_id": 93842,
+        "still_path": "/mZNR5j850EiQYwxKFH4H71Hh9gG.jpg"
     },
-    "name": "Phoenix Nights",
+    "name": "Heirs of the Night",
     "next_episode_to_air": null,
     "networks": [
         {
-        "name": "Channel 4",
-        "id": 26,
-        "logo_path": "/zCUWm0Xb6AnjUbxzjL5OkzmHhd7.png",
-        "origin_country": "GB"
+            "id": 843,
+            "logo_path": "/sW3AjUOXSsmsmzZJl9M9vHEGqKd.png",
+            "name": "NRK3",
+            "origin_country": "NO"
+        },
+        {
+            "id": 1227,
+            "logo_path": "/wXrkCgSBWhF4cjbztPoWtDtOJqj.png",
+            "name": "AVROTROS",
+            "origin_country": "NL"
+        },
+        {
+            "id": 31,
+            "logo_path": "/2OHAgbf6QUj4cWjmFkFKu4jIsq1.png",
+            "name": "ZDF",
+            "origin_country": "DE"
+        },
+        {
+            "id": 577,
+            "logo_path": "/3VwpncXscRwvbbeA5E7LX3yTCbD.png",
+            "name": "NDR Fernsehen",
+            "origin_country": "DE"
         }
     ],
-    "number_of_episodes": 12,
+    "number_of_episodes": 26,
     "number_of_seasons": 2,
     "origin_country": [
-        "GB"
+        "DE",
+        "NO",
+        "NL"
     ],
     "original_language": "en",
-    "original_name": "Phoenix Nights",
-    "overview": "The owner of The Phoenix Club is the wheelchair-bound Brian Potter, who has presided over two clubs in the past: the first (The Aquarius) flooded, the second (The Neptune) burned down. His ambition (with the help of Jerry St Clair) is to see The Phoenix Club become the most popular in Bolton and thus outdo his arch-nemesis, Den Perry, owner of rival club The Banana Grove.",
-    "popularity": 3.467,
-    "poster_path": "/jZcUdxCsd53o3Npp53wD9hfOZCh.jpg",
+    "original_name": "Heirs of the Night",
+    "overview": "1889: the five remaining vampire clans in Europe are training to survive. In their midst is 14-year-old Alisa who has the power to choose between eternal life as a vampire or for all vampires to live as humans.",
+    "popularity": 22.747,
+    "poster_path": "/mkD3oTxYfsOYThtTM6o5HQom1Ar.jpg",
     "production_companies": [
         {
-        "id": 57765,
-        "logo_path": null,
-        "name": "Ovation Entertainment Limited",
-        "origin_country": ""
-        },
-        {
-        "id": 52368,
-        "logo_path": null,
-        "name": "Goodnight Vienna Productions",
-        "origin_country": ""
+            "id": 2345,
+            "logo_path": "/nozBgqHmM9A22IHkghTnLiUrM7Q.png",
+            "name": "Lemming Film",
+            "origin_country": "NL"
         }
     ],
-    "production_countries": [],
+    "production_countries": [
+        {
+            "iso_3166_1": "NO",
+            "name": "Norway"
+        }
+    ],
     "seasons": [
         {
-        "air_date": null,
-        "episode_count": 12,
-        "id": 7285,
-        "name": "Specials",
-        "overview": "",
-        "poster_path": null,
-        "season_number": 0
+            "air_date": "2019-10-25",
+            "episode_count": 13,
+            "id": 132900,
+            "name": "Season 1",
+            "overview": "",
+            "poster_path": "/mkD3oTxYfsOYThtTM6o5HQom1Ar.jpg",
+            "season_number": 1,
+            "vote_average": 0.0
         },
         {
-        "air_date": "2001-01-14",
-        "episode_count": 6,
-        "id": 7283,
-        "name": "Season 1",
-        "overview": "",
-        "poster_path": "/qIZ0IQhX2cXTwrSVa55ZRRvWMbE.jpg",
-        "season_number": 1
-        },
-        {
-        "air_date": "2002-08-08",
-        "episode_count": 6,
-        "id": 7284,
-        "name": "Season 2",
-        "overview": "",
-        "poster_path": "/qUysx7L1rjlrLpyD9CHao0DqlSb.jpg",
-        "season_number": 2
+            "air_date": "2020-11-19",
+            "episode_count": 13,
+            "id": 167596,
+            "name": "Season 2",
+            "overview": "",
+            "poster_path": "/AbydSZnQuqcYMMMNP9veWWfFYga.jpg",
+            "season_number": 2,
+            "vote_average": 0.0
         }
     ],
     "spoken_languages": [
         {
-        "english_name": "English",
-        "iso_639_1": "en",
-        "name": "English"
+            "english_name": "German",
+            "iso_639_1": "de",
+            "name": "Deutsch"
+        },
+        {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+        },
+        {
+            "english_name": "Italian",
+            "iso_639_1": "it",
+            "name": "Italiano"
+        },
+        {
+            "english_name": "Norwegian",
+            "iso_639_1": "no",
+            "name": "Norsk"
         }
     ],
-    "status": "Ended",
+    "status": "Returning Series",
     "tagline": "",
     "type": "Scripted",
-    "vote_average": 8.0,
-    "vote_count": 27
+    "vote_average": 7.0,
+    "vote_count": 23
 }

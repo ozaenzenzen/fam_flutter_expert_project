@@ -21,7 +21,7 @@ void main() {
     bloc = OnTheAirTvSeriesBloc(getOnTheAirTvSeries);
   });
 
-  final data = tOnTheAirTvSeriesList;
+  final data = testOnTheAirTvSeriesList;
   final expected = data.results!.map((e) => Poster3Entity.fromTvSeries(e)).toList();
 
   test('inital state should be initial', () {
@@ -47,7 +47,7 @@ void main() {
   blocTest('Should emit [Loading, Error] when data is gotten succesful',
       build: () {
         when(getOnTheAirTvSeries.execute())
-            .thenAnswer((realInvocation) async => Left(ServerFailure("server failed")));
+            .thenAnswer((realInvocation) async => Left(ServerFailure("Server Failure")));
 
         return bloc;
       },

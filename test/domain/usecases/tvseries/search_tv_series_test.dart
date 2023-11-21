@@ -20,7 +20,7 @@ void main() {
 
   test('should get list of movies from the repository', () async {
     // arrange
-    final expected = tSearchTvSeriesList;
+    final expected = testSearchTvSeriesList;
     when(repository.searchTvSeries(tQuery))
         .thenAnswer((_) async => Right(expected));
     // act

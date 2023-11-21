@@ -21,13 +21,16 @@ void main() {
   final Poster5Entity poster5Entity = Poster5Entity.fromMovieDetail(movie);
   final String imageUrl = '$BASE_IMAGE_URL${poster5Entity.poster}';
 
-  testWidgets('IdPosterTitleOvervieCard should show right data', (WidgetTester tester) async {
-    await tester.pumpWidget(_makeTestableWidget(PosterItemWidget(poster5Entity)));
+  testWidgets(
+    'PosterItemWidget should show right data',
+    (WidgetTester tester) async {
+      await tester.pumpWidget(_makeTestableWidget(PosterItemWidget(poster5Entity)));
 
-    expect(find.text(poster5Entity.overview), findsOneWidget);
-    expect(find.text(poster5Entity.title), findsOneWidget);
-    final image = find.byType(CachedNetworkImage).evaluate().single.widget as CachedNetworkImage;
+      expect(find.text(poster5Entity.overview), findsOneWidget);
+      expect(find.text(poster5Entity.title), findsOneWidget);
+      final image = find.byType(CachedNetworkImage).evaluate().single.widget as CachedNetworkImage;
 
-    expect(image.imageUrl, imageUrl);
-  });
+      expect(image.imageUrl, imageUrl);
+    },
+  );
 }

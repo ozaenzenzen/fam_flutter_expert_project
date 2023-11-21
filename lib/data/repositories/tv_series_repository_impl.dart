@@ -19,9 +19,9 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.getOnTheAirTvSeries();
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server failure"));
+      return Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connection to the network"));
+      return Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
       return Left(UnknownFailure());
     }
@@ -33,9 +33,9 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.getPopularTvSeries();
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server failure"));
+      return Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connection to the network"));
+      return Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
       return Left(UnknownFailure());
     }
@@ -47,9 +47,9 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.getTopRatedTvSeries();
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server failure"));
+      return Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connection to the network"));
+      return Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
       return Left(UnknownFailure());
     }
@@ -61,9 +61,9 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.getTvSeriesDetail(id);
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server failure"));
+      return Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connection to the network"));
+      return Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
       return Left(UnknownFailure());
     }
@@ -75,9 +75,9 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.getTvSeriesRecommendation(id);
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server failure"));
+      return Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connection to the network"));
+      return Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
       return Left(UnknownFailure());
     }
@@ -89,9 +89,9 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
       final result = await _dataSource.searchTvSeries(keyword);
       return Right(result);
     } on ServerException {
-      return Left(ServerFailure("Server failure"));
+      return Left(ServerFailure("Server Failure"));
     } on SocketException {
-      return Left(ConnectionFailure("Failed to connection to the network"));
+      return Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
       return Left(UnknownFailure());
     }

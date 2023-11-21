@@ -16,12 +16,12 @@ void main() {
     usecase = GetTvSeriesRecommendations(repository);
   });
 
-  final tId = tTvDetail.id;
+  final tId = testTvDetail.id;
 
   test('should get list of tv series recommendations from the repository',
       () async {
     // arrange
-    final response = tTvRecommendationList;
+    final response = testTvRecommendationList;
     when(repository.getTvSeriesRecommendation(tId!))
         .thenAnswer((_) async => Right(response));
     // act

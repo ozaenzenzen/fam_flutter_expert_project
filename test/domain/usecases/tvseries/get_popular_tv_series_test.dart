@@ -18,7 +18,7 @@ void main() {
   group('get popular tv series', () {
     test('should return Popular List TvSeries', () async {
       //arrange
-      final expected = tPopularTvSeriesList;
+      final expected = testPopularTvSeriesList;
 
       when(repository.getPopularTvSeries())
           .thenAnswer((_) async => Right(expected));

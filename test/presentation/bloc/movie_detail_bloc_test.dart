@@ -32,8 +32,7 @@ void main() {
   final tId = movieDetail.id;
   final expected = ItemDataEntity.fromMovie(movieDetail);
   final recommendation = [testMovie];
-  final expectedRecommendation =
-      recommendation.map((e) => Poster3Entity.fromMovie(e)).toList();
+  final expectedRecommendation = recommendation.map((e) => Poster3Entity.fromMovie(e)).toList();
 
   test('inital state should be initial', () {
     expect(bloc.state, MovieDetailInitial());
@@ -41,10 +40,12 @@ void main() {
 
   blocTest('Should emit [Loading, Success] when data is gotten succesful',
       build: () {
-        when(getMovieDetail.execute(tId))
-            .thenAnswer((realInvocation) async => Right(movieDetail));
-        when(getMovieRecommendations.execute(tId))
-            .thenAnswer((realInvocation) async => Right(recommendation));
+        when(getMovieDetail.execute(tId)).thenAnswer(
+          (realInvocation) async => Right(movieDetail),
+        );
+        when(getMovieRecommendations.execute(tId)).thenAnswer(
+          (realInvocation) async => Right(recommendation),
+        );
 
         return bloc;
       },
@@ -52,21 +53,21 @@ void main() {
       wait: const Duration(milliseconds: 500),
       expect: () => [
             MovieDetailLoading(),
-            MovieDetailSuccess(expected,
-                recommendations: expectedRecommendation)
+            MovieDetailSuccess(expected, recommendations: expectedRecommendation),
           ],
       verify: (MovieDetailBloc bloc) {
         verify(getMovieDetail.execute(tId));
         verify(getMovieRecommendations.execute(tId));
       });
 
-  blocTest(
-      'Should emit [Loading, ErrorRecommendation, Success] when data is gotten succesful',
+  blocTest('Should emit [Loading, ErrorRecommendation, Success] when data is gotten succesful',
       build: () {
-        when(getMovieDetail.execute(tId))
-            .thenAnswer((realInvocation) async => Right(movieDetail));
-        when(getMovieRecommendations.execute(tId))
-            .thenAnswer((realInvocation) async => Left(ServerFailure("server failed")));
+        when(getMovieDetail.execute(tId)).thenAnswer(
+          (realInvocation) async => Right(movieDetail),
+        );
+        when(getMovieRecommendations.execute(tId)).thenAnswer(
+          (realInvocation) async => Left(ServerFailure("Server Failure")),
+        );
 
         return bloc;
       },
@@ -75,7 +76,7 @@ void main() {
       expect: () => [
             MovieDetailLoading(),
             MovieDetailError('Server Failure', retry: () {}),
-            MovieDetailSuccess(expected)
+            MovieDetailSuccess(expected),
           ],
       verify: (MovieDetailBloc bloc) {
         verify(getMovieDetail.execute(tId));
@@ -84,18 +85,18 @@ void main() {
 
   blocTest('Should emit [Loading, Success] when data is gotten succesful',
       build: () {
-        when(getMovieRecommendations.execute(tId))
-            .thenAnswer((realInvocation) async => Right(recommendation));
+        when(getMovieRecommendations.execute(tId)).thenAnswer((realInvocation) async => Right(recommendation));
 
         return bloc;
       },
-      act: (MovieDetailBloc bloc) =>
-          bloc.add(OnMovieRecommendationsRequested(expected)),
+      act: (MovieDetailBloc bloc) => bloc.add(OnMovieRecommendationsRequested(expected)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
             MovieDetailLoading(),
-            MovieDetailSuccess(expected,
-                recommendations: expectedRecommendation)
+            MovieDetailSuccess(
+              expected,
+              recommendations: expectedRecommendation,
+            ),
           ],
       verify: (MovieDetailBloc bloc) {
         verify(getMovieRecommendations.execute(tId));

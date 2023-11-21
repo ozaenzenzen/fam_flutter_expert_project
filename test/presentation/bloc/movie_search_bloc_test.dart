@@ -31,8 +31,9 @@ void main() {
 
   blocTest('Should emit [Loading, HasData] when data is gotten succesful',
       build: () {
-        when(searchMovies.execute(tQuery))
-            .thenAnswer((realInvocation) async => Right(tMovieList));
+        when(searchMovies.execute(tQuery)).thenAnswer(
+          (realInvocation) async => Right(tMovieList),
+        );
 
         return movieSearchBloc;
       },
@@ -53,23 +54,7 @@ void main() {
 
   blocTest('Should emit [Loading, Empty] when data is gotten succesful',
       build: () {
-        when(searchMovies.execute(tQuery))
-            .thenAnswer((realInvocation) async => Right([]));
-
-        return movieSearchBloc;
-      },
-      act: (MovieSearchBloc bloc) => bloc.add(OnQueryMovieChanged(tQuery)),
-      wait: const Duration(milliseconds: 500),
-      expect: () =>
-          [MovieSearchLoading(), MovieSearchEmpty('No movie found $tQuery')],
-      verify: (MovieSearchBloc bloc) {
-        verify(searchMovies.execute(tQuery));
-      });
-
-  blocTest('Should emit [Loading, Error] when data is unsuccesful',
-      build: () {
-        when(searchMovies.execute(tQuery))
-            .thenAnswer((realInvocation) async => Left(ServerFailure("server failed")));
+        when(searchMovies.execute(tQuery)).thenAnswer((realInvocation) async => Right([]));
 
         return movieSearchBloc;
       },
@@ -77,7 +62,28 @@ void main() {
       wait: const Duration(milliseconds: 500),
       expect: () => [
             MovieSearchLoading(),
-            MovieSearchError('Server Failure', retry: () {})
+            MovieSearchEmpty('No movie found $tQuery'),
+          ],
+      verify: (MovieSearchBloc bloc) {
+        verify(searchMovies.execute(tQuery));
+      });
+
+  blocTest('Should emit [Loading, Error] when data is unsuccesful',
+      build: () {
+        when(searchMovies.execute(tQuery)).thenAnswer(
+          (realInvocation) async => Left(ServerFailure("Server Failure")),
+        );
+
+        return movieSearchBloc;
+      },
+      act: (MovieSearchBloc bloc) => bloc.add(OnQueryMovieChanged(tQuery)),
+      wait: const Duration(milliseconds: 500),
+      expect: () => [
+            MovieSearchLoading(),
+            MovieSearchError(
+              'Server Failure',
+              retry: () {},
+            ),
           ],
       verify: (MovieSearchBloc bloc) {
         verify(searchMovies.execute(tQuery));

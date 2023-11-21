@@ -62,7 +62,7 @@ final testMovieMap = {
   'dataType': DataType.Movie.index,
 };
 
-final tPopularTvSeries = ResultTvSeries(
+final testPopularTvSeries = ResultTvSeries(
   adult: false,
   backdropPath: "/jWXrQstj7p3Wl5MfYWY6IHqRpDb.jpg",
   genreIds: [10763],
@@ -79,11 +79,11 @@ final tPopularTvSeries = ResultTvSeries(
   voteCount: 165,
 );
 
-final tPopularTvSeriesList = TvSeriesResponseModel(
-  results: [tPopularTvSeries],
+final testPopularTvSeriesList = TvSeriesResponseModel(
+  results: [testPopularTvSeries],
 );
 
-final tOnTheAirTvSeries = ResultTvSeries(
+final testOnTheAirTvSeries = ResultTvSeries(
   adult: false,
   backdropPath: "/aDRIKJuB63tuJUZf1O4mRmbMTVw.jpg",
   genreIds: [10764, 99],
@@ -101,11 +101,11 @@ final tOnTheAirTvSeries = ResultTvSeries(
   voteCount: 26,
 );
 
-final tOnTheAirTvSeriesList = TvSeriesResponseModel(
-  results: [tOnTheAirTvSeries],
+final testOnTheAirTvSeriesList = TvSeriesResponseModel(
+  results: [testOnTheAirTvSeries],
 );
 
-final tTopRatedTvSeries = ResultTvSeries(
+final testTopRatedTvSeries = ResultTvSeries(
   adult: false,
   backdropPath: "/9faGSFi5jam6pDWGNd0p8JcJgXQ.jpg",
   genreIds: [18, 80],
@@ -123,11 +123,11 @@ final tTopRatedTvSeries = ResultTvSeries(
   voteCount: 12650,
 );
 
-final tTopRatedSeriesList = TvSeriesResponseModel(
-  results: [tTopRatedTvSeries],
+final testTopRatedSeriesList = TvSeriesResponseModel(
+  results: [testTopRatedTvSeries],
 );
 
-final tSearchTvSeries = ResultTvSeries(
+final testSearchTvSeries = ResultTvSeries(
   adult: false,
   backdropPath: "/q3jHCb4dMfYF6ojikKuHd6LscxC.jpg",
   genreIds: [18, 10765],
@@ -145,11 +145,11 @@ final tSearchTvSeries = ResultTvSeries(
   voteCount: 10742,
 );
 
-final tSearchTvSeriesList = TvSeriesResponseModel(
-  results: [tSearchTvSeries],
+final testSearchTvSeriesList = TvSeriesResponseModel(
+  results: [testSearchTvSeries],
 );
 
-final tTvDetail = TvDetailResponseModel(
+final testTvDetail = TvDetailResponseModel(
     adult: false,
     backdropPath: "/q3jHCb4dMfYF6ojikKuHd6LscxC.jpg",
     createdBy: [
@@ -268,7 +268,7 @@ final tTvDetail = TvDetailResponseModel(
     voteAverage: 8.181,
     voteCount: 10744);
 
-final tTvRecommendation = ResultTvSeries(
+final testTvRecommendation = ResultTvSeries(
   firstAirDate: DateTime.parse("1981-09-08"),
   genreIds: [35],
   id: 72,
@@ -283,6 +283,6 @@ final tTvRecommendation = ResultTvSeries(
   posterPath: 'abc',
 );
 
-final tTvRecommendationList = TvSeriesResponseModel(
-  results: [tTvRecommendation],
+final testTvRecommendationList = TvSeriesResponseModel(
+  results: [testTvRecommendation],
 );

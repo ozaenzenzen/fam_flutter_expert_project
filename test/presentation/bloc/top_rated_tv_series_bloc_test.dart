@@ -21,7 +21,7 @@ void main() {
     bloc = TopRatedTvSeriesBloc(getTopRatedTvSeries);
   });
 
-  final data = tOnTheAirTvSeriesList;
+  final data = testOnTheAirTvSeriesList;
   final expected =
       data.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
 
@@ -48,7 +48,7 @@ void main() {
   blocTest('Should emit [Loading, Error] when server failure',
       build: () {
         when(getTopRatedTvSeries.execute())
-            .thenAnswer((realInvocation) async => Left(ServerFailure("server failed")));
+            .thenAnswer((realInvocation) async => Left(ServerFailure("Server Failure")));
 
         return bloc;
       },

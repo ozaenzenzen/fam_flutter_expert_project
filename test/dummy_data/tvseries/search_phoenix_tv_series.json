@@ -1,0 +1,405 @@
+{
+  "page": 1,
+  "results": [
+      {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+              80,
+              18
+          ],
+          "id": 13612,
+          "origin_country": [
+              "AU"
+          ],
+          "original_language": "en",
+          "original_name": "Phoenix",
+          "overview": "Phoenix is an Australian police drama television series. Phoenix screened as two thirteen-part series on Australian Broadcasting Corporation in 1992 and 1993.\n\nThe first series of Phoenix in 1992 recounted the investigation of the bombing of the Victorian state police headquarters, loosely based on a real case in the mid-1980s, the Russell Street Bombing. It was aided by extensive research into police techniques and was lauded as one of the most realistic depictions of police investigation techniques, including both surveillance and forensics, as well as having an involving storyline.\n\nThe series was notable for its dark visual tone and for its no-holds-barred attitude to violence and language.\n\nIt spawned a second thirteen-part series, Phoenix II, in 1993 as well as a spin-off series, Janus, in 1994 devoted to the machinations of court cases.\n\nThe series was created and produced by Tony McDonald and Alison Nisselle and screened by the Australian Broadcasting Corporation.\n\nThe ABC have released Series 1 and 2 on DVD as a 4 DVD box set.",
+          "popularity": 18.134,
+          "poster_path": "/oKhBq0tax6rW6pBTObP8Wp7Ta8x.jpg",
+          "first_air_date": "1992-02-13",
+          "name": "Phoenix",
+          "vote_average": 0.0,
+          "vote_count": 0
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/d4bPrrTVFNX4xaKM1B75PWnampj.jpg",
+          "genre_ids": [
+              18,
+              10751
+          ],
+          "id": 98633,
+          "origin_country": [
+              "TR"
+          ],
+          "original_language": "tr",
+          "original_name": "Zümrüdüanka",
+          "overview": "After her boyfriend, Serhat, announced dead, Zümrüt was forced to marry his uncle. This crucial decision will turn her life upside down.",
+          "popularity": 10.897,
+          "poster_path": "/f5GAhc1hiaVRu39XF1a0bOg83cg.jpg",
+          "first_air_date": "2020-01-25",
+          "name": "The Phoenix",
+          "vote_average": 6.0,
+          "vote_count": 4
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/hyTBxDYp3YKJrSb3jCkYXxCFzUG.jpg",
+          "genre_ids": [
+              18
+          ],
+          "id": 81667,
+          "origin_country": [
+              "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "天盛长歌",
+          "overview": "When a secret from the past rears its head, respected warrior Feng Zhiwei is forced to choose between revenge and her loyalty to ruling prince Ning Yi.",
+          "popularity": 47.123,
+          "poster_path": "/oClpkfN2ath0GLZFstW1P7wMlan.jpg",
+          "first_air_date": "2018-08-14",
+          "name": "The Rise of Phoenixes",
+          "vote_average": 8.042,
+          "vote_count": 24
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/sH6SirvtVRf04IkmKe9yRTYdHd6.jpg",
+          "genre_ids": [
+              18
+          ],
+          "id": 88419,
+          "origin_country": [
+              "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "我是特种兵之火凤凰",
+          "overview": "Women are recruited and trained to join a PLA Special Operations unit.\n\nThe story is about a group of women joining a special task force unit. In the end, only eight will be chosen and these eight go on to become professional agents.\n\nThe 21st century is an era in which talents and high technologies dominate the war. The highest ranks in the Chinese army decided to recruit extraordinary females to join a special task force. Tsinghua’s skilled science student – Ye Cun Xin, the army’s taekwondo senior – Shen Lan Ni, medical officer – He Lu, new army recruit – A Zhuo, actress – Tang Xiao Xiao, anti-chemical troupe soldier – Bing Tian Guo, major commanders – Ou Yang Qian and Tan Xiao Lin, are eight women from different positions with different visions who are united by a common objective. They undergo ruthless trainings and finally emerge as “Phoenix Nirvana.”\n\n(Source: chinesedrama.info)",
+          "popularity": 9.94,
+          "poster_path": "/hI2MNmO56DHTGpujUBhfcxtlD1S.jpg",
+          "first_air_date": "2013-10-23",
+          "name": "Phoenix Nirvana",
+          "vote_average": 5.0,
+          "vote_count": 3
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/iu45SUJZ46OBAZ4mZVkVcZ2jbNq.jpg",
+          "genre_ids": [
+              16
+          ],
+          "id": 215402,
+          "origin_country": [
+              "JP"
+          ],
+          "original_language": "ja",
+          "original_name": "火の鳥 エデンの宙",
+          "overview": "In the age of space exploration, Romi and George flee a devastated Earth in search of a new world.",
+          "popularity": 4.99,
+          "poster_path": "/zMhJg3twKFWzOWeUYN8XEQAtGlZ.jpg",
+          "first_air_date": "2023-09-13",
+          "name": "Phoenix: Eden17",
+          "vote_average": 6.8,
+          "vote_count": 8
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/fUGex5PpjPFI6fRbo4g6AUSANS6.jpg",
+          "genre_ids": [
+              18
+          ],
+          "id": 71569,
+          "origin_country": [
+              "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "思美人",
+          "overview": "There are some relationships that are doomed from the start. During the Warring States period, Qu Yuan is born into a prominent family and grows up to be a prodigy scholar. But Qu Yuan bucks convention when he falls in love with Mo Chou Nu, a slave. Society forbids such class-breaking relationships, so the lovers decide to elope so that they can be together. Despite their efforts to lead a quiet life, Qu Yuan and Chou Nu become entangled in the political struggles of the power elites within the palace. Can their relationship survive the many obstacles?",
+          "popularity": 10.055,
+          "poster_path": "/363l3wMPOZ9KzSZDGs8Hqb3EwR5.jpg",
+          "first_air_date": "2017-04-28",
+          "name": "Song of Phoenix",
+          "vote_average": 6.2,
+          "vote_count": 4
+      },
+      {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+              10767
+          ],
+          "id": 96498,
+          "origin_country": [
+              "DE"
+          ],
+          "original_language": "de",
+          "original_name": "Phoenix Runde",
+          "overview": "",
+          "popularity": 23.634,
+          "poster_path": null,
+          "first_air_date": "1997-01-06",
+          "name": "Phoenix Runde",
+          "vote_average": 0.0,
+          "vote_count": 0
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/hEjnWKZUVFaacbYoRMTqpBeTcqM.jpg",
+          "genre_ids": [
+              10759,
+              18,
+              10765
+          ],
+          "id": 75746,
+          "origin_country": [
+              "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "天泪传奇之凤凰无双",
+          "overview": "The story begins in the Northern Qi Kingdom. The prime minister Gu Qing Hong schemes to murder his wife Miao Qian Qian, the daughter of an aristocratic family, together with her whole family. However, the Emperor of the Southern Liang Kingdom’s younger brother Xiao Feng Qing, who’s actually a half-alien, rescues Qian Qian. Qian Qian from then on lives under the name Nie Wu Shuang and enters the palace of the LiangKingdom. A love triangle between Wu Shuang and the Xiao brothers ensues. But behind Wu Shuang’s necklace lies a huge secret: twenty years ago, a fairy came down to earth after war on the Phoenix Star broke out and she was pursued. There she saw a little girl, Qian Qian, who was about to drown. She then gave her the “Heavenly Tear”, a stone with a huge power: whoever owns it will be able to unify the country. A demon who’s half-human half-machine and hides in the Qi Kingdom is after the stone.",
+          "popularity": 9.57,
+          "poster_path": "/sG0Z059BWEkGfisrw5T49gkHNTE.jpg",
+          "first_air_date": "2017-10-04",
+          "name": "Legend of Heavenly Tear: Phoenix Warriors",
+          "vote_average": 6.0,
+          "vote_count": 2
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/xN0yuZ9KCKld0Rux5BUaWcJZMpt.jpg",
+          "genre_ids": [
+              18,
+              10765
+          ],
+          "id": 107231,
+          "origin_country": [
+              "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "且听凤鸣",
+          "overview": "Once hailed as a genius girl, Feng Wu is discarded after falling victim to a plot against her. A modern-day girl enters the world of cultivation in the body of Feng Wu and falls in love with Jun Linyuan.",
+          "popularity": 13.172,
+          "poster_path": "/tvdZ4ylkCgDiQi8HzZXSibo7oB9.jpg",
+          "first_air_date": "2020-08-10",
+          "name": "Dance of the Phoenix",
+          "vote_average": 6.4,
+          "vote_count": 5
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/bAlRfrPk4RLq3pa9ovScS5nq2fk.jpg",
+          "genre_ids": [
+              16,
+              10765
+          ],
+          "id": 23674,
+          "origin_country": [
+              "JP"
+          ],
+          "original_language": "ja",
+          "original_name": "火の鳥",
+          "overview": "Based off the manga by the same name, Phoenix sees civilizations rise and fall through time as the search for meaning in life continues.",
+          "popularity": 16.612,
+          "poster_path": "/3Yl81wFcrgrRvYz0UAR41AaSXnU.jpg",
+          "first_air_date": "2004-04-04",
+          "name": "Phoenix",
+          "vote_average": 6.667,
+          "vote_count": 3
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/cXHPmjJ3D847lyhmSeY4eIUe55j.jpg",
+          "genre_ids": [
+              18
+          ],
+          "id": 89847,
+          "origin_country": [
+              "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "凤弈",
+          "overview": "Set in the fictional Eastern Liang dynasty, circus performer Ye Ningzhi’s troupe enters the palace and stages a performance to celebrate the empress dowager’s birthday. The ambitious grand princess (emperor’s sister) decides to cause mischief by framing her for treason, though the heroine is saved by strategist Wei Guang, and falls in love at first sight with him.",
+          "popularity": 9.923,
+          "poster_path": "/2JfbX1lMsMIXpI3zEjmUB4vj3iT.jpg",
+          "first_air_date": "2019-05-28",
+          "name": "Legend of the Phoenix",
+          "vote_average": 5.25,
+          "vote_count": 4
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/horANrqygowNNDnxloVFMxh95lh.jpg",
+          "genre_ids": [
+              18
+          ],
+          "id": 4694,
+          "origin_country": [
+              "KR"
+          ],
+          "original_language": "ko",
+          "original_name": "불새",
+          "overview": "Love is timing. Love needs just the \"right time\". It's not because you  loved him or her less that you parted. Heaven brings you your soul mate  when the time is just \"right\". \"Phoenix\" shows you this heaven's work.\r\nThere is a young couple who desperately fell in love but who couldn't be  together because the time wasn't just right for them. Years pass by and  these two meet again. And the trick of fortune switches their situation  and environments. A daughter of a millionaire has now become an helper  suffering from the grim realities of life. On the other hand, an orphan  self-supporting student is now an accomplished wealthy businessman. Now  these two people are looking at the world with different eyes. The  childlike girl has finally learned the harshness of the world and the  guy with once twisted mind has learned to enjoy the latitude of mind. In  the end, these two start to understand each other, thus arriving at the  \"right time\".",
+          "popularity": 7.27,
+          "poster_path": "/3Spg0DsALE0UCnHsCM3R0p6Onuc.jpg",
+          "first_air_date": "2004-04-05",
+          "name": "Phoenix",
+          "vote_average": 7.2,
+          "vote_count": 29
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/7TcLglLyIerAhoAQ2LTuQ1Z7n6p.jpg",
+          "genre_ids": [
+              18
+          ],
+          "id": 64695,
+          "origin_country": [
+              "DE"
+          ],
+          "original_language": "de",
+          "original_name": "Phoenixsee",
+          "overview": "At Phoenixsee, an artificial lake in the southern part of Dortmunds, two worlds collide between modern apartments for the rich while the old-established working class is living just a few blocks away. The newly-rich Hansmann family just moved here from Düsseldorf while the Neuraths have been living in Dortmund for their whole life. As their children are attending the same school and play in the same soccer team, the families and their problems become entangled.",
+          "popularity": 2.894,
+          "poster_path": "/2mwEvLPWg4uyxKw4wawcLNolMxP.jpg",
+          "first_air_date": "2016-11-28",
+          "name": "Phoenixsee",
+          "vote_average": 0.0,
+          "vote_count": 0
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/y0Xc9n7aPK46puC6iOpEUt2YDeM.jpg",
+          "genre_ids": [
+              18,
+              10766
+          ],
+          "id": 111603,
+          "origin_country": [
+              "KR"
+          ],
+          "original_language": "ko",
+          "original_name": "불새 2020",
+          "overview": "Ji Eun is the daughter of a wealthy chaebol family. She is bright, humorous, beautiful, and smart. Ji Eun meets Se Hoon, who runs a small furniture workshop. Unlike Ji Eun, Se Hoon comes from a poor family background. He was once the top student at a prestigious university, but he had to drop out due to his sick mother. Nevertheless, Ji Eun falls deeply in love with Se Hoon. She confesses her feelings to him. Se Hoon is also in love with Ji Eun, but he turns her down due to the extreme differences in their backgrounds. Eventually, Se Hoon is unable to bury his feelings any longer and they decide to marry.",
+          "popularity": 7.592,
+          "poster_path": "/kXmNzvcpLIsvoGHOPpegGtOc41y.jpg",
+          "first_air_date": "2020-10-26",
+          "name": "Phoenix",
+          "vote_average": 5.3,
+          "vote_count": 3
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/5oJv2TVT37qCPBG4IIxJZyVxewT.jpg",
+          "genre_ids": [
+              18
+          ],
+          "id": 15920,
+          "origin_country": [
+              "HK"
+          ],
+          "original_language": "cn",
+          "original_name": "蘭花刼",
+          "overview": "When their parents died at birth, three sisters were sent to orphanages and were later adopted into three different homes with different backgrounds. When one of the sisters gets sent to prison for killing her stepmother, but one of the other two sisters tell officials she committed the crime to save her sister from going to jail. The youngest sister forges evidence to save them both, but gets caught and gets sent to jail, too. This television series uses women in jail as its storyline, describing the dark side of women in prison.",
+          "popularity": 5.148,
+          "poster_path": "/adLRg5tKBzra3F07DUGJN7y5ZdG.jpg",
+          "first_air_date": "2007-07-09",
+          "name": "Phoenix Rising",
+          "vote_average": 0.0,
+          "vote_count": 0
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/lwF51AHoe1jtXmbb6SBEuku2HLH.jpg",
+          "genre_ids": [],
+          "id": 109037,
+          "origin_country": [
+              "HK"
+          ],
+          "original_language": "cn",
+          "original_name": "南海十三郎",
+          "overview": "When Kong finally returned to his home town, he was unable to continue his medical studies so he took up teaching. In his free time he went to the Cantonese Operas especially those performed by one of the leading opera singers of the time, Sit Gok-Seen. He started writing songs and plays and proposed them to Sit. His talent was soon being recognized and Sit invited him to join his opera company as playwright.",
+          "popularity": 4.304,
+          "poster_path": "/fPSc65EtFvXO3DNYTeUxBv0ow1P.jpg",
+          "first_air_date": "1999-11-22",
+          "name": "The Mad Phoenix",
+          "vote_average": 0.0,
+          "vote_count": 0
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/YIjdKXHCGEOrtMEefQ8Szet3oI.jpg",
+          "genre_ids": [],
+          "id": 105428,
+          "origin_country": [
+              "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "假凤虚凰",
+          "overview": "A story revolving around a complicated romance between the Crown Prince of Da Xuan, the Princess of Beichu, the son of the Prime Minister and a political conspiracy brewing in the palace.  Ye Qing Ge (Zhao Yu Xi) and Su Yu (Liu Ji Kai) become a married couple due to an alliance between their respective kingdoms. Upon discovering each other's secret, they begin to plot against each other oblivious to their real feelings. On one side, Ye Qing Ge's childhood friend Xie Qing Yun (Dong Zi Ming) appears and disrupts the already strained relationship between the two.",
+          "popularity": 0.859,
+          "poster_path": "/sftHkIM8ltRpcqXQYdaLVQT8ABX.jpg",
+          "first_air_date": "2017-05-05",
+          "name": "Fake Phoenixes",
+          "vote_average": 0.0,
+          "vote_count": 0
+      },
+      {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 129038,
+          "origin_country": [],
+          "original_language": "en",
+          "original_name": "Phoenix Drop High",
+          "overview": "It's a new frontier. High School awaits.",
+          "popularity": 0.6,
+          "poster_path": null,
+          "first_air_date": "2016-03-17",
+          "name": "Phoenix Drop High",
+          "vote_average": 0.0,
+          "vote_count": 0
+      },
+      {
+          "adult": false,
+          "backdrop_path": "/89g0I83VAeboqif8TN9etrC8wkz.jpg",
+          "genre_ids": [
+              10759,
+              10768
+          ],
+          "id": 109018,
+          "origin_country": [
+              "HK"
+          ],
+          "original_language": "cn",
+          "original_name": "大鬧粉粧樓",
+          "overview": "Grand Preceptor Shen Qian colludes with the nomadic Nu Muqi tribe to divide and conquer China. When the tribe attacks Yunzhong City, Emperor Xian sends Luo Zeng to resist them. However, Shen tricks Luo and he gets captured. The Emperor mistakenly believes Luo betrayed him, executes his whole family, and Luo's son Luo Kan, along with his brother, escapes and seeks help to save their father. Three women who once rejected Luo Kan's advances also join forces to assist him. However, they are captured, and Luo Kan and Luo Cang lead the people of Yunzhong to fight the invaders. They succeed in defeating Shen Qian, and Luo Zeng demands that he testify to Shen's treachery. Shen's son plots to overthrow the Emperor and imprisons him in a tower. He and his allies, with the help of Luo Kan and Luo Cang, rescue the Emperor and confront Shen.",
+          "popularity": 1.587,
+          "poster_path": "/lLhsNpE6uvulD8tEj4sXDeqPSox.jpg",
+          "first_air_date": "1987-12-21",
+          "name": "Adventure of Phoenix'S House",
+          "vote_average": 0.0,
+          "vote_count": 0
+      },
+      {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 76026,
+          "origin_country": [
+              "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "龙凤奇缘",
+          "overview": "A Chinese mainland chinese series directed by Liu Haibo in 2002. The play starring Zhang Tie Lin , Huang Shaoqi, Tian Hairong , Yue Yue Li, Wang Ya Nan, Li Tingyi starring, tells the story of a touching love story of Qianlong. Qianlong years, Jiaqing as a prince, both civil and military, he sought love, micro-clothing travel Jiangnan, both to understand the public, but also found the beauty of the stone both Jiangnan, the play created a touching love story.",
+          "popularity": 1.091,
+          "poster_path": "/3Tj0GU09i4r6UAtncDTZWH7a632.jpg",
+          "first_air_date": "2002-01-15",
+          "name": "Dragon and Phoenix Strange Destiny",
+          "vote_average": 0.0,
+          "vote_count": 0
+      }
+  ],
+  "total_pages": 3,
+  "total_results": 47
+}

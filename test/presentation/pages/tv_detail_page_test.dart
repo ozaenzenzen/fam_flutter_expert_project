@@ -49,7 +49,7 @@ void main() {
         ));
   }
 
-  final TvDetailResponseModel tvDetail = tTvDetail;
+  final TvDetailResponseModel tvDetail = testTvDetail;
   final Poster2Entity poster2entity = Poster2Entity(id: tvDetail.id!, dataType: DataType.TvSeries);
   final List<Poster3Entity> tvRecommendations = <Poster3Entity>[];
   final bool isAddedToWatchList = false;

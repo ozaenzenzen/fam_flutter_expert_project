@@ -24,14 +24,11 @@ void main() {
   final source = testMovieDetail;
   final data = ItemDataEntity.fromMovie(source);
   final table = testMovieTable;
-  final id = data.id;
-  final dataType = data.dataType;
 
   group('save watchlist', () {
     test('should return success message when saving successful', () async {
       // arrange
-      when(localDataSource.insertWatchlist(table))
-          .thenAnswer((_) async => 'Added to Watchlist');
+      when(localDataSource.insertWatchlist(table)).thenAnswer((_) async => 'Added to Watchlist');
       // act
       final result = await repository.saveWatchlist(data);
       // assert
@@ -40,8 +37,7 @@ void main() {
 
     test('should return DatabaseFailure when saving unsuccessful', () async {
       // arrange
-      when(localDataSource.insertWatchlist(testMovieTable))
-          .thenThrow(DatabaseException('Failed to add watchlist'));
+      when(localDataSource.insertWatchlist(testMovieTable)).thenThrow(DatabaseException('Failed to add watchlist'));
       // act
       final result = await repository.saveWatchlist(data);
       // assert
@@ -52,20 +48,18 @@ void main() {
   group('remove watchlist', () {
     test('should return success message when remove successful', () async {
       // arrange
-      when(localDataSource.removeWatchlist(id, dataType.index))
-          .thenAnswer((_) async => 'Removed from watchlist');
+      when(localDataSource.removeWatchlist(data.id, data.dataType.index)).thenAnswer((_) async => 'Removed from watchlist');
       // act
-      final result = await repository.removeWatchlist(id, dataType.index);
+      final result = await repository.removeWatchlist(data.id, data.dataType.index);
       // assert
       expect(result, Right('Removed from watchlist'));
     });
 
     test('should return DatabaseFailure when remove unsuccessful', () async {
       // arrange
-      when(localDataSource.removeWatchlist(id, dataType.index))
-          .thenThrow(DatabaseException('Failed to remove watchlist'));
+      when(localDataSource.removeWatchlist(data.id, data.dataType.index)).thenThrow(DatabaseException('Failed to remove watchlist'));
       // act
-      final result = await repository.removeWatchlist(id, dataType.index);
+      final result = await repository.removeWatchlist(data.id, data.dataType.index);
       // assert
       expect(result, Left(DatabaseFailure('Failed to remove watchlist')));
     });
@@ -74,10 +68,9 @@ void main() {
   group('get watchlist status', () {
     test('should return watch status whether data is found', () async {
       // arrange
-      when(localDataSource.getMovieById(id, dataType.index))
-          .thenAnswer((_) async => null);
+      when(localDataSource.getMovieById(data.id, data.dataType.index)).thenAnswer((_) async => null);
       // act
-      final result = await repository.isAddedToWatchlist(id, dataType.index);
+      final result = await repository.isAddedToWatchlist(data.id, data.dataType.index);
       // assert
       expect(result, false);
     });
@@ -87,8 +80,7 @@ void main() {
     test('should return list of Movies', () async {
       // arrange
       final expected = [Poster5Entity.fromMovie(testWatchlistMovie)];
-      when(localDataSource.getWatchlistMovies())
-          .thenAnswer((_) async => [testMovieTable]);
+      when(localDataSource.getWatchlistMovies()).thenAnswer((_) async => [testMovieTable]);
       // act
       final result = await repository.getWatchlist();
       // assert

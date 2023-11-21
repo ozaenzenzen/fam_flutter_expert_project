@@ -3,40 +3,40 @@ import 'package:ditonton/domain/entities/movie_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tMovieModel = MovieModel(
+  final testMovieModelData = MovieModel(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: [1, 2, 3, 4, 5],
     id: 1,
     originalTitle: 'originalTitle',
     overview: 'overview',
     popularity: 1,
     posterPath: 'posterPath',
     releaseDate: 'releaseDate',
-    title: 'title',
+    title: 'spiderman',
     video: false,
     voteAverage: 1,
-    voteCount: 1,
+    voteCount: 25,
   );
 
-  final tMovie = MovieEntity(
+  final testMovieData = MovieEntity(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: [1, 2, 3, 4, 5],
     id: 1,
     originalTitle: 'originalTitle',
     overview: 'overview',
     popularity: 1,
     posterPath: 'posterPath',
     releaseDate: 'releaseDate',
-    title: 'title',
+    title: 'spiderman',
     video: false,
     voteAverage: 1,
-    voteCount: 1,
+    voteCount: 25,
   );
 
-  test('should be a subclass of Movie entity', () async {
-    final result = tMovieModel.toEntity();
-    expect(result, tMovie);
+  test('mapping to subclass of Movie entity', () async {
+    final result = testMovieModelData.toEntity();
+    expect(result, testMovieData);
   });
 }
