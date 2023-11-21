@@ -1,5 +1,6 @@
 import 'package:ditonton/presentation/bloc/top_rated_movie/top_rated_movie_bloc.dart';
 import 'package:ditonton/presentation/widgets/app_error_widget.dart';
+import 'package:ditonton/presentation/widgets/app_loading_widget.dart';
 import 'package:ditonton/presentation/widgets/poster_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,9 +28,7 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
         child: BlocBuilder<TopRatedMovieBloc, TopRatedMovieState>(
           builder: (context, state) {
             if (state is TopRatedMovieLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const AppLoadingWidget();
             } else if (state is TopRatedMovieSuccess) {
               return ListView.builder(
                 itemBuilder: (context, index) {

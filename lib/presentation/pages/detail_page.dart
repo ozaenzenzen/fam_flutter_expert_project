@@ -4,6 +4,7 @@ import 'package:ditonton/domain/entities/poster_2_entity.dart';
 import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import 'package:ditonton/presentation/widgets/app_detail_content.dart';
+import 'package:ditonton/presentation/widgets/app_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -50,9 +51,7 @@ class _DetailPageState extends State<DetailPage> {
       },
       builder: (context, state) {
         if (state is MovieDetailLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const AppLoadingWidget();
         } else if (state is MovieDetailSuccess) {
           final movie = state.itemDataEntity;
           return SafeArea(
@@ -74,9 +73,7 @@ class _DetailPageState extends State<DetailPage> {
       },
       builder: (context, state) {
         if (state is TvDetailLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const AppLoadingWidget();
         } else if (state is TvDetailSuccess) {
           final tv = state.itemDataEntity;
           return SafeArea(

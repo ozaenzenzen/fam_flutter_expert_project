@@ -3,6 +3,7 @@ import 'package:ditonton/common/enum/enum_home_state.dart';
 import 'package:ditonton/presentation/bloc/movie_search/movie_search_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv_searies_search/tv_series_search_bloc.dart';
 import 'package:ditonton/presentation/widgets/app_error_widget.dart';
+import 'package:ditonton/presentation/widgets/app_loading_widget.dart';
 import 'package:ditonton/presentation/widgets/poster_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,9 +58,7 @@ class SearchPage extends StatelessWidget {
     return BlocBuilder<MovieSearchBloc, MovieSearchState>(
       builder: (context, state) {
         if (state is MovieSearchLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const AppLoadingWidget();
         } else if (state is MovieSearchHasData) {
           final result = state.data;
           return Expanded(
@@ -98,9 +97,7 @@ class SearchPage extends StatelessWidget {
     return BlocBuilder<TvSeriesSearchBloc, TvSeriesSearchState>(
       builder: (context, state) {
         if (state is TvSeriesSearchLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const AppLoadingWidget();
         } else if (state is TvSeriesSearchHasData) {
           final result = state.data;
           return Expanded(

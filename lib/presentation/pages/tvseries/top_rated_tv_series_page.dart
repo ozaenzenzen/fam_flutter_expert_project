@@ -1,5 +1,6 @@
 import 'package:ditonton/presentation/bloc/top_rated_tv_series/top_rated_tv_series_bloc.dart';
 import 'package:ditonton/presentation/widgets/app_error_widget.dart';
+import 'package:ditonton/presentation/widgets/app_loading_widget.dart';
 import 'package:ditonton/presentation/widgets/poster_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,9 +24,7 @@ class TopRatedTvSeriesPage extends StatelessWidget {
         child: BlocBuilder<TopRatedTvSeriesBloc, TopRatedTvSeriesState>(
           builder: (context, state) {
             if (state is TopRatedTvSeriesLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const AppLoadingWidget();
             } else if (state is TopRatedTvSeriesSuccess) {
               return ListView.builder(
                 itemBuilder: (context, index) {
