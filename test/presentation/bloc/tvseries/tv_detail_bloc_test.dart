@@ -1,6 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
+import 'package:ditonton/data/models/tv_detail_response_model.dart';
+import 'package:ditonton/data/models/tv_series_response_model.dart';
 import 'package:ditonton/domain/entities/item_data_entity.dart';
 import 'package:ditonton/domain/entities/poster_3_entity.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_detail.dart';
@@ -19,11 +21,11 @@ void main() {
   late GetTvSeriesRecommendations getTvSeriesRecommendations;
   late TvDetailBloc bloc;
 
-  final detailData = testTvDetail;
-  final testId = detailData.id;
-  final detailExpected = ItemDataEntity.fromTvSeries(detailData);
-  final recommendationData = testTvRecommendationList;
-  final recommendationExpected = recommendationData.results!.map((e) => Poster3Entity.fromTvSeries(e)).toList();
+  final TvDetailResponseModel detailData = testTvDetail;
+  final int testId = detailData.id!;
+  final ItemDataEntity itemDataEntity = ItemDataEntity.fromTvSeries(detailData);
+  final TvSeriesResponseModel recommendationData = testTvRecommendationList;
+  final List<Poster3Entity> recommendationExpected = recommendationData.results!.map((e) => Poster3Entity.fromTvSeries(e)).toList();
 
   setUp(() {
     getTvSeriesDetail = MockGetTvSeriesDetail();
@@ -34,98 +36,107 @@ void main() {
     );
   });
 
-  test('inital state should be empty', () {
+  test('inital state should be [TvDetailInitial]', () {
     expect(bloc.state, TvDetailInitial());
   });
 
-  blocTest('Should emit [Loading, Success] when data is gotten succesful',
-      build: () {
-        when(getTvSeriesDetail.execute(testId!)).thenAnswer(
-          (realInvocation) async => Right(detailData),
-        );
-        when(getTvSeriesRecommendations.execute(testId)).thenAnswer(
-          (_) async => Right(recommendationData),
-        );
+  blocTest(
+    'emit [Loading, Success] when data is gotten succesful',
+    build: () {
+      when(getTvSeriesDetail.execute(testId)).thenAnswer(
+        (realInvocation) async => Right(detailData),
+      );
+      when(getTvSeriesRecommendations.execute(testId)).thenAnswer(
+        (_) async => Right(recommendationData),
+      );
 
-        return bloc;
-      },
-      act: (TvDetailBloc bloc) => bloc.add(OnTvDetailDataRequested(testId!)),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [
-            TvDetailLoading(),
-            TvDetailSuccess(
-              detailExpected,
-              recommendations: recommendationExpected,
-            ),
-          ],
-      verify: (TvDetailBloc bloc) {
-        verify(
-          getTvSeriesDetail.execute(testId!),
-        );
-        verify(
-          getTvSeriesRecommendations.execute(testId),
-        );
-      });
+      return bloc;
+    },
+    act: (TvDetailBloc bloc) => bloc.add(OnTvDetailDataRequested(testId)),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      TvDetailLoading(),
+      TvDetailSuccess(
+        itemDataEntity,
+        recommendations: recommendationExpected,
+      ),
+    ],
+    verify: (TvDetailBloc bloc) {
+      verify(
+        getTvSeriesDetail.execute(testId),
+      );
+      verify(
+        getTvSeriesRecommendations.execute(testId),
+      );
+    },
+  );
 
-  blocTest('Should emit [Loading, Success, Error] when data is gotten succesful',
-      build: () {
-        when(getTvSeriesDetail.execute(testId!)).thenAnswer(
-          (realInvocation) async => Right(detailData),
-        );
-        when(getTvSeriesRecommendations.execute(testId)).thenAnswer(
-          (_) async => const Left(ServerFailure("Server Failure")),
-        );
+  blocTest(
+    'emit [Loading, Success, Error] when data is gotten succesful',
+    build: () {
+      when(getTvSeriesDetail.execute(testId)).thenAnswer(
+        (realInvocation) async => Right(detailData),
+      );
+      when(getTvSeriesRecommendations.execute(testId)).thenAnswer(
+        (_) async => const Left(ServerFailure("Server Failure")),
+      );
 
-        return bloc;
-      },
-      act: (TvDetailBloc bloc) => bloc.add(
-            OnTvDetailDataRequested(testId!),
-          ),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [
-            TvDetailLoading(),
-            TvDetailError('Server Failure', retry: () {}),
-            TvDetailSuccess(detailExpected),
-          ],
-      verify: (TvDetailBloc bloc) {
-        verify(
-          getTvSeriesDetail.execute(testId!),
-        );
-        verify(getTvSeriesRecommendations.execute(testId));
-      });
+      return bloc;
+    },
+    act: (TvDetailBloc bloc) => bloc.add(
+      OnTvDetailDataRequested(testId),
+    ),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      TvDetailLoading(),
+      TvDetailError(
+        'Server Failure',
+        retry: () {},
+      ),
+      TvDetailSuccess(itemDataEntity),
+    ],
+    verify: (TvDetailBloc bloc) {
+      verify(
+        getTvSeriesDetail.execute(testId),
+      );
+      verify(getTvSeriesRecommendations.execute(testId));
+    },
+  );
 
-  blocTest('Should emit [Loading, Error] when data is gotten succesful',
-      build: () {
-        when(getTvSeriesDetail.execute(testId!)).thenAnswer(
-          (realInvocation) async => const Left(
-            ServerFailure("Server Failure"),
-          ),
-        );
-        when(getTvSeriesRecommendations.execute(testId)).thenAnswer(
-          (_) async => const Left(
-            ServerFailure("Server Failure"),
-          ),
-        );
+  blocTest(
+    'emit [Loading, Error] when data is gotten succesful',
+    build: () {
+      when(getTvSeriesDetail.execute(testId)).thenAnswer(
+        (realInvocation) async => const Left(
+          ServerFailure("Server Failure"),
+        ),
+      );
+      when(getTvSeriesRecommendations.execute(testId)).thenAnswer(
+        (_) async => const Left(
+          ServerFailure("Server Failure"),
+        ),
+      );
 
-        return bloc;
-      },
-      act: (TvDetailBloc bloc) => bloc.add(
-            OnTvDetailDataRequested(testId!),
-          ),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [
-            TvDetailLoading(),
-            TvDetailError(
-              'Server Failure',
-              retry: () {},
-            ),
-          ],
-      verify: (TvDetailBloc bloc) {
-        verify(
-          getTvSeriesDetail.execute(testId!),
-        );
-        verify(
-          getTvSeriesRecommendations.execute(testId),
-        );
-      });
+      return bloc;
+    },
+    act: (TvDetailBloc bloc) => bloc.add(
+      OnTvDetailDataRequested(testId),
+    ),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      TvDetailLoading(),
+      TvDetailError(
+        'Server Failure',
+        retry: () {},
+      ),
+    ],
+    verify: (TvDetailBloc bloc) {
+      verify(
+        getTvSeriesDetail.execute(testId),
+      );
+      verify(
+        getTvSeriesRecommendations.execute(testId),
+      );
+    },
+  );
 }

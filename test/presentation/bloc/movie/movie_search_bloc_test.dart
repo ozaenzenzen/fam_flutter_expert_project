@@ -21,71 +21,82 @@ void main() {
     movieSearchBloc = MovieSearchBloc(searchMovies);
   });
 
-  final tMovieModel = testMovie;
-  final tMovieList = <MovieEntity>[tMovieModel];
-  const tQuery = 'spiderman';
+  final MovieEntity tMovieModel = testMovie;
+  final List<MovieEntity> tMovieList = <MovieEntity>[tMovieModel];
+  const String tQuery = 'spiderman';
 
-  test('inital state should be initial', () {
-    expect(movieSearchBloc.state, MovieSearchInitial());
-  });
-
-  blocTest('Should emit [Loading, HasData] when data is gotten succesful',
-      build: () {
-        when(searchMovies.execute(tQuery)).thenAnswer(
-          (realInvocation) async => Right(tMovieList),
-        );
-
-        return movieSearchBloc;
-      },
-      act: (MovieSearchBloc bloc) => bloc.add(const OnQueryMovieChanged(tQuery)),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [MovieSearchLoading(), MovieSearchHasData(tMovieList)],
-      verify: (MovieSearchBloc bloc) {
-        verify(searchMovies.execute(tQuery));
-      });
+  test(
+    'inital state should be [MovieSearchInitial]',
+    () {
+      expect(movieSearchBloc.state, MovieSearchInitial());
+    },
+  );
 
   blocTest(
-    'Should emit [Initial] when query is empty',
+    'emit [Loading, HasData] when data is gotten succesful',
+    build: () {
+      when(searchMovies.execute(tQuery)).thenAnswer(
+        (realInvocation) async => Right(tMovieList),
+      );
+
+      return movieSearchBloc;
+    },
+    act: (MovieSearchBloc bloc) => bloc.add(const OnQueryMovieChanged(tQuery)),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      MovieSearchLoading(),
+      MovieSearchHasData(tMovieList),
+    ],
+    verify: (MovieSearchBloc bloc) {
+      verify(searchMovies.execute(tQuery));
+    },
+  );
+
+  blocTest(
+    'emit [Initial] when query is empty',
     build: () => movieSearchBloc,
     act: (MovieSearchBloc bloc) => bloc.add(const OnQueryMovieChanged('')),
     wait: const Duration(milliseconds: 500),
     expect: () => [MovieSearchInitial()],
   );
 
-  blocTest('Should emit [Loading, Empty] when data is gotten succesful',
-      build: () {
-        when(searchMovies.execute(tQuery)).thenAnswer((realInvocation) async => const Right([]));
+  blocTest(
+    'emit [Loading, Empty] when data is gotten succesful',
+    build: () {
+      when(searchMovies.execute(tQuery)).thenAnswer((realInvocation) async => const Right([]));
+      return movieSearchBloc;
+    },
+    act: (MovieSearchBloc bloc) => bloc.add(const OnQueryMovieChanged(tQuery)),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      MovieSearchLoading(),
+      const MovieSearchEmpty('No movie found $tQuery'),
+    ],
+    verify: (MovieSearchBloc bloc) {
+      verify(searchMovies.execute(tQuery));
+    },
+  );
 
-        return movieSearchBloc;
-      },
-      act: (MovieSearchBloc bloc) => bloc.add(const OnQueryMovieChanged(tQuery)),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [
-            MovieSearchLoading(),
-            const MovieSearchEmpty('No movie found $tQuery'),
-          ],
-      verify: (MovieSearchBloc bloc) {
-        verify(searchMovies.execute(tQuery));
-      });
+  blocTest(
+    'emit [Loading, Error] when data is unsuccesful',
+    build: () {
+      when(searchMovies.execute(tQuery)).thenAnswer(
+        (realInvocation) async => const Left(ServerFailure("Server Failure")),
+      );
 
-  blocTest('Should emit [Loading, Error] when data is unsuccesful',
-      build: () {
-        when(searchMovies.execute(tQuery)).thenAnswer(
-          (realInvocation) async => const Left(ServerFailure("Server Failure")),
-        );
-
-        return movieSearchBloc;
-      },
-      act: (MovieSearchBloc bloc) => bloc.add(const OnQueryMovieChanged(tQuery)),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [
-            MovieSearchLoading(),
-            MovieSearchError(
-              'Server Failure',
-              retry: () {},
-            ),
-          ],
-      verify: (MovieSearchBloc bloc) {
-        verify(searchMovies.execute(tQuery));
-      });
+      return movieSearchBloc;
+    },
+    act: (MovieSearchBloc bloc) => bloc.add(const OnQueryMovieChanged(tQuery)),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      MovieSearchLoading(),
+      MovieSearchError(
+        'Server Failure',
+        retry: () {},
+      ),
+    ],
+    verify: (MovieSearchBloc bloc) {
+      verify(searchMovies.execute(tQuery));
+    },
+  );
 }

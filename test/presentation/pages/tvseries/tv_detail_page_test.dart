@@ -15,8 +15,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:provider/provider.dart';
 
-import '../../dummy_data/dummy_objects.dart';
-import '../../mock/mock_bloc.dart';
+import '../../../dummy_data/dummy_objects.dart';
+import '../../../mock/mock_bloc.dart';
 
 void main() {
   late TvDetailBloc bloc;
@@ -56,36 +56,50 @@ void main() {
   final String imageUrl = '$baseImageUrl${tvDetail.posterPath}';
   final ItemDataEntity itemDataEntity = ItemDataEntity.fromTvSeries(tvDetail);
 
-  testWidgets('Page should display center progress bar when loading',
-      (WidgetTester tester) async {
-    whenListen(bloc, Stream.fromIterable([TvDetailLoading()]),
-        initialState: TvDetailInitial());
+  testWidgets('Page display center progress bar when loading', (WidgetTester tester) async {
+    whenListen(
+      bloc,
+      Stream.fromIterable(
+        [
+          TvDetailLoading(),
+        ],
+      ),
+      initialState: TvDetailInitial(),
+    );
 
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(
-        makeTestableWidget(DetailPage(poster2Entity: poster2entity)));
+    await tester.pumpWidget(makeTestableWidget(DetailPage(poster2Entity: poster2entity)));
     await tester.pump(Duration.zero);
 
     expect(centerFinder, findsOneWidget);
     expect(progressBarFinder, findsOneWidget);
   });
-  testWidgets('Should has same data', (WidgetTester tester) async {
+  testWidgets('Page has same data', (WidgetTester tester) async {
     whenListen(
-        bloc,
-        Stream.fromIterable([
+      bloc,
+      Stream.fromIterable(
+        [
           TvDetailLoading(),
-          TvDetailSuccess(itemDataEntity, recommendations: tvRecommendations)
-        ]),
-        initialState: TvDetailInitial());
+          TvDetailSuccess(
+            itemDataEntity,
+            recommendations: tvRecommendations,
+          ),
+        ],
+      ),
+      initialState: TvDetailInitial(),
+    );
     whenListen(
-        watchlistStatusBloc,
-        Stream.fromIterable([
+      watchlistStatusBloc,
+      Stream.fromIterable(
+        [
           WatchlistStatusLoading(),
-          const WatchlistStatusLoaded(isAddedToWatchList)
-        ]),
-        initialState: WatchlistStatusInitial());
+          const WatchlistStatusLoaded(isAddedToWatchList),
+        ],
+      ),
+      initialState: WatchlistStatusInitial(),
+    );
 
     await tester.pumpWidget(
       makeTestableWidget(DetailPage(poster2Entity: poster2entity)),
@@ -94,26 +108,35 @@ void main() {
 
     expect(find.text(tvDetail.overview!), findsOneWidget);
     expect(find.text(tvDetail.name!), findsOneWidget);
-    final image = find.byType(CachedNetworkImage).evaluate().single.widget
-        as CachedNetworkImage;
+    final image = find.byType(CachedNetworkImage).evaluate().single.widget as CachedNetworkImage;
 
     expect(image.imageUrl, imageUrl);
   });
 
-  testWidgets('should show ditonton error widget when failure',
-      (WidgetTester tester) async {
+  testWidgets('Page show ditonton error widget when failure', (WidgetTester tester) async {
     whenListen(
-        bloc,
-        Stream.fromIterable(
-            [TvDetailLoading(), TvDetailError('Server Failure', retry: () {})]),
-        initialState: TvDetailInitial());
+      bloc,
+      Stream.fromIterable(
+        [
+          TvDetailLoading(),
+          TvDetailError(
+            'Server Failure',
+            retry: () {},
+          ),
+        ],
+      ),
+      initialState: TvDetailInitial(),
+    );
     whenListen(
-        watchlistStatusBloc,
-        Stream.fromIterable([
+      watchlistStatusBloc,
+      Stream.fromIterable(
+        [
           WatchlistStatusLoading(),
-          const WatchlistStatusLoaded(isAddedToWatchList)
-        ]),
-        initialState: WatchlistStatusInitial());
+          const WatchlistStatusLoaded(isAddedToWatchList),
+        ],
+      ),
+      initialState: WatchlistStatusInitial(),
+    );
 
     await tester.pumpWidget(
       makeTestableWidget(DetailPage(poster2Entity: poster2entity)),

@@ -9,8 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../dummy_data/dummy_objects.dart';
-import '../../mock/mock_bloc.dart';
+import '../../../dummy_data/dummy_objects.dart';
+import '../../../mock/mock_bloc.dart';
 
 void main() {
   late TopRatedTvSeriesBloc bloc;
@@ -33,10 +33,16 @@ void main() {
     );
   }
 
-  testWidgets('Page should display center progress bar when loading',
-      (WidgetTester tester) async {
-    whenListen(bloc, Stream.fromIterable([TopRatedTvSeriesLoading()]),
-        initialState: TopRatedTvSeriesInitial());
+  testWidgets('Page display center progress bar when loading', (WidgetTester tester) async {
+    whenListen(
+      bloc,
+      Stream.fromIterable(
+        [
+          TopRatedTvSeriesLoading(),
+        ],
+      ),
+      initialState: TopRatedTvSeriesInitial(),
+    );
 
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
@@ -48,8 +54,7 @@ void main() {
     expect(progressBarFinder, findsOneWidget);
   });
 
-  testWidgets('Page should display ListView when data is loaded',
-      (WidgetTester tester) async {
+  testWidgets('Page display ListView when data is loaded', (WidgetTester tester) async {
     final movie = Poster5Entity.fromTvSeries(testPopularTvSeries);
     final imageUrl = '$baseImageUrl${movie.poster}';
 
@@ -70,23 +75,27 @@ void main() {
 
     expect(find.text(movie.overview), findsOneWidget);
     expect(find.text(movie.title), findsOneWidget);
-    final image = find.byType(CachedNetworkImage).evaluate().single.widget
-        as CachedNetworkImage;
+    final image = find.byType(CachedNetworkImage).evaluate().single.widget as CachedNetworkImage;
 
     expect(image.imageUrl, imageUrl);
   });
 
-  testWidgets('Page should display text with message when Error',
-      (WidgetTester tester) async {
+  testWidgets('Page display text with message when Error', (WidgetTester tester) async {
     const String message = 'Server Failure';
 
     whenListen(
-        bloc,
-        Stream.fromIterable([
+      bloc,
+      Stream.fromIterable(
+        [
           TopRatedTvSeriesLoading(),
-          TopRatedTvSeriesError(message, retry: () {})
-        ]),
-        initialState: TopRatedTvSeriesInitial());
+          TopRatedTvSeriesError(
+            message,
+            retry: () {},
+          ),
+        ],
+      ),
+      initialState: TopRatedTvSeriesInitial(),
+    );
 
     await tester.pumpWidget(makeTestableWidget(const TopRatedTvSeriesPage()));
     await tester.pump(Duration.zero);

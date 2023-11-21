@@ -22,44 +22,52 @@ void main() {
   });
 
   final data = testOnTheAirTvSeriesList;
-  final expected =
-      data.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
+  final expected = data.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
 
-  test('inital state should be initial', () {
+  test('inital state should be [PopularTvSeriesInitial]', () {
     expect(bloc.state, PopularTvSeriesInitial());
   });
 
-  blocTest('Should emit [Loading, HasData] when data is gotten succesful',
-      build: () {
-        when(getPopularTvSeries.execute())
-            .thenAnswer((realInvocation) async => Right(data));
+  blocTest(
+    'emit [Loading, HasData] when data is gotten succesful',
+    build: () {
+      when(getPopularTvSeries.execute()).thenAnswer(
+        (realInvocation) async => Right(data),
+      );
+      return bloc;
+    },
+    act: (PopularTvSeriesBloc bloc) => bloc.add(OnPopulartTvSeriesDataRequested()),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      PopularTvSeriesLoading(),
+      PopularTvSeriesSuccess(expected),
+    ],
+    verify: (PopularTvSeriesBloc bloc) {
+      verify(getPopularTvSeries.execute());
+    },
+  );
 
-        return bloc;
-      },
-      act: (PopularTvSeriesBloc bloc) =>
-          bloc.add(OnPopulartTvSeriesDataRequested()),
-      wait: const Duration(milliseconds: 500),
-      expect: () =>
-          [PopularTvSeriesLoading(), PopularTvSeriesSuccess(expected)],
-      verify: (PopularTvSeriesBloc bloc) {
-        verify(getPopularTvSeries.execute());
-      });
-
-  blocTest('Should emit [Loading, Error] when data is gotten succesful',
-      build: () {
-        when(getPopularTvSeries.execute())
-            .thenAnswer((realInvocation) async => const Left(ServerFailure("Server Failure")));
-
-        return bloc;
-      },
-      act: (PopularTvSeriesBloc bloc) =>
-          bloc.add(OnPopulartTvSeriesDataRequested()),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [
-            PopularTvSeriesLoading(),
-            PopularTvSeriesError('Server Failure', retry: () {})
-          ],
-      verify: (PopularTvSeriesBloc bloc) {
-        verify(getPopularTvSeries.execute());
-      });
+  blocTest(
+    'emit [Loading, Error] when data is gotten succesful',
+    build: () {
+      when(getPopularTvSeries.execute()).thenAnswer(
+        (realInvocation) async => const Left(
+          ServerFailure("Server Failure"),
+        ),
+      );
+      return bloc;
+    },
+    act: (PopularTvSeriesBloc bloc) => bloc.add(OnPopulartTvSeriesDataRequested()),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      PopularTvSeriesLoading(),
+      PopularTvSeriesError(
+        'Server Failure',
+        retry: () {},
+      ),
+    ],
+    verify: (PopularTvSeriesBloc bloc) {
+      verify(getPopularTvSeries.execute());
+    },
+  );
 }

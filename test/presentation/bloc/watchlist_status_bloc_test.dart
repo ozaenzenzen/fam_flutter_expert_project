@@ -1,6 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/domain/entities/item_data_entity.dart';
+import 'package:ditonton/domain/entities/movie_detail_entity.dart';
+import 'package:ditonton/domain/entities/movie_entity.dart';
 import 'package:ditonton/domain/entities/poster_2_entity.dart';
 import 'package:ditonton/domain/entities/poster_5_entity.dart';
 import 'package:ditonton/domain/usecases/get_watchlist_movies.dart';
@@ -41,26 +43,29 @@ void main() {
     );
   });
 
-  final data = [testWatchlistMovie];
-  final expected = data.map((e) => Poster5Entity.fromMovie(e)).toList();
-  const movie = testMovieDetail;
-  final params = ItemDataEntity.fromMovie(movie);
-  final idAndDataType = Poster2Entity(id: params.id, dataType: params.dataType);
+  final List<MovieEntity> data = [testWatchlistMovie];
+  final List<Poster5Entity> expected = data.map((e) => Poster5Entity.fromMovie(e)).toList();
+  const MovieDetailEntity movie = testMovieDetail;
+  final ItemDataEntity itemDataEntity = ItemDataEntity.fromMovie(movie);
+  final Poster2Entity poster2entity = Poster2Entity(id: itemDataEntity.id, dataType: itemDataEntity.dataType);
 
-  test('inital state should be empty', () {
+  test('inital state should be [WatchlistStatusInitial]', () {
     expect(bloc.state, WatchlistStatusInitial());
   });
 
   blocTest(
-    'Should emit [Loading, HasData] when data added succesful',
+    'emit [Loading, HasData] when data added succesful',
     build: () {
-      when(saveWatchlist.execute(params)).thenAnswer((_) async => const Right('Success'));
-      when(getWatchListStatus.execute(params.id, params.dataType.index)).thenAnswer((_) async => true);
+      when(saveWatchlist.execute(itemDataEntity)).thenAnswer((_) async => const Right('Success'));
+      when(getWatchListStatus.execute(
+        itemDataEntity.id,
+        itemDataEntity.dataType.index,
+      )).thenAnswer((_) async => true);
       when(getWatchlist.execute()).thenAnswer((_) async => Right(expected));
 
       return bloc;
     },
-    act: (WatchlistStatusBloc bloc) => bloc.add(OnWatchlistAdded(params)),
+    act: (WatchlistStatusBloc bloc) => bloc.add(OnWatchlistAdded(itemDataEntity)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       WatchlistStatusLoading(),
@@ -68,24 +73,27 @@ void main() {
       const WatchlistStatusLoaded(true),
     ],
     verify: (WatchlistStatusBloc bloc) {
-      verify(saveWatchlist.execute(params));
+      verify(saveWatchlist.execute(itemDataEntity));
       verify(getWatchListStatus.execute(
-        params.id,
-        params.dataType.index,
+        itemDataEntity.id,
+        itemDataEntity.dataType.index,
       ));
     },
   );
 
   blocTest(
-    'Should emit [Loading, HasData] when data removed succesful',
+    'emit [Loading, HasData] when data removed succesful',
     build: () {
-      when(removeWatchlist.execute(idAndDataType)).thenAnswer((_) async => const Right('Removed'));
-      when(getWatchListStatus.execute(params.id, params.dataType.index)).thenAnswer((_) async => false);
+      when(removeWatchlist.execute(poster2entity)).thenAnswer((_) async => const Right('Removed'));
+      when(getWatchListStatus.execute(
+        itemDataEntity.id,
+        itemDataEntity.dataType.index,
+      )).thenAnswer((_) async => false);
       when(getWatchlist.execute()).thenAnswer((_) async => const Right([]));
 
       return bloc;
     },
-    act: (WatchlistStatusBloc bloc) => bloc.add(OnWatchlistRemoved(idAndDataType)),
+    act: (WatchlistStatusBloc bloc) => bloc.add(OnWatchlistRemoved(poster2entity)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       WatchlistStatusLoading(),
@@ -93,10 +101,10 @@ void main() {
       const WatchlistStatusLoaded(false),
     ],
     verify: (WatchlistStatusBloc bloc) {
-      verify(removeWatchlist.execute(idAndDataType));
+      verify(removeWatchlist.execute(poster2entity));
       verify(getWatchListStatus.execute(
-        params.id,
-        params.dataType.index,
+        itemDataEntity.id,
+        itemDataEntity.dataType.index,
       ));
       verify(getWatchlist.execute());
     },

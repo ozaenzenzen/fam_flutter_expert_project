@@ -24,7 +24,7 @@ void main() {
   final data = [testWatchlistMovie];
   final expected = data.map((e) => Poster5Entity.fromMovie(e)).toList();
 
-  test('inital state should be initial', () {
+  test('inital state should be initial [WatchlistInitial]', () {
     expect(bloc.state, WatchlistInitial());
   });
 

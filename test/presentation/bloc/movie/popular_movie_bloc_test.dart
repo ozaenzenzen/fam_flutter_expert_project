@@ -22,43 +22,57 @@ void main() {
     bloc = PopularMovieBloc(getPopularMovies);
   });
 
-  final tMovie = testMovie;
-  final tMovieList = <MovieEntity>[tMovie];
-  final expected =
-      tMovieList.map((e) => Poster5Entity.fromMovie(e)).toList();
+  final MovieEntity tMovie = testMovie;
+  final List<MovieEntity> tMovieList = <MovieEntity>[tMovie];
+  final List<Poster5Entity> expected = tMovieList.map((e) => Poster5Entity.fromMovie(e)).toList();
 
-  test('inital state should be initial', () {
-    expect(bloc.state, PopularMovieInitial());
-  });
+  test(
+    'inital state should be [PopularMovieInitial]',
+    () {
+      expect(bloc.state, PopularMovieInitial());
+    },
+  );
 
-  blocTest('Should emit [Loading, HasData] when data is gotten succesful',
-      build: () {
-        when(getPopularMovies.execute())
-            .thenAnswer((realInvocation) async => Right(tMovieList));
+  blocTest(
+    'emit [Loading, HasData] when data is gotten succesful',
+    build: () {
+      when(getPopularMovies.execute()).thenAnswer(
+        (realInvocation) async => Right(tMovieList),
+      );
+      return bloc;
+    },
+    act: (PopularMovieBloc bloc) => bloc.add(OnPopularMovieDataRequested()),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      PopularMovieLoading(),
+      PopularMovieSuccess(expected),
+    ],
+    verify: (PopularMovieBloc bloc) {
+      verify(getPopularMovies.execute());
+    },
+  );
 
-        return bloc;
-      },
-      act: (PopularMovieBloc bloc) => bloc.add(OnPopularMovieDataRequested()),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [PopularMovieLoading(), PopularMovieSuccess(expected)],
-      verify: (PopularMovieBloc bloc) {
-        verify(getPopularMovies.execute());
-      });
-
-  blocTest('Should emit [Loading, Error] when data is gotten succesful',
-      build: () {
-        when(getPopularMovies.execute())
-            .thenAnswer((realInvocation) async => const Left(ServerFailure("Server Failure")));
-
-        return bloc;
-      },
-      act: (PopularMovieBloc bloc) => bloc.add(OnPopularMovieDataRequested()),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [
-            PopularMovieLoading(),
-            PopularMovieError('Server Failure', retry: () {})
-          ],
-      verify: (PopularMovieBloc bloc) {
-        verify(getPopularMovies.execute());
-      });
+  blocTest(
+    'emit [Loading, Error] when data is gotten succesful',
+    build: () {
+      when(getPopularMovies.execute()).thenAnswer(
+        (realInvocation) async => const Left(
+          ServerFailure("Server Failure"),
+        ),
+      );
+      return bloc;
+    },
+    act: (PopularMovieBloc bloc) => bloc.add(OnPopularMovieDataRequested()),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      PopularMovieLoading(),
+      PopularMovieError(
+        'Server Failure',
+        retry: () {},
+      ),
+    ],
+    verify: (PopularMovieBloc bloc) {
+      verify(getPopularMovies.execute());
+    },
+  );
 }

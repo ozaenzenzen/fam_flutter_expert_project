@@ -24,38 +24,53 @@ void main() {
   final data = [testMovie];
   final expected = data.map((e) => Poster5Entity.fromMovie(e)).toList();
 
-  test('inital state should be initial', () {
-    expect(bloc.state, TopRatedMovieInitial());
-  });
+  test(
+    'inital state should be [TopRatedMovieInitial]',
+    () {
+      expect(bloc.state, TopRatedMovieInitial());
+    },
+  );
 
-  blocTest('Should emit [Loading, Succes] when data is gotten succesful',
-      build: () {
-        when(getTopRatedMovies.execute())
-            .thenAnswer((realInvocation) async => Right(data));
+  blocTest(
+    'emit [Loading, Succes] when data is gotten succesful',
+    build: () {
+      when(getTopRatedMovies.execute()).thenAnswer(
+        (realInvocation) async => Right(data),
+      );
+      return bloc;
+    },
+    act: (TopRatedMovieBloc bloc) => bloc.add(OnTopRatedMovieDataRequested()),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      TopRatedMovieLoading(),
+      TopRatedMovieSuccess(expected),
+    ],
+    verify: (TopRatedMovieBloc bloc) {
+      verify(getTopRatedMovies.execute());
+    },
+  );
 
-        return bloc;
-      },
-      act: (TopRatedMovieBloc bloc) => bloc.add(OnTopRatedMovieDataRequested()),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [TopRatedMovieLoading(), TopRatedMovieSuccess(expected)],
-      verify: (TopRatedMovieBloc bloc) {
-        verify(getTopRatedMovies.execute());
-      });
-
-  blocTest('Should emit [Loading, Error] when server failure',
-      build: () {
-        when(getTopRatedMovies.execute())
-            .thenAnswer((realInvocation) async => const Left(ServerFailure("Server Failure")));
-
-        return bloc;
-      },
-      act: (TopRatedMovieBloc bloc) => bloc.add(OnTopRatedMovieDataRequested()),
-      wait: const Duration(milliseconds: 500),
-      expect: () => [
-            TopRatedMovieLoading(),
-            TopRatedMovieError('Server Failure', retry: () {})
-          ],
-      verify: (TopRatedMovieBloc bloc) {
-        verify(getTopRatedMovies.execute());
-      });
+  blocTest(
+    'emit [Loading, Error] when server failure',
+    build: () {
+      when(getTopRatedMovies.execute()).thenAnswer(
+        (realInvocation) async => const Left(
+          ServerFailure("Server Failure"),
+        ),
+      );
+      return bloc;
+    },
+    act: (TopRatedMovieBloc bloc) => bloc.add(OnTopRatedMovieDataRequested()),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      TopRatedMovieLoading(),
+      TopRatedMovieError(
+        'Server Failure',
+        retry: () {},
+      ),
+    ],
+    verify: (TopRatedMovieBloc bloc) {
+      verify(getTopRatedMovies.execute());
+    },
+  );
 }

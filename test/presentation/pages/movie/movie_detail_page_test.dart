@@ -15,8 +15,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:provider/provider.dart';
 
-import '../../dummy_data/dummy_objects.dart';
-import '../../mock/mock_bloc.dart';
+import '../../../dummy_data/dummy_objects.dart';
+import '../../../mock/mock_bloc.dart';
 
 void main() {
   late MovieDetailBloc movieDetailBloc;
@@ -57,27 +57,30 @@ void main() {
   final String imageUrl = '$baseImageUrl${movieDetail.posterPath}';
   final ItemDataEntity itemDataEntity = ItemDataEntity.fromMovie(movieDetail);
 
-  testWidgets('Page should display center progress bar when loading', (WidgetTester tester) async {
-    whenListen(
-      movieDetailBloc,
-      Stream.fromIterable([
-        MovieDetailLoading(),
-      ]),
-      initialState: MovieDetailInitial(),
-    );
+  testWidgets(
+    'Page display center progress bar when loading',
+    (WidgetTester tester) async {
+      whenListen(
+        movieDetailBloc,
+        Stream.fromIterable([
+          MovieDetailLoading(),
+        ]),
+        initialState: MovieDetailInitial(),
+      );
 
-    final progressBarFinder = find.byType(CircularProgressIndicator);
-    final centerFinder = find.byType(Center);
+      final progressBarFinder = find.byType(CircularProgressIndicator);
+      final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(makeTestableWidget(DetailPage(poster2Entity: poster2entity)));
-    await tester.pump(Duration.zero);
+      await tester.pumpWidget(makeTestableWidget(DetailPage(poster2Entity: poster2entity)));
+      await tester.pump(Duration.zero);
 
-    expect(centerFinder, findsOneWidget);
-    expect(progressBarFinder, findsOneWidget);
-  });
+      expect(centerFinder, findsOneWidget);
+      expect(progressBarFinder, findsOneWidget);
+    },
+  );
 
   testWidgets(
-    'Should has same data',
+    'Page has same data',
     (WidgetTester tester) async {
       whenListen(
         movieDetailBloc,
@@ -119,7 +122,7 @@ void main() {
   );
 
   testWidgets(
-    'should show ditonton error widget when failure',
+    'show ditonton error widget when failure',
     (WidgetTester tester) async {
       whenListen(
         movieDetailBloc,
