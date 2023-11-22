@@ -1,17 +1,15 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
 import 'package:bloc/bloc.dart';
-import 'package:ditonton/domain/entities/poster_3_entity.dart';
+import 'package:ditonton/domain/entities/poster_5_entity.dart';
 import 'package:ditonton/domain/usecases/get_now_playing_movies.dart';
 import 'package:equatable/equatable.dart';
 
 part 'now_playing_movie_event.dart';
 part 'now_playing_movie_state.dart';
 
-class NowPlayingMovieBloc
-    extends Bloc<NowPlayingMovieEvent, NowPlayingMovieState> {
-  NowPlayingMovieBloc(GetNowPlayingMovies getNowPlayingMovies)
-      : super(NowPlayingMovieInitial()) {
+class NowPlayingMovieBloc extends Bloc<NowPlayingMovieEvent, NowPlayingMovieState> {
+  NowPlayingMovieBloc(GetNowPlayingMovies getNowPlayingMovies) : super(NowPlayingMovieInitial()) {
     on<NowPlayingMovieEvent>((event, emit) {
       if (event is OnNowPlayingMovieDataRequested) {
         onNowPlayingMovieDataRequested(getNowPlayingMovies);
@@ -19,23 +17,24 @@ class NowPlayingMovieBloc
     });
   }
 
-  Future<void> onNowPlayingMovieDataRequested(
-      GetNowPlayingMovies getNowPlayingMovies) async {
+  Future<void> onNowPlayingMovieDataRequested(GetNowPlayingMovies getNowPlayingMovies) async {
     emit(NowPlayingMovieLoading());
 
     final result = await getNowPlayingMovies.execute();
+    result.fold(
+      (failure) {
+        final state = NowPlayingMovieError(failure.message, retry: () {
+          add(OnNowPlayingMovieDataRequested());
+        });
 
-    result.fold((failure) {
-      final state = NowPlayingMovieError(failure.message, retry: () {
-        add(OnNowPlayingMovieDataRequested());
-      });
+        emit(state);
+      },
+      (data) {
+        final result = data.map((e) => Poster5Entity.fromMovie(e)).toList();
+        final state = NowPlayingMovieSuccess(result);
 
-      emit(state);
-    }, (data) {
-      final result = data.map((e) => Poster3Entity.fromMovie(e)).toList();
-      final state = NowPlayingMovieSuccess(result);
-
-      emit(state);
-    });
+        emit(state);
+      },
+    );
   }
 }

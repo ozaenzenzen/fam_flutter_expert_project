@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/models/tv_series_response_model.dart';
-import 'package:ditonton/domain/entities/poster_3_entity.dart';
+import 'package:ditonton/domain/entities/poster_5_entity.dart';
 import 'package:ditonton/domain/usecases/get_on_the_air_tv_series.dart';
 import 'package:ditonton/presentation/bloc/on_the_air_tv_series/on_the_air_tv_series_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,7 +23,7 @@ void main() {
   });
 
   final TvSeriesResponseModel data = testOnTheAirTvSeriesList;
-  final List<Poster3Entity> expected = data.results!.map((e) => Poster3Entity.fromTvSeries(e)).toList();
+  final List<Poster5Entity> expected = data.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
 
   test('inital state should be [OnTheAirTvSeriesInitial]', () {
     expect(bloc.state, OnTheAirTvSeriesInitial());

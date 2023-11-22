@@ -18,9 +18,11 @@ import 'package:ditonton/presentation/bloc/watchlist_status/watchlist_status_blo
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/detail_page.dart';
 import 'package:ditonton/presentation/pages/home_page.dart';
+import 'package:ditonton/presentation/pages/movies/on_air_movies_page.dart';
 import 'package:ditonton/presentation/pages/movies/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/movies/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
+import 'package:ditonton/presentation/pages/tvseries/on_air_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/tvseries/popular_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/tvseries/top_rated_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
@@ -101,6 +103,14 @@ class MyApp extends StatelessWidget {
             case AboutPage.ROUTE_NAME:
               return MaterialPageRoute(
                 builder: (_) => const AboutPage(),
+              );
+            case OnAirMoviesPage.ROUTE_NAME:
+              return MaterialPageRoute(
+                builder: (_) => const OnAirMoviesPage(),
+              );
+            case OnAirTvSeriesPage.ROUTE_NAME:
+              return MaterialPageRoute(
+                builder: (_) => const OnAirTvSeriesPage(),
               );
             default:
               return MaterialPageRoute(

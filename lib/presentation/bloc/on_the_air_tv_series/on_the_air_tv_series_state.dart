@@ -12,7 +12,7 @@ class OnTheAirTvSeriesInitial extends OnTheAirTvSeriesState {}
 class OnTheAirTvSeriesLoading extends OnTheAirTvSeriesState {}
 
 class OnTheAirTvSeriesSuccess extends OnTheAirTvSeriesState {
-  final List<Poster3Entity> tvSeries;
+  final List<Poster5Entity> tvSeries;
 
   const OnTheAirTvSeriesSuccess(this.tvSeries);
 

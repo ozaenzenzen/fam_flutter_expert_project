@@ -12,7 +12,7 @@ class NowPlayingMovieInitial extends NowPlayingMovieState {}
 class NowPlayingMovieLoading extends NowPlayingMovieState {}
 
 class NowPlayingMovieSuccess extends NowPlayingMovieState {
-  final List<Poster3Entity> movies;
+  final List<Poster5Entity> movies;
 
   const NowPlayingMovieSuccess(this.movies);
 

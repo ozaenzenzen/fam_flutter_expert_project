@@ -8,9 +8,11 @@ import 'package:ditonton/presentation/bloc/popular_tv_series/popular_tv_series_b
 import 'package:ditonton/presentation/bloc/top_rated_movie/top_rated_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/top_rated_tv_series/top_rated_tv_series_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
+import 'package:ditonton/presentation/pages/movies/on_air_movies_page.dart';
 import 'package:ditonton/presentation/pages/movies/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/movies/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
+import 'package:ditonton/presentation/pages/tvseries/on_air_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/tvseries/popular_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/tvseries/top_rated_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
@@ -142,15 +144,15 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Now Playing',
-            style: kHeading6,
+          _buildSubHeading(
+            title: 'Now Playing',
+            onTap: () => Navigator.pushNamed(context, OnAirMoviesPage.ROUTE_NAME),
           ),
           BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState>(builder: (context, state) {
             if (state is NowPlayingMovieLoading) {
               return const AppRowLoadingWidget();
             } else if (state is NowPlayingMovieSuccess) {
-              return MovieList(state.movies);
+              return MovieList.fromPoster5Entity(state.movies);
             } else if (state is NowPlayingMovieError) {
               return AppErrorWidget(state.message, retry: state.retry);
             } else {
@@ -200,15 +202,15 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'On The Air Tv Series',
-            style: kHeading6,
+          _buildSubHeading(
+            title: 'On The Air Tv Series',
+            onTap: () => Navigator.pushNamed(context, OnAirTvSeriesPage.ROUTE_NAME),
           ),
           BlocBuilder<OnTheAirTvSeriesBloc, OnTheAirTvSeriesState>(builder: (context, state) {
             if (state is OnTheAirTvSeriesLoading) {
               return const AppRowLoadingWidget();
             } else if (state is OnTheAirTvSeriesSuccess) {
-              return MovieList(state.tvSeries);
+              return MovieList.fromPoster5Entity(state.tvSeries);
             } else if (state is OnTheAirTvSeriesError) {
               return AppErrorWidget(state.message, retry: state.retry);
             } else {

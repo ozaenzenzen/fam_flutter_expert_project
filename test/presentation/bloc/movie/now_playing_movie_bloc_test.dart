@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/entities/movie_entity.dart';
-import 'package:ditonton/domain/entities/poster_3_entity.dart';
+import 'package:ditonton/domain/entities/poster_5_entity.dart';
 import 'package:ditonton/domain/usecases/get_now_playing_movies.dart';
 import 'package:ditonton/presentation/bloc/now_playing_movie/now_playing_movie_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -24,7 +24,7 @@ void main() {
 
   final MovieEntity testMovieModel = testMovie;
   final List<MovieEntity> testMovieList = [testMovieModel];
-  final List<Poster3Entity> expected = testMovieList.map((e) => Poster3Entity.fromMovie(e)).toList();
+  final List<Poster5Entity> expected = testMovieList.map((e) => Poster5Entity.fromMovie(e)).toList();
 
   test(
     'inital state should be [NowPlayingMovieInitial]',
