@@ -1,5 +1,6 @@
 import 'package:ditonton/domain/entities/item_data_entity.dart';
 import 'package:ditonton/domain/entities/poster_2_entity.dart';
+import 'package:ditonton/presentation/bloc/watchlist/watchlist_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist_status/watchlist_status_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,7 @@ class AppWatchlistButton extends StatelessWidget {
     return BlocConsumer<WatchlistStatusBloc, WatchlistStatusState>(
       listener: (context, state) {
         if (state is WatchlistStatusSuccess) {
+          context.read<WatchlistBloc>().add(OnWatchlistDataRequested());
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
