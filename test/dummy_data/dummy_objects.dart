@@ -5,6 +5,9 @@ import 'package:ditonton/data/models/watchlist_table.dart';
 import 'package:ditonton/domain/entities/genre_entity.dart';
 import 'package:ditonton/domain/entities/movie_entity.dart';
 import 'package:ditonton/domain/entities/movie_detail_entity.dart';
+import 'package:ditonton/domain/entities/poster_2_entity.dart';
+import 'package:ditonton/domain/entities/poster_3_entity.dart';
+import 'package:ditonton/domain/entities/poster_5_entity.dart';
 
 final testMovie = MovieEntity(
   adult: false,
@@ -23,6 +26,30 @@ final testMovie = MovieEntity(
 );
 
 final testMovieList = [testMovie];
+
+final testPoster2EntityBaseData = Poster2Entity(
+  id: testMovie.id,
+  dataType: DataType.movie,
+);
+
+final testGenreEntityBaseData = GenreEntity(
+  id: testMovie.id,
+  name: testMovie.title!,
+);
+
+final testPoster3EntityBaseData = Poster3Entity(
+  id: testMovie.id,
+  poster: testMovie.posterPath!,
+  dataType: DataType.movie,
+);
+
+final testPoster5EntityBaseData = Poster5Entity(
+  id: testMovie.id,
+  poster: testMovie.posterPath!,
+  title: testMovie.title!,
+  overview: testMovie.overview!,
+  dataType: DataType.movie,
+);
 
 const testMovieDetail = MovieDetailEntity(
   adult: false,
