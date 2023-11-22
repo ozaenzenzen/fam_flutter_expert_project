@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">24</td>
-            <td class="headerCovTableEntry">41</td>
-            <td class="headerCovTableEntryLo">58.5 %</td>
+            <td class="headerCovTableEntry">23</td>
+            <td class="headerCovTableEntry">40</td>
+            <td class="headerCovTableEntryLo">57.5 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Wed Nov 22 01:37:07 2023</td>
+            <td class="headerValue">Wed Nov 22 13:57:18 2023</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -111,7 +111,7 @@
 <a name="49"><span class="lineNum">      49 </span>            : </a>
 <a name="50"><span class="lineNum">      50 </span><span class="lineCov">          1 :       emit(state);</span></a>
 <a name="51"><span class="lineNum">      51 </span><span class="lineCov">          1 :     }, (data) async {</span></a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineCov">          1 :       final itemDataEntity = ItemDataEntity.fromTvSeries(data);</span></a>
+<a name="52"><span class="lineNum">      52 </span>            :       final itemDataEntity = data;</a>
 <a name="53"><span class="lineNum">      53 </span>            : </a>
 <a name="54"><span class="lineNum">      54 </span>            :       final recommendation = await recommendationFuture;</a>
 <a name="55"><span class="lineNum">      55 </span><span class="lineCov">          2 :       recommendation.fold((failure) {</span></a>
@@ -124,7 +124,7 @@
 <a name="62"><span class="lineNum">      62 </span><span class="lineCov">          1 :         final stateDetail = TvDetailSuccess(itemDataEntity);</span></a>
 <a name="63"><span class="lineNum">      63 </span><span class="lineCov">          1 :         emit(stateDetail);</span></a>
 <a name="64"><span class="lineNum">      64 </span><span class="lineCov">          1 :       }, (data) {</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">          5 :         final result = data.results!.map((e) =&gt; Poster3Entity.fromTvSeries(e)).toList();</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">          4 :         final result = data.map((e) =&gt; Poster3Entity.fromTvSeries(e)).toList();</span></a>
 <a name="66"><span class="lineNum">      66 </span><span class="lineCov">          1 :         final successState = TvDetailSuccess(</span></a>
 <a name="67"><span class="lineNum">      67 </span>            :           itemDataEntity,</a>
 <a name="68"><span class="lineNum">      68 </span>            :           recommendations: result,</a>
@@ -150,7 +150,7 @@
 <a name="88"><span class="lineNum">      88 </span><span class="lineNoCov">          0 :       emit(state);</span></a>
 <a name="89"><span class="lineNum">      89 </span><span class="lineNoCov">          0 :       emit(TvDetailSuccess(itemDataEntity));</span></a>
 <a name="90"><span class="lineNum">      90 </span><span class="lineNoCov">          0 :     }, (data) {</span></a>
-<a name="91"><span class="lineNum">      91 </span><span class="lineNoCov">          0 :       final result = data.results!.map((e) =&gt; Poster3Entity.fromTvSeries(e)).toList();</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineNoCov">          0 :       final result = data.map((e) =&gt; Poster3Entity.fromTvSeries(e)).toList();</span></a>
 <a name="92"><span class="lineNum">      92 </span><span class="lineNoCov">          0 :       final state = TvDetailSuccess(</span></a>
 <a name="93"><span class="lineNum">      93 </span>            :         itemDataEntity,</a>
 <a name="94"><span class="lineNum">      94 </span>            :         recommendations: result,</a>

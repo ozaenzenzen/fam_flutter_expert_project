@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">8</td>
             <td class="headerCovTableEntry">26</td>
-            <td class="headerCovTableEntryLo">0.0 %</td>
+            <td class="headerCovTableEntryLo">30.8 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Wed Nov 22 01:37:07 2023</td>
+            <td class="headerValue">Wed Nov 22 13:57:18 2023</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -67,23 +67,23 @@
 <a name="5"><span class="lineNum">       5 </span>            : </a>
 <a name="6"><span class="lineNum">       6 </span>            : class DatabaseHelper {</a>
 <a name="7"><span class="lineNum">       7 </span>            :   static DatabaseHelper? _databaseHelper;</a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineNoCov">          0 :   DatabaseHelper._instance() {</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineCov">          2 :   DatabaseHelper._instance() {</span></a>
 <a name="9"><span class="lineNum">       9 </span>            :     _databaseHelper = this;</a>
 <a name="10"><span class="lineNum">      10 </span>            :   }</a>
 <a name="11"><span class="lineNum">      11 </span>            : </a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineNoCov">          0 :   factory DatabaseHelper() =&gt; _databaseHelper ?? DatabaseHelper._instance();</span></a>
+<a name="12"><span class="lineNum">      12 </span><span class="lineCov">          4 :   factory DatabaseHelper() =&gt; _databaseHelper ?? DatabaseHelper._instance();</span></a>
 <a name="13"><span class="lineNum">      13 </span>            : </a>
 <a name="14"><span class="lineNum">      14 </span>            :   static Database? _database;</a>
 <a name="15"><span class="lineNum">      15 </span>            : </a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineNoCov">          0 :   Future&lt;Database?&gt; get database async {</span></a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineNoCov">          0 :     _database ??= await _initDb();</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">          2 :   Future&lt;Database?&gt; get database async {</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">          2 :     _database ??= await _initDb();</span></a>
 <a name="18"><span class="lineNum">      18 </span>            :     return _database;</a>
 <a name="19"><span class="lineNum">      19 </span>            :   }</a>
 <a name="20"><span class="lineNum">      20 </span>            : </a>
 <a name="21"><span class="lineNum">      21 </span>            :   static const String _tblWatchlist = 'watchlist';</a>
 <a name="22"><span class="lineNum">      22 </span>            : </a>
-<a name="23"><span class="lineNum">      23 </span><span class="lineNoCov">          0 :   Future&lt;Database&gt; _initDb() async {</span></a>
-<a name="24"><span class="lineNum">      24 </span><span class="lineNoCov">          0 :     final path = await getDatabasesPath();</span></a>
+<a name="23"><span class="lineNum">      23 </span><span class="lineCov">          2 :   Future&lt;Database&gt; _initDb() async {</span></a>
+<a name="24"><span class="lineNum">      24 </span><span class="lineCov">          2 :     final path = await getDatabasesPath();</span></a>
 <a name="25"><span class="lineNum">      25 </span><span class="lineNoCov">          0 :     final databasePath = '$path/ditonton.db';</span></a>
 <a name="26"><span class="lineNum">      26 </span>            : </a>
 <a name="27"><span class="lineNum">      27 </span><span class="lineNoCov">          0 :     var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);</span></a>
@@ -136,8 +136,8 @@
 <a name="74"><span class="lineNum">      74 </span>            :     }</a>
 <a name="75"><span class="lineNum">      75 </span>            :   }</a>
 <a name="76"><span class="lineNum">      76 </span>            : </a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineNoCov">          0 :   Future&lt;List&lt;Map&lt;String, dynamic&gt;&gt;&gt; getWatchlistMovies() async {</span></a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineNoCov">          0 :     final db = await database;</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">          2 :   Future&lt;List&lt;Map&lt;String, dynamic&gt;&gt;&gt; getWatchlistMovies() async {</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">          2 :     final db = await database;</span></a>
 <a name="79"><span class="lineNum">      79 </span><span class="lineNoCov">          0 :     final List&lt;Map&lt;String, dynamic&gt;&gt; results = await db!.query(_tblWatchlist);</span></a>
 <a name="80"><span class="lineNum">      80 </span>            : </a>
 <a name="81"><span class="lineNum">      81 </span>            :     return results;</a>

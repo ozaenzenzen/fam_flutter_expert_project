@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Wed Nov 22 01:37:07 2023</td>
+            <td class="headerValue">Wed Nov 22 13:57:18 2023</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -72,12 +72,12 @@
 <a name="10"><span class="lineNum">      10 </span>            : class WatchlistRepositoryImpl extends WatchlistRepository {</a>
 <a name="11"><span class="lineNum">      11 </span>            :   final WatchlistLocalDataSource localDataSource;</a>
 <a name="12"><span class="lineNum">      12 </span>            : </a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">          1 :   WatchlistRepositoryImpl(this.localDataSource);</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineCov">          3 :   WatchlistRepositoryImpl(this.localDataSource);</span></a>
 <a name="14"><span class="lineNum">      14 </span>            : </a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">          1 :   @override</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">          3 :   @override</span></a>
 <a name="16"><span class="lineNum">      16 </span>            :   Future&lt;Either&lt;Failure, List&lt;Poster5Entity&gt;&gt;&gt; getWatchlist() async {</a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">          2 :     final result = await localDataSource.getWatchlistMovies();</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">          5 :     return Right(result.map((data) =&gt; data.toPoster5Entity()).toList());</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">          6 :     final result = await localDataSource.getWatchlistMovies();</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">         11 :     return Right(result.map((data) =&gt; data.toPoster5Entity()).toList());</span></a>
 <a name="19"><span class="lineNum">      19 </span>            :   }</a>
 <a name="20"><span class="lineNum">      20 </span>            : </a>
 <a name="21"><span class="lineNum">      21 </span><span class="lineCov">          1 :   @override</span></a>
