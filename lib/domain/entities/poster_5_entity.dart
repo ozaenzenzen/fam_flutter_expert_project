@@ -1,7 +1,8 @@
 import 'package:ditonton/common/enum/enum_data_type.dart';
-import 'package:ditonton/data/models/tv_series_response_model.dart';
+// import 'package:ditonton/data/models/tv_series_response_model.dart';
 import 'package:ditonton/domain/entities/movie_entity.dart';
 import 'package:ditonton/domain/entities/movie_detail_entity.dart';
+import 'package:ditonton/domain/entities/tvseries_entity.dart';
 import 'package:equatable/equatable.dart';
 
 class Poster5Entity extends Equatable {
@@ -35,7 +36,7 @@ class Poster5Entity extends Equatable {
         dataType: DataType.movie,
       );
 
-  factory Poster5Entity.fromTvSeries(ResultTvSeries tvSeries) => Poster5Entity(
+  factory Poster5Entity.fromTvSeries(TvSeriesEntity tvSeries) => Poster5Entity(
         id: tvSeries.id!,
         poster: tvSeries.posterPath ?? "",
         title: tvSeries.name!,

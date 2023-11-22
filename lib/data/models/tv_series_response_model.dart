@@ -1,3 +1,5 @@
+import 'package:ditonton/domain/entities/tvseries_entity.dart';
+
 class TvSeriesResponseModel {
   int? page;
   List<ResultTvSeries>? results;
@@ -10,6 +12,25 @@ class TvSeriesResponseModel {
     this.totalPages,
     this.totalResults,
   });
+
+  List<TvSeriesEntity> toEntity() => results!
+      .map((e) => TvSeriesEntity(
+            adult: e.adult,
+            backdropPath: e.backdropPath,
+            genreIds: e.genreIds,
+            id: e.id,
+            originCountry: e.originCountry,
+            originalLanguage: e.originalLanguage,
+            originalName: e.originalName,
+            overview: e.overview,
+            popularity: e.popularity,
+            posterPath: e.posterPath,
+            firstAirDate: e.firstAirDate,
+            name: e.name,
+            voteAverage: e.voteAverage,
+            voteCount: e.voteCount,
+          ))
+      .toList();
 
   factory TvSeriesResponseModel.fromJson(Map<String, dynamic> json) => TvSeriesResponseModel(
         page: json["page"],
@@ -74,6 +95,23 @@ class ResultTvSeries {
         name: json["name"],
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
+      );
+
+  TvSeriesEntity toEntity() => TvSeriesEntity(
+        adult: adult,
+        backdropPath: backdropPath,
+        genreIds: genreIds,
+        id: id,
+        originCountry: originCountry,
+        originalLanguage: originalLanguage,
+        originalName: originalName,
+        overview: overview,
+        popularity: popularity,
+        posterPath: posterPath,
+        firstAirDate: firstAirDate,
+        name: name,
+        voteAverage: voteAverage,
+        voteCount: voteCount,
       );
 
   Map<String, dynamic> toJson() => {

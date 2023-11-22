@@ -23,9 +23,10 @@ void main() {
 
   final TvDetailResponseModel detailData = testTvDetail;
   final int testId = detailData.id!;
-  final ItemDataEntity itemDataEntity = ItemDataEntity.fromTvSeries(detailData);
+  // final ItemDataEntity itemDataEntity = ItemDataEntity.fromTvSeries(detailData);
+  final ItemDataEntity itemDataEntity = detailData.toEntity();
   final TvSeriesResponseModel recommendationData = testTvRecommendationList;
-  final List<Poster3Entity> recommendationExpected = recommendationData.results!.map((e) => Poster3Entity.fromTvSeries(e)).toList();
+  final List<Poster3Entity> recommendationExpected = recommendationData.results!.map((e) => Poster3Entity.fromTvSeries(e.toEntity())).toList();
 
   setUp(() {
     getTvSeriesDetail = MockGetTvSeriesDetail();
@@ -44,10 +45,10 @@ void main() {
     'emit [Loading, Success] when data is gotten succesful',
     build: () {
       when(getTvSeriesDetail.execute(testId)).thenAnswer(
-        (realInvocation) async => Right(detailData),
+        (realInvocation) async => Right(detailData.toEntity()),
       );
       when(getTvSeriesRecommendations.execute(testId)).thenAnswer(
-        (_) async => Right(recommendationData),
+        (_) async => Right(recommendationData.toEntity()),
       );
 
       return bloc;
@@ -75,7 +76,7 @@ void main() {
     'emit [Loading, Success, Error] when data is gotten succesful',
     build: () {
       when(getTvSeriesDetail.execute(testId)).thenAnswer(
-        (realInvocation) async => Right(detailData),
+        (realInvocation) async => Right(detailData.toEntity()),
       );
       when(getTvSeriesRecommendations.execute(testId)).thenAnswer(
         (_) async => const Left(ServerFailure("Server Failure")),

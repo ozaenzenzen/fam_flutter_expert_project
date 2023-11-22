@@ -20,7 +20,7 @@ void main() {
 
   test('should get tv series detail from the repository', () async {
     // arrange
-    final response = testTvDetail;
+    final response = testTvDetail.toEntity();
 
     when(repository.getTvSeriesDetail(testId!)).thenAnswer((_) async => Right(response));
     // act

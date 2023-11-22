@@ -18,10 +18,9 @@ void main() {
   group('get popular tv series', () {
     test('should return Popular List TvSeries', () async {
       //arrange
-      final expected = testPopularTvSeriesList;
+      final expected = testPopularTvSeriesList.toEntity();
 
-      when(repository.getPopularTvSeries())
-          .thenAnswer((_) async => Right(expected));
+      when(repository.getPopularTvSeries()).thenAnswer((_) async => Right(expected));
 
       //act
       final actual = await useCase.execute();

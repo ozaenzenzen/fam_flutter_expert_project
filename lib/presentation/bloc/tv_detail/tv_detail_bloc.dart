@@ -49,7 +49,7 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState> {
 
       emit(state);
     }, (data) async {
-      final itemDataEntity = ItemDataEntity.fromTvSeries(data);
+      final itemDataEntity = data;
 
       final recommendation = await recommendationFuture;
       recommendation.fold((failure) {
@@ -62,7 +62,7 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState> {
         final stateDetail = TvDetailSuccess(itemDataEntity);
         emit(stateDetail);
       }, (data) {
-        final result = data.results!.map((e) => Poster3Entity.fromTvSeries(e)).toList();
+        final result = data.map((e) => Poster3Entity.fromTvSeries(e)).toList();
         final successState = TvDetailSuccess(
           itemDataEntity,
           recommendations: result,
@@ -88,7 +88,7 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState> {
       emit(state);
       emit(TvDetailSuccess(itemDataEntity));
     }, (data) {
-      final result = data.results!.map((e) => Poster3Entity.fromTvSeries(e)).toList();
+      final result = data.map((e) => Poster3Entity.fromTvSeries(e)).toList();
       final state = TvDetailSuccess(
         itemDataEntity,
         recommendations: result,

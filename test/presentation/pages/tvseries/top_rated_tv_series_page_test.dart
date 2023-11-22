@@ -55,7 +55,7 @@ void main() {
   });
 
   testWidgets('Page display ListView when data is loaded', (WidgetTester tester) async {
-    final movie = Poster5Entity.fromTvSeries(testPopularTvSeries);
+    final movie = Poster5Entity.fromTvSeries(testPopularTvSeries.toEntity());
     final imageUrl = '$baseImageUrl${movie.poster}';
 
     whenListen(

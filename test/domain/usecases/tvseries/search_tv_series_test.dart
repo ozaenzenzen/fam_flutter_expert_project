@@ -20,7 +20,7 @@ void main() {
 
   test('should get list of movies from the repository', () async {
     // arrange
-    final expected = testSearchTvSeriesList;
+    final expected = testSearchTvSeriesList.toEntity();
     when(repository.searchTvSeries(tQuery)).thenAnswer((_) async => Right(expected));
     // act
     final result = await usecase.execute(tQuery);

@@ -28,7 +28,7 @@ class TopRatedTvSeriesBloc extends Bloc<TopRatedTvSeriesEvent, TopRatedTvSeriesS
 
       emit(state);
     }, (data) {
-      final result = data.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
+      final result = data.map((e) => Poster5Entity.fromTvSeries(e)).toList();
       final state = TopRatedTvSeriesSuccess(result);
 
       emit(state);

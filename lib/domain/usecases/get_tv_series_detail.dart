@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/data/models/tv_detail_response_model.dart';
+import 'package:ditonton/domain/entities/item_data_entity.dart';
 import 'package:ditonton/domain/repositories/tv_series_repository.dart';
 
 class GetTvSeriesDetail {
@@ -8,7 +8,7 @@ class GetTvSeriesDetail {
 
   GetTvSeriesDetail(this.repository);
 
-  Future<Either<Failure, TvDetailResponseModel>> execute(int id) {
+  Future<Either<Failure, ItemDataEntity>> execute(int id) {
     return repository.getTvSeriesDetail(id);
   }
 }

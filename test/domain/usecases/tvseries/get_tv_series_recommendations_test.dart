@@ -18,12 +18,11 @@ void main() {
 
   final testId = testTvDetail.id;
 
-  test('should get list of tv series recommendations from the repository',
-      () async {
+  test('should get list of tv series recommendations from the repository', () async {
     // arrange
-    final response = testTvRecommendationList;
-    when(repository.getTvSeriesRecommendation(testId!))
-        .thenAnswer((_) async => Right(response));
+    final response = testTvRecommendationList.toEntity();
+    
+    when(repository.getTvSeriesRecommendation(testId!)).thenAnswer((_) async => Right(response));
     // act
     final result = await usecase.execute(testId);
     // assert

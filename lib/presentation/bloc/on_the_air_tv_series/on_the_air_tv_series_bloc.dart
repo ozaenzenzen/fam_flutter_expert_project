@@ -30,7 +30,7 @@ class OnTheAirTvSeriesBloc extends Bloc<OnTheAirTvSeriesEvent, OnTheAirTvSeriesS
         emit(state);
       },
       (data) {
-        final result = data.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
+        final result = data.map((e) => Poster5Entity.fromTvSeries(e)).toList();
         final state = OnTheAirTvSeriesSuccess(result);
 
         emit(state);

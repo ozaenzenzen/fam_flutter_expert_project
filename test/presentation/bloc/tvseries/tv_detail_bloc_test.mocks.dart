@@ -7,8 +7,8 @@ import 'dart:async' as _i5;
 
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:ditonton/common/failure.dart' as _i6;
-import 'package:ditonton/data/models/tv_detail_response_model.dart' as _i7;
-import 'package:ditonton/data/models/tv_series_response_model.dart' as _i9;
+import 'package:ditonton/domain/entities/item_data_entity.dart' as _i7;
+import 'package:ditonton/domain/entities/tvseries_entity.dart' as _i9;
 import 'package:ditonton/domain/repositories/tv_series_repository.dart' as _i2;
 import 'package:ditonton/domain/usecases/get_tv_series_detail.dart' as _i4;
 import 'package:ditonton/domain/usecases/get_tv_series_recommendations.dart'
@@ -67,23 +67,22 @@ class MockGetTvSeriesDetail extends _i1.Mock implements _i4.GetTvSeriesDetail {
       ) as _i2.TvSeriesRepository);
 
   @override
-  _i5.Future<_i3.Either<_i6.Failure, _i7.TvDetailResponseModel>> execute(
-          int? id) =>
+  _i5.Future<_i3.Either<_i6.Failure, _i7.ItemDataEntity>> execute(int? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [id],
         ),
-        returnValue: _i5
-            .Future<_i3.Either<_i6.Failure, _i7.TvDetailResponseModel>>.value(
-            _FakeEither_1<_i6.Failure, _i7.TvDetailResponseModel>(
+        returnValue:
+            _i5.Future<_i3.Either<_i6.Failure, _i7.ItemDataEntity>>.value(
+                _FakeEither_1<_i6.Failure, _i7.ItemDataEntity>(
           this,
           Invocation.method(
             #execute,
             [id],
           ),
         )),
-      ) as _i5.Future<_i3.Either<_i6.Failure, _i7.TvDetailResponseModel>>);
+      ) as _i5.Future<_i3.Either<_i6.Failure, _i7.ItemDataEntity>>);
 }
 
 /// A class which mocks [GetTvSeriesRecommendations].
@@ -105,21 +104,21 @@ class MockGetTvSeriesRecommendations extends _i1.Mock
       ) as _i2.TvSeriesRepository);
 
   @override
-  _i5.Future<_i3.Either<_i6.Failure, _i9.TvSeriesResponseModel>> execute(
+  _i5.Future<_i3.Either<_i6.Failure, List<_i9.TvSeriesEntity>>> execute(
           dynamic id) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [id],
         ),
-        returnValue: _i5
-            .Future<_i3.Either<_i6.Failure, _i9.TvSeriesResponseModel>>.value(
-            _FakeEither_1<_i6.Failure, _i9.TvSeriesResponseModel>(
+        returnValue:
+            _i5.Future<_i3.Either<_i6.Failure, List<_i9.TvSeriesEntity>>>.value(
+                _FakeEither_1<_i6.Failure, List<_i9.TvSeriesEntity>>(
           this,
           Invocation.method(
             #execute,
             [id],
           ),
         )),
-      ) as _i5.Future<_i3.Either<_i6.Failure, _i9.TvSeriesResponseModel>>);
+      ) as _i5.Future<_i3.Either<_i6.Failure, List<_i9.TvSeriesEntity>>>);
 }

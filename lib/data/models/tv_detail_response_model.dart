@@ -1,3 +1,7 @@
+import 'package:ditonton/common/enum/enum_data_type.dart';
+import 'package:ditonton/domain/entities/genre_entity.dart';
+import 'package:ditonton/domain/entities/item_data_entity.dart';
+
 class TvDetailResponseModel {
   bool? adult;
   String? backdropPath;
@@ -66,6 +70,17 @@ class TvDetailResponseModel {
     this.voteAverage,
     this.voteCount,
   });
+
+  ItemDataEntity toEntity() => ItemDataEntity(
+        id: id!,
+        title: name!,
+        genres: genres!.map((e) => GenreEntity(id: e.id!, name: e.name!)).toList(),
+        runtime: '$numberOfEpisodes episode(s) $numberOfSeasons season(s)',
+        posterPath: posterPath!,
+        voteAverage: voteAverage!.toDouble(),
+        overview: overview!,
+        dataType: DataType.tvSeries,
+      );
 
   factory TvDetailResponseModel.fromJson(Map<String, dynamic> json) => TvDetailResponseModel(
         adult: json["adult"],

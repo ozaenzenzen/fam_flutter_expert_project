@@ -24,7 +24,7 @@ void main() {
 
   const String testQuery = 'spiderman';
   final TvSeriesResponseModel data = testSearchTvSeriesList;
-  final List<Poster5Entity> expected = testSearchTvSeriesList.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
+  final List<Poster5Entity> expected = testSearchTvSeriesList.results!.map((e) => Poster5Entity.fromTvSeries(e.toEntity())).toList();
 
   test('inital state should be [TvSeriesSearchInitial]', () {
     expect(bloc.state, TvSeriesSearchInitial());
@@ -33,7 +33,7 @@ void main() {
   blocTest(
     'emit [Loading, HasData] when data is gotten succesful',
     build: () {
-      when(searchTvSeries.execute(testQuery)).thenAnswer((realInvocation) async => Right(data));
+      when(searchTvSeries.execute(testQuery)).thenAnswer((realInvocation) async => Right(data.toEntity()));
       return bloc;
     },
     act: (TvSeriesSearchBloc bloc) => bloc.add(const OnQueryTvSeriesChanged(testQuery)),
@@ -61,9 +61,7 @@ void main() {
     'emit [Loading, Empty] when data is gotten succesful but empty',
     build: () {
       when(searchTvSeries.execute(testQuery)).thenAnswer(
-        (realInvocation) async => Right(
-          TvSeriesResponseModel(results: []),
-        ),
+        (realInvocation) async => const Right([]),
       );
 
       return bloc;

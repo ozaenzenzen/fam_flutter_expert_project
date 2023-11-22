@@ -4,6 +4,7 @@ import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/data/datasources/tv_remote_data_source.dart';
 import 'package:ditonton/data/models/tv_detail_response_model.dart';
 import 'package:ditonton/data/models/tv_series_response_model.dart';
+import 'package:ditonton/domain/entities/tvseries_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -44,12 +45,13 @@ void main() {
   group('get popular tv action', () {
     const String dummyTvPopular = 'dummy_data/tvseries/tv_popular.json';
     final decoded = json.decode(readJson(dummyTvPopular));
-    final TvSeriesResponseModel tSearialTvList = TvSeriesResponseModel.fromJson(decoded);
+    // final TvSeriesResponseModel tSerialTvList = TvSeriesResponseModel.fromJson(decoded);
+    final List<TvSeriesEntity> tSerialTvList = TvSeriesResponseModel.fromJson(decoded).toEntity();
 
     test("should return class of Tv Response Model when the response code is 200", () async {
       //arrange
       const mockPath = dummyTvPopular;
-      final matcher = tSearialTvList;
+      final matcher = tSerialTvList;
 
       const url = urlPopularTvSeries;
       final uri = Uri.parse(url);
@@ -62,7 +64,7 @@ void main() {
       final actual = await dataSource.getPopularTvSeries();
 
       //assert
-      expect(actual.toJson(), matcher.toJson());
+      expect(actual.map((e) => e.toEntity()).toList(), matcher);
     });
 
     test("should throw ServerException when the response code is not 200", () async {
@@ -98,7 +100,8 @@ void main() {
   group('get top rated tv series action', () {
     const dummyTvTopRated = 'dummy_data/tvseries/tv_top_rated.json';
     final decoded = json.decode(readJson(dummyTvTopRated));
-    final tSerialTvList = TvSeriesResponseModel.fromJson(decoded);
+    // final tSerialTvList = TvSeriesResponseModel.fromJson(decoded);
+    final List<TvSeriesEntity> tSerialTvList = TvSeriesResponseModel.fromJson(decoded).toEntity();
 
     test("should return Top Rated Tv Series when the response code is 200", () async {
       //arrange
@@ -116,7 +119,7 @@ void main() {
       final actual = await dataSource.getTopRatedTvSeries();
 
       //assert
-      expect(actual.toJson(), matcher.toJson());
+      expect(actual.map((e) => e.toEntity()).toList(), matcher);
     });
 
     test("should throw ServerException when the response code is not 200", () async {
@@ -148,12 +151,13 @@ void main() {
   group('get on the air tv series action', () {
     const dummyTvOnTheAir = 'dummy_data/tvseries/tv_on_the_air.json';
     final decoded = json.decode(readJson(dummyTvOnTheAir));
-    final tSearialTvList = TvSeriesResponseModel.fromJson(decoded);
+    // final tSearialTvList = TvSeriesResponseModel.fromJson(decoded);
+    final List<TvSeriesEntity> tSerialTvList = TvSeriesResponseModel.fromJson(decoded).toEntity();
 
     test("should return List of Tv when the response code is 200", () async {
       //arrange
       const mockPath = dummyTvOnTheAir;
-      final matcher = tSearialTvList;
+      final matcher = tSerialTvList;
 
       const url = urlOnTheAirTvSeries;
       final uri = Uri.parse(url);
@@ -166,7 +170,7 @@ void main() {
       final actual = await dataSource.getOnTheAirTvSeries();
 
       //assert
-      expect(actual.toJson(), matcher.toJson());
+      expect(actual.map((e) => e.toEntity()).toList(), matcher);
     });
 
     test("should throw ServerException when the response code is not 200", () async {
@@ -199,7 +203,8 @@ void main() {
     const dummySearchTvSeries = 'dummy_data/tvseries/search_phoenix_tv_series.json';
     final decoded = json.decode(readJson(dummySearchTvSeries));
 
-    final tSerialTvList = TvSeriesResponseModel.fromJson(decoded);
+    final List<TvSeriesEntity> tSerialTvList = TvSeriesResponseModel.fromJson(decoded).toEntity();
+    // final tSerialTvList = TvSeriesResponseModel.fromJson(decoded);
     const tQuery = 'phoenix';
 
     // final url = TvRemoteDataSourceImpl.generateUrlTvSeries(tQuery);
@@ -219,7 +224,7 @@ void main() {
       // act
       final result = await dataSource.searchTvSeries(tQuery);
       // assert
-      expect(result.toJson(), matcher.toJson());
+      expect(result.map((e) => e.toEntity()).toList(), matcher);
     });
 
     test('should throw ServerException when response code is other than 200', () async {
@@ -268,7 +273,8 @@ void main() {
   group('get tv series recommendations action', () {
     const int testId = 213713;
     final data = readJson('dummy_data/tvseries/tv_recommendations.json');
-    final tTvRecommendation = TvSeriesResponseModel.fromJson(json.decode(data));
+    // final tTvRecommendation = TvSeriesResponseModel.fromJson(json.decode(data));
+    final List<TvSeriesEntity> tTvRecommendation = TvSeriesResponseModel.fromJson(jsonDecode(data)).toEntity();
     const String url = '$BASE_URL/tv/$testId/recommendations?$API_KEY';
     final uri = Uri.parse(url);
 
@@ -280,7 +286,7 @@ void main() {
       // act
       final result = await dataSource.getTvSeriesRecommendation(testId);
       // assert
-      expect(result.toJson(), tTvRecommendation.toJson());
+      expect(result.map((e) => e.toEntity()).toList(), tTvRecommendation);
     });
 
     test('should throw Server Exception when the response code is 404 or other', () async {

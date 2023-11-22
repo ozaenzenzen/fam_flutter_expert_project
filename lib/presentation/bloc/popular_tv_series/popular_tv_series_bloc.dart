@@ -29,7 +29,7 @@ class PopularTvSeriesBloc extends Bloc<PopularTvSeriesEvent, PopularTvSeriesStat
 
       emit(state);
     }, (data) {
-      final tvSeries = data.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
+      final tvSeries = data.map((e) => Poster5Entity.fromTvSeries(e)).toList();
       final state = PopularTvSeriesSuccess(tvSeries);
 
       emit(state);

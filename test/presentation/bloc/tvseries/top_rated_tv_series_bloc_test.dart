@@ -23,7 +23,7 @@ void main() {
   });
 
   final TvSeriesResponseModel data = testOnTheAirTvSeriesList;
-  final List<Poster5Entity> expected = data.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
+  final List<Poster5Entity> expected = data.results!.map((e) => Poster5Entity.fromTvSeries(e.toEntity())).toList();
 
   test('inital state should be [TopRatedTvSeriesInitial]', () {
     expect(bloc.state, TopRatedTvSeriesInitial());
@@ -33,7 +33,7 @@ void main() {
     'emit [Loading, HasData] when data is gotten succesful',
     build: () {
       when(getTopRatedTvSeries.execute()).thenAnswer(
-        (realInvocation) async => Right(data),
+        (realInvocation) async => Right(data.toEntity()),
       );
       return bloc;
     },

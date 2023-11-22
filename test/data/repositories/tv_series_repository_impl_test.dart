@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/datasources/tv_remote_data_source.dart';
-import 'package:ditonton/data/models/tv_series_response_model.dart';
 import 'package:ditonton/data/repositories/tv_series_repository_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -26,18 +25,18 @@ void main() {
   group('Popular TvSeriesModel', () {
     test('should return popular list TvSeriesModel when call to remote data success', () async {
       //arrange
-      final expected = testPopularTvSeriesList;
+      final expected = testPopularTvSeriesList.results!;
 
       when(dataSource.getPopularTvSeries()).thenAnswer((_) async => expected);
 
       //act
       final result = await repository.getPopularTvSeries();
-      final actual = result.getOrElse(() => TvSeriesResponseModel());
+      final actual = result.getOrElse(() => []);
 
       //assert
       verify(dataSource.getPopularTvSeries());
 
-      expect(actual, expected);
+      expect(actual, expected.map((e) => e.toEntity()).toList());
     });
 
     test('should return ServerFailure when call remote data unsuccessful', () async {
@@ -89,17 +88,17 @@ void main() {
   group('on the air TvSeries', () {
     test('should return on the air tv series list when call to remote data success', () async {
       //arrange
-      final expected = testOnTheAirTvSeriesList;
+      final expected = testOnTheAirTvSeriesList.results!;
 
       when(dataSource.getOnTheAirTvSeries()).thenAnswer((_) async => expected);
 
       //act
       final result = await repository.getOnTheAirTvSeries();
-      final actual = result.getOrElse(() => TvSeriesResponseModel());
+      final actual = result.getOrElse(() => []);
 
       //assert
       verify(dataSource.getOnTheAirTvSeries());
-      expect(actual, expected);
+      expect(actual, expected.map((e) => e.toEntity()).toList());
     });
 
     test('should return ServerFailure when call remote data source unsuccessful', () async {
@@ -151,17 +150,17 @@ void main() {
   group('Top Rated TvSeries', () {
     test('should return top rated tv series list when call to remote data success', () async {
       //arrange
-      final expected = testTopRatedSeriesList;
+      final expected = testTopRatedSeriesList.results!;
 
       when(dataSource.getTopRatedTvSeries()).thenAnswer((_) async => expected);
 
       //act
       final result = await repository.getTopRatedTvSeries();
-      final actual = result.getOrElse(() => TvSeriesResponseModel());
+      final actual = result.getOrElse(() => []);
 
       //assert
       verify(dataSource.getTopRatedTvSeries());
-      expect(actual, expected);
+      expect(actual, expected.map((e) => e.toEntity()).toList());
     });
 
     test('should return ServerFailure when call remote data source unsuccessful', () async {
@@ -215,15 +214,15 @@ void main() {
 
     test('should return tv series list when call to data source is successful', () async {
       // arrange
-      final expected = testSearchTvSeriesList;
+      final expected = testSearchTvSeriesList.results!;
 
       when(dataSource.searchTvSeries(tQuery)).thenAnswer((_) async => expected);
       // act
       final result = await repository.searchTvSeries(tQuery);
       // assert
       /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
-      final resultList = result.getOrElse(() => TvSeriesResponseModel());
-      expect(resultList, expected);
+      final resultList = result.getOrElse(() => []);
+      expect(resultList, expected.map((e) => e.toEntity()).toList());
     });
 
     test('should return ServerFailure when call to data source is unsuccessful', () async {
@@ -256,7 +255,7 @@ void main() {
       final result = await repository.getTvSeriesDetail(testId);
       // assert
       verify(dataSource.getTvSeriesDetail(testId));
-      expect(result, equals(Right(response)));
+      expect(result, equals(Right(response.toEntity())));
     });
 
     test('should return Server Failure when the call to remote data source is unsuccessful', () async {
@@ -285,15 +284,15 @@ void main() {
 
     test('should return data (tv series list) when the call is successful', () async {
       // arrange
-      final response = testTvRecommendationList;
+      final response = testTvRecommendationList.results!;
       when(dataSource.getTvSeriesRecommendation(testId!)).thenAnswer((_) async => response);
       // act
       final result = await repository.getTvSeriesRecommendation(testId);
       // assert
       verify(dataSource.getTvSeriesRecommendation(testId));
       /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
-      final resultList = result.getOrElse(() => TvSeriesResponseModel());
-      expect(resultList, equals(response));
+      final resultList = result.getOrElse(() => []);
+      expect(resultList, equals(response.map((e) => e.toEntity()).toList()));
     });
 
     test('should return server failure when call to remote data source is unsuccessful', () async {

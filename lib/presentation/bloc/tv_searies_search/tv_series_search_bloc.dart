@@ -31,9 +31,9 @@ class TvSeriesSearchBloc
 
           emit(resultState);
         }, (data) async {
-          if (data.results!.isNotEmpty) {
+          if (data.isNotEmpty) {
             final result =
-                data.results!.map((e) => Poster5Entity.fromTvSeries(e)).toList();
+                data.map((e) => Poster5Entity.fromTvSeries(e)).toList();
             final resultState = TvSeriesSearchHasData(result);
 
             emit(resultState);

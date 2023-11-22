@@ -54,7 +54,8 @@ void main() {
   final List<Poster3Entity> tvRecommendations = <Poster3Entity>[];
   const bool isAddedToWatchList = false;
   final String imageUrl = '$baseImageUrl${tvDetail.posterPath}';
-  final ItemDataEntity itemDataEntity = ItemDataEntity.fromTvSeries(tvDetail);
+  // final ItemDataEntity itemDataEntity = ItemDataEntity.fromTvSeries(tvDetail);
+  final ItemDataEntity itemDataEntity = tvDetail.toEntity();
 
   testWidgets('Page display center progress bar when loading', (WidgetTester tester) async {
     whenListen(

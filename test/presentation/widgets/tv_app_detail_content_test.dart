@@ -1,8 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:ditonton/data/datasources/db/database_helper.dart';
+import 'package:ditonton/data/datasources/watchlist_local_data_source.dart';
 import 'package:ditonton/data/models/tv_detail_response_model.dart';
+import 'package:ditonton/data/repositories/watchlist_repository_impl.dart';
 import 'package:ditonton/domain/entities/item_data_entity.dart';
 import 'package:ditonton/domain/entities/poster_3_entity.dart';
+import 'package:ditonton/domain/usecases/get_watchlist_movies.dart';
 import 'package:ditonton/presentation/bloc/tv_detail/tv_detail_bloc.dart';
+import 'package:ditonton/presentation/bloc/watchlist/watchlist_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist_status/watchlist_status_bloc.dart';
 import 'package:ditonton/presentation/widgets/app_detail_content.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +22,20 @@ import '../../mock/mock_bloc.dart';
 void main() {
   late TvDetailBloc bloc;
   late WatchlistStatusBloc watchlistStatusBloc;
+  late WatchlistBloc watchlistBloc;
 
   setUp(() {
     bloc = MockTvDetailBloc();
     watchlistStatusBloc = MockWatchListStatusBloc();
+    watchlistBloc = WatchlistBloc(
+      GetWatchlist(
+        WatchlistRepositoryImpl(
+          WatchlistLocalDataSourceImpl(
+            databaseHelper: DatabaseHelper(),
+          ),
+        ),
+      ),
+    );
   });
 
   setUpAll(() {
@@ -28,6 +43,7 @@ void main() {
     registerFallbackValue(TvDetailEventFake());
     registerFallbackValue(WatchListStatusStateFake());
     registerFallbackValue(WatchListStatusEventFake());
+    registerFallbackValue(MockWatchlistBloc());
   });
 
   Widget makeTestableWidget(Widget body) {
@@ -38,7 +54,10 @@ void main() {
         ),
         BlocProvider(
           create: (context) => watchlistStatusBloc,
-        )
+        ),
+        BlocProvider(
+          create: (context) => watchlistBloc,
+        ),
       ],
       child: Builder(
         builder: (_) => MaterialApp(
@@ -52,7 +71,8 @@ void main() {
 
   final TvDetailResponseModel tvDetail = testTvDetail;
   final List<Poster3Entity> tvRecommendation = <Poster3Entity>[];
-  final ItemDataEntity itemDataEntity = ItemDataEntity.fromTvSeries(tvDetail);
+  // final ItemDataEntity itemDataEntity = ItemDataEntity.fromTvSeries(tvDetail);
+  final ItemDataEntity itemDataEntity = tvDetail.toEntity();
 
   testWidgets('should display Snackbar when added to watchlist', (WidgetTester tester) async {
     const String message = 'Added to Watchlist';
