@@ -1,5 +1,6 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/enum/enum_home_state.dart';
+import 'package:ditonton/common/firebase_analytics_service.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/domain/entities/poster_2_entity.dart';
 import 'package:ditonton/presentation/bloc/home_state_handler/home_state_handler_bloc.dart';
@@ -62,7 +63,10 @@ class MyApp extends StatelessWidget {
           textTheme: kTextTheme,
         ),
         home: const HomePage(),
-        navigatorObservers: [routeObserver],
+        navigatorObservers: [
+          routeObserver,
+          FirebaseAnalyticsService().initAnalytics(),
+        ],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case HomePage.ROUTE_NAME:

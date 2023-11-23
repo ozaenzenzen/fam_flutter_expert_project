@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:ditonton/common/exception.dart';
+import 'package:ditonton/common/firebase_analytics_service.dart';
 import 'package:ditonton/data/models/tv_detail_response_model.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -83,7 +84,12 @@ class TvRemoteDataSourceImpl extends TvRemoteDataSource {
     final response = await client.get(Uri.parse('$BASE_URL/tv/$id?$API_KEY'));
 
     if (response.statusCode == 200) {
-      return TvDetailResponseModel.fromJson(json.decode(response.body));
+      TvDetailResponseModel dataMapping = TvDetailResponseModel.fromJson(json.decode(response.body));
+      FirebaseAnalyticsService().sendAnalyticsEvent('getTvSeriesDetail', {
+        'id': dataMapping.id,
+        'name': dataMapping.name,
+      });
+      return dataMapping;
     } else {
       throw ServerException();
     }

@@ -4,7 +4,7 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.2.0 <=4.0.0"
+  sdk: ">=3.0.0 <=4.0.0"
 
 dependencies:
   bloc: ^8.1.2
@@ -12,6 +12,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0-nullsafety.2
   equatable: ^2.0.2
+  firebase_analytics: ^10.7.1
+  firebase_core: ^2.23.0
+  firebase_crashlytics: ^3.4.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
@@ -25,7 +28,7 @@ dependencies:
   sqflite: ^2.0.0+3
 
 dev_dependencies:
-  analyzer: 
+  analyzer: null
   bloc_test: ^9.1.5
   build_runner: ^2.0.4
   flutter_lints: ^3.0.1

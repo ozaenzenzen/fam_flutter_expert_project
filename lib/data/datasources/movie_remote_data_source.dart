@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:ditonton/common/firebase_analytics_service.dart';
 import 'package:ditonton/data/models/movie_detail_model.dart';
 import 'package:ditonton/data/models/movie_model.dart';
 import 'package:ditonton/data/models/movie_response.dart';
@@ -60,6 +61,11 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     final response = await client.get(Uri.parse('$BASE_URL/movie/$id?$API_KEY'));
 
     if (response.statusCode == 200) {
+      MovieDetailResponse dataMapping = MovieDetailResponse.fromJson(json.decode(response.body));
+      FirebaseAnalyticsService().sendAnalyticsEvent('getMovieDetail', {
+        'id': dataMapping.id,
+        'name': dataMapping.title,
+      });
       return MovieDetailResponse.fromJson(json.decode(response.body));
     } else {
       throw ServerException();

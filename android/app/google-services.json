@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1028957913351",
+    "project_id": "fam-flutter-expert-project",
+    "storage_bucket": "fam-flutter-expert-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028957913351:android:723ba8f246442e71b045a2",
+        "android_client_info": {
+          "package_name": "com.dicoding.ditonton"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0JVfGv-Vkp2G1XplPNatqkHAAQOZM0wU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
