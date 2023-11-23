@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/data/models/tv_detail_response_model.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:ditonton/data/models/tv_series_response_model.dart';
+import 'package:http/io_client.dart';
 
 abstract class TvRemoteDataSource {
   Future<List<ResultTvSeries>> getPopularTvSeries();
@@ -24,8 +27,23 @@ class TvRemoteDataSourceImpl extends TvRemoteDataSource {
 
   TvRemoteDataSourceImpl({required this.client});
 
+  Future<SecurityContext> get globalContext async {
+    final sslCert = await rootBundle.load('assets/certificates/SSLthemoviedb.pem');
+    SecurityContext securityContext = SecurityContext(withTrustedRoots: false);
+    securityContext.setTrustedCertificatesBytes(sslCert.buffer.asInt8List());
+    return securityContext;
+  }
+
+  Future<IOClient> ioClientFunc() async {
+    HttpClient client = HttpClient(context: await globalContext);
+    client.badCertificateCallback = (X509Certificate cert, String host, int port) => false;
+    IOClient ioClient = IOClient(client);
+    return ioClient;
+  }
+
   @override
   Future<List<ResultTvSeries>> getOnTheAirTvSeries() async {
+    IOClient client = await ioClientFunc();
     final response = await client.get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY'));
 
     if (response.statusCode == 200) {
@@ -37,6 +55,7 @@ class TvRemoteDataSourceImpl extends TvRemoteDataSource {
 
   @override
   Future<List<ResultTvSeries>> getPopularTvSeries() async {
+    IOClient client = await ioClientFunc();
     final response = await client.get(Uri.parse('$BASE_URL/tv/popular?$API_KEY'));
 
     if (response.statusCode == 200) {
@@ -48,6 +67,7 @@ class TvRemoteDataSourceImpl extends TvRemoteDataSource {
 
   @override
   Future<List<ResultTvSeries>> getTopRatedTvSeries() async {
+    IOClient client = await ioClientFunc();
     final response = await client.get(Uri.parse('$BASE_URL/tv/top_rated?$API_KEY'));
 
     if (response.statusCode == 200) {
@@ -59,6 +79,7 @@ class TvRemoteDataSourceImpl extends TvRemoteDataSource {
 
   @override
   Future<TvDetailResponseModel> getTvSeriesDetail(int id) async {
+    IOClient client = await ioClientFunc();
     final response = await client.get(Uri.parse('$BASE_URL/tv/$id?$API_KEY'));
 
     if (response.statusCode == 200) {
@@ -70,6 +91,7 @@ class TvRemoteDataSourceImpl extends TvRemoteDataSource {
 
   @override
   Future<List<ResultTvSeries>> getTvSeriesRecommendation(int id) async {
+    IOClient client = await ioClientFunc();
     final response = await client.get(Uri.parse('$BASE_URL/tv/$id/recommendations?$API_KEY'));
 
     if (response.statusCode == 200) {
@@ -81,6 +103,7 @@ class TvRemoteDataSourceImpl extends TvRemoteDataSource {
 
   @override
   Future<List<ResultTvSeries>> searchTvSeries(String keyword) async {
+    IOClient client = await ioClientFunc();
     final response = await client.get(Uri.parse('$BASE_URL/search/tv?$API_KEY&query=$keyword'));
 
     if (response.statusCode == 200) {
