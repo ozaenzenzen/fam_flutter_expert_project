@@ -12,6 +12,7 @@ abstract class TvRemoteDataSource {
   Future<List<ResultTvSeries>> getTopRatedTvSeries();
   Future<List<ResultTvSeries>> searchTvSeries(String keyword);
   Future<TvDetailResponseModel> getTvSeriesDetail(int id);
+  Future<TvDetailResponseModel> getTvSeriesDetailForTest(int id);
   Future<List<ResultTvSeries>> getTvSeriesRecommendation(int id);
 }
 
@@ -68,6 +69,18 @@ class TvRemoteDataSourceImpl extends TvRemoteDataSource {
         'id': dataMapping.id,
         'name': dataMapping.name,
       });
+      return dataMapping;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<TvDetailResponseModel> getTvSeriesDetailForTest(int id) async {
+    final response = await client.get(Uri.parse('$BASE_URL/tv/$id?$API_KEY'));
+
+    if (response.statusCode == 200) {
+      TvDetailResponseModel dataMapping = TvDetailResponseModel.fromJson(json.decode(response.body));
       return dataMapping;
     } else {
       throw ServerException();

@@ -5,7 +5,6 @@ import 'package:ditonton/data/datasources/tv_remote_data_source.dart';
 import 'package:ditonton/data/models/tv_detail_response_model.dart';
 import 'package:ditonton/data/models/tv_series_response_model.dart';
 import 'package:ditonton/domain/entities/tvseries_entity.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -27,8 +26,6 @@ void main() {
   const String urlTopRatedTvSeries = '$BASE_URL/tv/top_rated?$API_KEY';
 
   setUp(() async {
-    // TestWidgetsFlutterBinding.ensureInitialized();
-    // await Firebase.initializeApp();
     client = MockHttpClient();
     dataSource = TvRemoteDataSourceImpl(client: client);
   });
@@ -256,7 +253,7 @@ void main() {
 
       arrangeApiCall(uri, response, statusCode);
       // act
-      final result = await dataSource.getTvSeriesDetail(testId);
+      final result = await dataSource.getTvSeriesDetailForTest(testId);
       // assert
       expect(result.toJson(), tTvDetail.toJson());
     });

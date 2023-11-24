@@ -1,4 +1,3 @@
-import 'package:ditonton/common/firebase_analytics_service.dart';
 import 'package:ditonton/common/http_custom_client.dart';
 import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/data/datasources/movie_remote_data_source.dart';
@@ -17,7 +16,6 @@ import 'package:mockito/annotations.dart';
   DatabaseHelper,
   TvRemoteDataSource,
   TvSeriesRepository,
-  FirebaseAnalyticsService,
 ], customMocks: [
   MockSpec<HttpCustomClient>(as: #MockHttpClient)
 ])

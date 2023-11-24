@@ -1,14 +1,21 @@
+import 'dart:async';
+
 import 'package:ditonton/app.dart';
-import 'package:ditonton/firebase_options.dart';
+import 'package:ditonton/common/firebase_analytics_service.dart';
 import 'package:ditonton/injection.dart' as di;
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 void main() async {
-  di.init();
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+  runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      di.init();
+      await FirebaseAnalyticsService.init();
+      runApp(const MyApp());
+    },
+    (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack);
+    },
   );
-  runApp(const MyApp());
 }
