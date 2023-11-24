@@ -1,3 +1,5 @@
+import 'package:ditonton/common/firebase_analytics_service.dart';
+import 'package:ditonton/common/http_custom_client.dart';
 import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/data/datasources/movie_remote_data_source.dart';
 import 'package:ditonton/data/datasources/tv_remote_data_source.dart';
@@ -6,7 +8,6 @@ import 'package:ditonton/domain/repositories/movie_repository.dart';
 import 'package:ditonton/domain/repositories/tv_series_repository.dart';
 import 'package:ditonton/domain/repositories/watch_list_repository.dart';
 import 'package:mockito/annotations.dart';
-import 'package:http/http.dart' as http;
 
 @GenerateMocks([
   MovieRepository,
@@ -15,8 +16,9 @@ import 'package:http/http.dart' as http;
   WatchlistRepository,
   DatabaseHelper,
   TvRemoteDataSource,
-  TvSeriesRepository
+  TvSeriesRepository,
+  FirebaseAnalyticsService,
 ], customMocks: [
-  MockSpec<http.Client>(as: #MockHttpClient)
+  MockSpec<HttpCustomClient>(as: #MockHttpClient)
 ])
 void main() {}

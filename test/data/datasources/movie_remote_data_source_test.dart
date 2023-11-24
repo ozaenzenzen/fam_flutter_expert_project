@@ -4,6 +4,9 @@ import 'package:ditonton/data/datasources/movie_remote_data_source.dart';
 import 'package:ditonton/data/models/movie_detail_model.dart';
 import 'package:ditonton/data/models/movie_response.dart';
 import 'package:ditonton/common/exception.dart';
+import 'package:ditonton/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
@@ -19,8 +22,14 @@ void main() {
 
   late MovieRemoteDataSourceImpl dataSource;
   late MockHttpClient mockHttpClient;
+  // late MockFirebaseAnalyticsService mockFirebaseAnalyticsService;
 
-  setUp(() {
+  setUp(() async {
+    // WidgetsFlutterBinding.ensureInitialized();
+    // await Firebase.initializeApp(
+    //   options: DefaultFirebaseOptions.currentPlatform,
+    // );
+    // mockFirebaseAnalyticsService = MockFirebaseAnalyticsService();
     mockHttpClient = MockHttpClient();
     dataSource = MovieRemoteDataSourceImpl(client: mockHttpClient);
   });
