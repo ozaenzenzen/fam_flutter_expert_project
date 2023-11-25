@@ -24,3 +24,7 @@ class DatabaseFailure extends Failure {
 class UnknownFailure extends Failure {
   const UnknownFailure() : super('Unknown error occured');
 }
+
+class SSLFailure extends Failure {
+  const SSLFailure(super.message);
+}
