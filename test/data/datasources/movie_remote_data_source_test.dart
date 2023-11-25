@@ -120,7 +120,7 @@ void main() {
         ),
       );
       // act
-      final result = await dataSource.getMovieDetail(testId);
+      final result = await dataSource.getMovieDetailForTest(testId);
       // assert
       expect(result, equals(tMovieDetail));
     });
